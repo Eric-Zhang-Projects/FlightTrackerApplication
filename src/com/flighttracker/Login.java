@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 		        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 		        Statement st = con.createStatement();
 		        ResultSet rs;
-		        rs = st.executeQuery("SELECT * FROM Account WHERE username ='" + username + "' and password = '" + password + "'");
+		        rs = st.executeQuery("SELECT * FROM Customer WHERE username ='" + username + "' and password = '" + password + "'");
 		        
 		        //login successful
 		        if (rs.next()) {
