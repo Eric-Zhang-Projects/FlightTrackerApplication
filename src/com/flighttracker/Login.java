@@ -30,7 +30,6 @@ public class Login extends HttpServlet {
 		
 			RequestDispatcher req = request.getRequestDispatcher(request.getContextPath());
 			
-			
 			if(username.isEmpty()) {
 				errorMessage = "Please enter username.";
 			} else if (password.isEmpty()) {
@@ -61,7 +60,6 @@ public class Login extends HttpServlet {
 		        //login successful
 		        if (rs.next()) {
 					request.getSession().setAttribute("user", username);
-					
 		            request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
 		        } else {
 		        	// login failed

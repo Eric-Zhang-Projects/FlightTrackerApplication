@@ -13,7 +13,7 @@ public class SingletonClass {
 		}
 		return sc;
 	}
-	
+	//private constructor to ensure one instance of the class
 	private SingletonClass() {
 		
 		 System.out.println("Object created.");
