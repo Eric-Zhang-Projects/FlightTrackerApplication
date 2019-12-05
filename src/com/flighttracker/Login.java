@@ -30,6 +30,7 @@ public class Login extends HttpServlet {
 		
 			RequestDispatcher req = request.getRequestDispatcher(request.getContextPath());
 			
+			
 			if(username.isEmpty()) {
 				errorMessage = "Please enter username.";
 			} else if (password.isEmpty()) {
@@ -43,7 +44,7 @@ public class Login extends HttpServlet {
 			
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
-				System.out.println("driver found");
+				System.out.println("class driver found");
 			} catch (ClassNotFoundException e){
 				System.out.println("No driver found");
 				e.printStackTrace();
@@ -55,13 +56,44 @@ public class Login extends HttpServlet {
 		        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 		        Statement st = con.createStatement();
 		        ResultSet rs;
+		        ResultSet rep;
+		        ResultSet admin;
+		        String response1 = "";
+		        System.out.println("check login");
 		        rs = st.executeQuery("SELECT * FROM Customer WHERE username ='" + username + "' and password = '" + password + "'");
-		        
 		        //login successful
 		        if (rs.next()) {
 					request.getSession().setAttribute("user", username);
-		            request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
-		        } else {
+		            System.out.println("welcome " + username);
+		            System.out.println("<a href='logout.jsp'>Log out</a>");
+					response1 = "/jsp/home.jsp";
+		            //request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+		        } 
+		        con.close();
+		        con = DriverManager.getConnection(url, "cs336", "admin123");
+		        st = con.createStatement();
+		        rep = st.executeQuery("SELECT * FROM Customer_rep WHERE username ='" + username + "' and password = '" + password + "'");
+		        if(rep.next()){
+		        	request.getSession().setAttribute("user", username); // the username will be stored in the session
+		            System.out.println("welcome " + username);
+		            System.out.println("<a href='logout.jsp'>Log out</a>");
+		            response1 = "/jsp/homeCustomerrep.jsp";  
+		        } 
+		         con.close();
+		         con = DriverManager.getConnection(url, "cs336", "admin123");
+		         st = con.createStatement();
+		         admin = st.executeQuery("SELECT * FROM Admin WHERE username ='" + username + "' and password = '" + password + "'");
+		         if(admin.next()){
+		        	 request.getSession().setAttribute("user", username); // the username will be stored in the session
+		             System.out.println("welcome " + username);
+		             System.out.println("<a href='logout.jsp'>Log out</a>");
+		             response1 = "/jsp/homeAdmin.jsp";  
+		         } 
+		         System.out.println(response1);
+		         if (response1!=""){
+		        	   request.getRequestDispatcher(response1).forward(request, response);
+		        	    }
+		        else {
 		        	// login failed
 		        	errorMessage = "Invalid username or password.";
 					RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");

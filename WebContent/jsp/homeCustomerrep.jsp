@@ -31,7 +31,7 @@ div span{
 				<a class="navbar-brand" href="#">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Account </a></li>
+							Customer Rep Account </a></li>
 					<li><a href='jsp/logout.jsp'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
