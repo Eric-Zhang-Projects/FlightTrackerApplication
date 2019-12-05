@@ -29,5 +29,17 @@
    
   </servlet-mapping>
   
+  <servlet>
+    <description></description>
+    <display-name>CREditReservation</display-name>
+    <servlet-name>CREditReservation</servlet-name>
+    <servlet-class>com.flighttracker.CREditReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CREditReservation</servlet-name>
+    <url-pattern>/CREditReservation</url-pattern>
+   
+  </servlet-mapping>
+  
   
 </web-app>

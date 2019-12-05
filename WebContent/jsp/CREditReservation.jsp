@@ -39,15 +39,17 @@ div span{
 		</div>
 	</nav>
 
-	<form class="form-inline" "${pageContext.servletContext.contextPath}/CREditReservation" method="POST">
+	<form class="form-inline" action="${pageContext.servletContext.contextPath}/CREditReservation" method="POST">
 	<!-- ${pageContext.servletContext.contextPath}/CREditReservation"-->
 		<h2>Search For User Reservations by Username</h2>
 		<hr>
 		<div class="form-group">
 			<input type="text" placeholder="Enter Username" name="username" required> 
+			
 		</div>
 		
-		<button type="button" class="btn btn-success">Search!</button>
+		<input type='submit' class="btn btn-success" value="Search!"/>
+		
 	
 	</form>
 		

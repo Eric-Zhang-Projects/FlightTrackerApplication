@@ -16,10 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/CREditReservation")
 public class CREditReservation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  /*
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//ignore for now
-	}*/
+  
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		//ignore for now
+//    	System.out.println("entering edit reservation");
+//	}
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("entering edit reservation");
