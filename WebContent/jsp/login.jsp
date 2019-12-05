@@ -24,7 +24,7 @@
 		
 		<div class="container">
 			<label for="uname"><b></b> </label> 
-			<input type="text" placeholder="Enter Usernameeeeeeee" name="username" required> 
+			<input type="text" placeholder="Enter Username" name="username" required> 
 			
 			<br> 
 			<label for="psw"><b></b> </label> 

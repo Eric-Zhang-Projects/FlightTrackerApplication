@@ -30,39 +30,27 @@ div span{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="homeAdmin.jsp"><span class="glyphicon glyphicon-user"></span>
-							Administrative Account </a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/jsp/homeCustomerrep.jsp"><span class="glyphicon glyphicon-user"></span>
+							Customer Representative Account </a></li>
 					<li><a href='logout.jsp'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
-<div class="list-group" style="width: 75%;" >
-	<a href="${pageContext.servletContext.contextPath}/jsp/CRMakeReservation.jsp" class="list-group-item list-group-item-action">
-			<div>
-				<h5>Make Flight Reservation For Customer</h5>
-			</div>
-	</a>
-	<a href="${pageContext.servletContext.contextPath}/jsp/CREditReservation.jsp" class="list-group-item list-group-item-action">
-			<div>
-				<h5>Edit Flight Reservation For Customer</h5>
-			</div>			
-	</a>
-	<a href="jsp/CREditFlights.jsp" class="list-group-item list-group-item-action">
-			<div>
-				<h5>Edit Information for Aircrafts, Airports, and Flights</h5>
-			</div>
-	</a>
-	<a href="jsp/CRWaitlist.jsp" class="list-group-item list-group-item-action">
-			<div>
-				<h5>Get Flight Waiting Lists</h5>
-			</div>			
-	</a>
-		
-</div>
 
+	<form class="form-inline" "${pageContext.servletContext.contextPath}/CREditReservation" method="POST">
+	<!-- ${pageContext.servletContext.contextPath}/CREditReservation"-->
+		<h2>Search For User Reservations by Username</h2>
+		<hr>
+		<div class="form-group">
+			<input type="text" placeholder="Enter Username" name="username" required> 
+		</div>
+		
+		<button type="button" class="btn btn-success">Search!</button>
+	
+	</form>
+		
 
 
 	<%
@@ -72,7 +60,6 @@ You are not logged in<br/>
 <a href="index.jsp">Please Login</a>
 <%}
 %>
-
 
 </body>
 </html>
