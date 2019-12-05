@@ -32,7 +32,7 @@ div span{
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 							Customer Rep Account </a></li>
-					<li><a href='jsp/logout.jsp'><span
+					<li><a href='logout.jsp'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
 			</div>
@@ -117,7 +117,7 @@ You are not logged in<br/>
 <%} else {
 %>
 Welcome <%=session.getAttribute("user")%>  <%--this will display the username that is stored in the session. --%>
-<a href='jsp/logout.jsp'>Log out</a>
+<a href='logout.jsp'>Log out</a>
 <%
     }
 %>

@@ -64,9 +64,8 @@ public class Login extends HttpServlet {
 		        //login successful
 		        if (rs.next()) {
 					request.getSession().setAttribute("user", username);
-		            System.out.println("welcome " + username);
-		            System.out.println("<a href='logout.jsp'>Log out</a>");
-					response1 = "/jsp/home.jsp";
+					response1 = "jsp/home.jsp";
+					response.sendRedirect(response1);
 		            //request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
 		        } 
 		        con.close();
@@ -75,9 +74,8 @@ public class Login extends HttpServlet {
 		        rep = st.executeQuery("SELECT * FROM Customer_rep WHERE username ='" + username + "' and password = '" + password + "'");
 		        if(rep.next()){
 		        	request.getSession().setAttribute("user", username); // the username will be stored in the session
-		            System.out.println("welcome " + username);
-		            System.out.println("<a href='logout.jsp'>Log out</a>");
-		            response1 = "/jsp/homeCustomerrep.jsp";  
+		            response1 = "jsp/homeCustomerrep.jsp";  
+					response.sendRedirect(response1);
 		        } 
 		         con.close();
 		         con = DriverManager.getConnection(url, "cs336", "admin123");
@@ -85,20 +83,19 @@ public class Login extends HttpServlet {
 		         admin = st.executeQuery("SELECT * FROM Admin WHERE username ='" + username + "' and password = '" + password + "'");
 		         if(admin.next()){
 		        	 request.getSession().setAttribute("user", username); // the username will be stored in the session
-		             System.out.println("welcome " + username);
-		             System.out.println("<a href='logout.jsp'>Log out</a>");
-		             response1 = "/jsp/homeAdmin.jsp";  
+		             response1 = "jsp/homeAdmin.jsp"; 
+					response.sendRedirect(response1);
 		         } 
 		         System.out.println(response1);
 		         if (response1!=""){
-		        	   request.getRequestDispatcher(response1).forward(request, response);
+		        	   // request.getRequestDispatcher(response1).forward(request, response);
 		        	    }
 		        else {
 		        	// login failed
 		        	errorMessage = "Invalid username or password.";
-					RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
+					//RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
 					request.setAttribute("error", errorMessage);
-					req.forward(request, response);
+					response.sendRedirect("FlightTrackerApplication");
 		        }
 		        con.close();
 	        } catch (SQLException e){
