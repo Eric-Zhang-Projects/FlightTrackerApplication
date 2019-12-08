@@ -92,9 +92,10 @@ public class Login extends HttpServlet {
 						request.getSession().setAttribute("customer_id", Integer.toString(id));
 						System.out.println(request.getSession().getAttribute("customer_id"));
 					}
+					request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
 		        }
 		        // response.sendRedirect(response1);
-		        request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+		        
 		         
 		        con.close();
 		        con = DriverManager.getConnection(url, "cs336", "admin123");
@@ -103,7 +104,7 @@ public class Login extends HttpServlet {
 		        if(rep.next()){
 		        	request.getSession().setAttribute("user", username); // the username will be stored in the session
 		            response1 = "jsp/homeCustomerrep.jsp";  
-					//response.sendRedirect(response1);
+					response.sendRedirect(response1);
 		        } 
 		         con.close();
 		         con = DriverManager.getConnection(url, "cs336", "admin123");
@@ -112,7 +113,7 @@ public class Login extends HttpServlet {
 		         if(admin.next()){
 		        	 request.getSession().setAttribute("user", username); // the username will be stored in the session
 		             response1 = "jsp/homeAdmin.jsp"; 
-					//response.sendRedirect(response1);
+					response.sendRedirect(response1);
 		         } 
 		         System.out.println(response1);
 		         if (response1!=""){
@@ -123,7 +124,7 @@ public class Login extends HttpServlet {
 		        	errorMessage = "Invalid username or password.";
 					//RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
 					request.setAttribute("error", errorMessage);
-					//response.sendRedirect("");
+					response.sendRedirect("jsp/login.jsp");
 		         }
 		         
 		        con.close();
