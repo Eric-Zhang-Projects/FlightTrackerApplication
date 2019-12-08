@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +50,7 @@ div span{
 		</div>
 		
 		<input type='submit' class="btn btn-success" value="Search!"/>
-		
-	
+
 	</form>
 		
 
