@@ -31,6 +31,17 @@
   
   <servlet>
     <description></description>
+    <display-name>Home</display-name>
+    <servlet-name>Home</servlet-name>
+    <servlet-class>com.flighttracker.Home</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/ViewFlights</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
     <display-name>CREditReservation</display-name>
     <servlet-name>CREditReservation</servlet-name>
     <servlet-class>com.flighttracker.CREditReservation</servlet-class>
@@ -38,7 +49,6 @@
   <servlet-mapping>
     <servlet-name>CREditReservation</servlet-name>
     <url-pattern>/CREditReservation</url-pattern>
-   
   </servlet-mapping>
   
     <servlet>
@@ -53,5 +63,15 @@
    
   </servlet-mapping>
   
+  <servlet>
+    <description></description>
+    <display-name>ProfileCustomer</display-name>
+    <servlet-name>ProfileCustomer</servlet-name>
+    <servlet-class>com.flighttracker.ProfileCustomer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileCustomer</servlet-name>
+    <url-pattern>/profileCustomer</url-pattern>
+  </servlet-mapping>
   
 </web-app>
