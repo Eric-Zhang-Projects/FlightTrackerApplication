@@ -37,7 +37,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Home</servlet-name>
-    <url-pattern>/home</url-pattern>
+    <url-pattern>/ViewFlights</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -61,6 +61,5 @@
     <servlet-name>ProfileCustomer</servlet-name>
     <url-pattern>/profileCustomer</url-pattern>
   </servlet-mapping>
-  
   
 </web-app>
