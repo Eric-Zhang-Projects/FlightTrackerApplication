@@ -9,6 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+
 <style>
 form {
 	text-align: center;
@@ -30,7 +31,7 @@ div span{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="${pageContext.servletContext.contextPath}/profileCustomer"><span class="glyphicon glyphicon-user"></span>
 							Account </a></li>
 					<li><a href='logout.jsp'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
@@ -48,7 +49,7 @@ div span{
 			<label for="sel1">Departure Airport:
 			<select
 				class="form-control">
-				<!-- Have to dynamically display these options -->
+				<!-- Use Ajax (function in jQuery) -->
 				<option>AP1</option>
 				<option>AP2</option>
 				<option>AP3</option>

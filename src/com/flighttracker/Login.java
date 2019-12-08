@@ -2,6 +2,7 @@ package com.flighttracker;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,13 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  /*
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//ignore for now
-	}*/
+		System.out.println("Login get works");
+		response.sendRedirect("");
+	}
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+ 
     	String username = request.getParameter("username");   
         String password = request.getParameter("password");
         String errorMessage = "";
@@ -55,7 +57,7 @@ public class Login extends HttpServlet {
 	        try{
 		        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 		        Statement st = con.createStatement();
-		        ResultSet rs;
+		        ResultSet rs, rs2;
 		        ResultSet rep;
 		        ResultSet admin;
 		        String response1 = "";
@@ -63,11 +65,21 @@ public class Login extends HttpServlet {
 		        rs = st.executeQuery("SELECT * FROM Customer WHERE username ='" + username + "' and password = '" + password + "'");
 		        //login successful
 		        if (rs.next()) {
+		        	System.out.println("If works");
 					request.getSession().setAttribute("user", username);
+					System.out.println(username);
+					rs2 = st.executeQuery("SELECT * FROM Customer WHERE username = '" + username + "' ");
+					if(rs2.next()) {
+						System.out.println("YESS");
+						int id = rs2.getInt("customer_id");
+						System.out.println("Hi /" + username + " your id is: " + id);
+						request.getSession().setAttribute("customer_id", Integer.toString(id));
+						System.out.println(request.getSession().getAttribute("customer_id"));
+					}
 					response1 = "jsp/home.jsp";
 					response.sendRedirect(response1);
 		            //request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
-		        } 
+		        }
 		        con.close();
 		        con = DriverManager.getConnection(url, "cs336", "admin123");
 		        st = con.createStatement();
@@ -102,8 +114,6 @@ public class Login extends HttpServlet {
 	        	System.out.println("connection failed");
 	        	e.printStackTrace();
 	        }
-	
-			
 		}
 	}
 }
