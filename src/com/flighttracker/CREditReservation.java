@@ -1,5 +1,6 @@
 package com.flighttracker;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,7 +9,6 @@ import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,24 +57,41 @@ public class CREditReservation extends HttpServlet {
 		        Statement st = con.createStatement();
 		        ResultSet rs;
 		        String response1 = "";
-		        System.out.println("check user info");
-		        rs = st.executeQuery("SELECT * FROM Ticket WHERE username ='" + username);
+		        System.out.println("check customer info");
+		        rs = st.executeQuery("SELECT * FROM Ticket WHERE username ='" + username + "'");
 		        //login successful
 		        if (rs.next()) {
+		        	TicketObject Ticket = new TicketObject();
 					request.getSession().setAttribute("user", username);
-					System.out.println("searching");
+					Ticket.setNumber(rs.getInt("ticket_number"));
+					Ticket.setRound_trip(rs.getInt("round_trip"));
+					Ticket.setBooking_fee(rs.getInt("booking_fee"));
+					Ticket.setIssue_date(rs.getDate("issue_date"));
+					Ticket.setTotal_fare(rs.getInt("total_fare"));
+					Ticket.setCancel_fee(rs.getInt("cancel_fee"));
+					Ticket.setMeal(rs.getInt("meal"));
+					Ticket.setWaitlist_number(rs.getInt("waitlist_number"));
+					Ticket.setUsername(rs.getString("username"));
+					Ticket.setFlight_number(rs.getInt("flight_number"));
+					Ticket.setAirline_id(rs.getString("airline_id"));
+					Ticket.setSeat_number(rs.getInt("seat_number"));
+					
+					System.out.println(Ticket.getIssue_date());
+					request.setAttribute("ticket", Ticket); 
+					con.close();
+					//RequestDispatcher rd = request.getRequestDispatcher("/jsp/CREditReservation.jsp"); 
+					//rd.forward(request, response); 
+					System.out.println(request.getAttribute("ticket"));
+					getServletContext().getRequestDispatcher("/jsp/CREditReservation2.jsp").forward(request, response);
+					//response.sendRedirect("jsp/CREditReservation2.jsp");
 					//response1 = "/jsp/home.jsp";
 		            //request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
 		        } 
-		        con.close();
-		       System.out.println(response1);
-		         if (response1!=""){
-		        	 	System.out.println("successful query");
-		        	   //request.getRequestDispatcher(response1).forward(request, response);
-		        	    }
 		        else {
 		        	// login failed
+		        	con.close();
 		        	errorMessage = "Invalid username";
+		        	response.sendRedirect("jsp/CREditReservation.jsp");
 					//RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
 					//request.setAttribute("error", errorMessage);
 					//req.forward(request, response);
