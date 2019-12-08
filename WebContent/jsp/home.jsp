@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%> 
+<%@page import="com.flighttracker.Airport"%> 
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,56 +42,51 @@ div span{
 		</div>
 	</nav>
 
-	<form class="form-inline">
+	<form class="form-inline" action="${pageContext.servletContext.contextPath}/ViewFlights" method="POST">
 		<h2>Search All Flights</h2>
+		<%ArrayList<Airport> airports = (ArrayList<Airport>)request.getAttribute("airports"); %>
 		
 		<hr>
 		
 		<div class="form-group">
-			<label for="sel1">Departure Airport:
-			<select
-				class="form-control">
-				<!-- Have to dynamically display these options -->
-				<option>AP1</option>
-				<option>AP2</option>
-				<option>AP3</option>
-				<option>AP4</option>
+			<label for="sel1" id="someLabel">Departure Airport:
+			<select class="form-control" name="departAirport">
+				<% for(Airport a:airports) { %>
+				<option><%= a.getAirportId() %></option>
+				<% } %>
 			</select>
 			</label> 
 		</div>
 
 		<div class="form-group">
 			<label for="sel1">Arrival Airport:
-			<select
-				class="form-control">
-				<!-- Have to dynamically display these options -->
-				<option>AP1</option>
-				<option>AP2</option>
-				<option>AP3</option>
-				<option>AP4</option>
+			<select class="form-control" name="arriveAirport">
+				<% for(Airport a:airports) { %>
+				<option><%= a.getAirportId() %></option>
+				<% } %>
 			</select>
 			</label> 
 		</div>
 
 		<div class="form-group">
 			<label class="input-group-text">Departure Date 
-			<input type="text" class="form-control" placeholder="mm/dd/yyyy">
+			<input type="text" class="form-control" name="departDate" placeholder="mm/dd/yyyy">
 			</label>
 		</div>
 
 
 		<div class="form-group">
 			<label class="input-group-text">Arrival Date
-			<input type="text" class="form-control" placeholder="mm/dd/yyyy">
+			<input type="text" class="form-control" name="arriveDate" placeholder="mm/dd/yyyy">
 			</label> 
 		</div>
 		
-		<button type="button" class="btn btn-success">Search!</button>
+		<input type='submit' class="btn btn-success" value="Search!" id="search"/>
 	
 	</form>
 		
 	<!-- Have to dynamically display flights -->
-	<div class="list-group" style="width: 75%;" >
+	<!-- <div class="list-group" style="width: 75%;" >
 		<h2>Flights Found!</h2>
 		<a href="#"
 			class="list-group-item list-group-item-action">
@@ -106,7 +104,7 @@ div span{
 			
 		</a>
 		
-	</div>
+	</div> -->
 
 
 	<%

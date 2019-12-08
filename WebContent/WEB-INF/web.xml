@@ -41,5 +41,17 @@
    
   </servlet-mapping>
   
+  <servlet>
+    <description></description>
+    <display-name>Home</display-name>
+    <servlet-name>Home</servlet-name>
+    <servlet-class>com.flighttracker.Home</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/ViewFlights</url-pattern>
+   
+  </servlet-mapping>
+  
   
 </web-app>
