@@ -15,10 +15,39 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Home extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	       
-
+	protected HttpServletRequest req;
+	protected HttpServletResponse resp;
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {	       
+		 //get fields for searching here
+		 	System.out.println("profile customer DO GET called");
+	        this.req = req;
+	        this.resp = resp;
+	        //make a query to get the parameters from the database
+	        String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
+	        try{
+	        	Connection con = DriverManager.getConnection(url, "cs336", "admin123");
+		        Statement st = con.createStatement();
+		        ResultSet rs1;
+		        String response1 = "";		        
+		        
+		        rs1 = st.executeQuery("SELECT * FROM Airports");
+			    ArrayList<Airport> airports = new ArrayList<Airport>(); 
+			   
+		        while (rs1.next()) {
+		        	Airport airport = new Airport();
+		        	airport.setAirportId(rs1.getString(1));
+		        	airports.add(airport);
+		        }
+		        req.setAttribute("airports", airports);
+		        con.close();        
+	        }catch (SQLException e){
+	        	System.out.println("connection failed");
+	        	e.printStackTrace();
+	        }
+        getServletContext().getRequestDispatcher("/jsp/home.jsp").forward(req, resp);
 	 }
-	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
 	     String departAirport = request.getParameter("departAirport");
 	     String arriveAirport = request.getParameter("arriveAirport");
@@ -78,6 +107,7 @@ public class Home extends HttpServlet{
 		        flightList.add(f);
 		    } 
 		    request.setAttribute("data", flightList);
+		    request.getRequestDispatcher("/jsp/viewFlights.jsp").forward(request, response);
 		    con.close();
 	      } catch (SQLException e){
 	        	System.out.println("connection failed");
