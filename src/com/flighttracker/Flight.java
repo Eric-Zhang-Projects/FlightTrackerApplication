@@ -38,7 +38,7 @@ int(11)
 	private int flightNumber, fareFirst, fareEconomy, aircraftId, availableSeatsEconomy, availableSeatsFirst;
 	private Date departDate, arriveDate;
 	private Time departTime, arriveTime;
-	private char airlineId, departAirportId, ArriveAirportId;
+	private String airlineId, departAirportId, ArriveAirportId;
 	
 	
 	public int getFlightNumber() {
@@ -101,22 +101,22 @@ int(11)
 	public void setArriveTime(Time arriveTime) {
 		this.arriveTime = arriveTime;
 	}
-	public char getAirlineId() {
+	public String getAirlineId() {
 		return airlineId;
 	}
-	public void setAirlineId(char airlineId) {
+	public void setAirlineId(String airlineId) {
 		this.airlineId = airlineId;
 	}
-	public char getDepartAirportId() {
+	public String getDepartAirportId() {
 		return departAirportId;
 	}
-	public void setDepartAirportId(char departAirportId) {
+	public void setDepartAirportId(String departAirportId) {
 		this.departAirportId = departAirportId;
 	}
-	public char getArriveAirportId() {
+	public String getArriveAirportId() {
 		return ArriveAirportId;
 	}
-	public void setArriveAirportId(char arriveAirportId) {
+	public void setArriveAirportId(String arriveAirportId) {
 		ArriveAirportId = arriveAirportId;
 	}
 

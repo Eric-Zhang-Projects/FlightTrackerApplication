@@ -92,21 +92,33 @@ public class Home extends HttpServlet{
 		 String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
 	     try{
 	    	Connection con = DriverManager.getConnection(url, "cs336", "admin123");
-		    PreparedStatement st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = ? AND arrive_airport_id = ? AND "
-		    		+ "depart_date = ? AND arrive_date = ?");
-		    st.setString(1, departAirport);
-		    st.setString(2, arriveAirport);
-		    st.setDate(3, departDateSql);
-		    st.setDate(4, arriveDateSql);
+		    PreparedStatement st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
+		    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
+		    
+		    System.out.println(st.toString());
+//		    st.setString(1, departAirport);
+//		    st.setString(2, arriveAirport);
+//		    st.setDate(3, departDateSql);
+//		    st.setDate(4, arriveDateSql);
 		    
 		    ResultSet rs;
 		    rs = st.executeQuery();
 		    while (rs.next()) {
 		        Flight f = new Flight();
 		        f.setFlightNumber(rs.getInt(1));
+		        f.setDepartAirportId(departAirport);
+		        f.setArriveAirportId(arriveAirport);
+		        f.setDepartDate(departDateSql);
+		        f.setArriveDate(arriveDateSql);
+		        f.setDepartTime(rs.getTime(4));
+		        f.setArriveTime(rs.getTime(5));
+		        f.setAirlineId(rs.getString(8));
+		        
 		        flightList.add(f);
-		    } 
-		    request.setAttribute("data", flightList);
+		    }
+		    
+		    System.out.println(flightList.toString());
+		    request.setAttribute("flightList", flightList);
 		    request.getRequestDispatcher("/jsp/viewFlights.jsp").forward(request, response);
 		    con.close();
 	      } catch (SQLException e){
