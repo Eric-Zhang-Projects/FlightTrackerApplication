@@ -80,7 +80,7 @@ public class ProfileCustomer extends HttpServlet {
         	
             System.out.println("successful Update");
         	con.close();
-        	resp.sendRedirect(req.getContextPath() + "/jsp/home.jsp");
+        	// resp.sendRedirect(req.getContextPath() + "/jsp/home.jsp");
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();

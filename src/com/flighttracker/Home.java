@@ -77,7 +77,10 @@ public class Home extends HttpServlet{
 		        f.setFlightNumber(rs.getInt(1));
 		        flightList.add(f);
 		    } 
-		    request.setAttribute("data", flightList);
+		    //request.setAttribute("data", flightList);
+		    //request.getRequestDispatcher("home.jsp").forward(request, response); 
+		    request.getSession().setAttribute("data", flightList);
+	        request.getRequestDispatcher("/jsp/viewFlights.jsp").forward(request, response);
 		    con.close();
 	      } catch (SQLException e){
 	        	System.out.println("connection failed");

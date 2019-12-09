@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%> 
 <%@page import="com.flighttracker.Airport"%> 
+<%@page import="com.flighttracker.Flight"%> 
+
     
 <!DOCTYPE html>
 <html>
@@ -85,27 +87,6 @@ div span{
 		<input type='submit' class="btn btn-success" value="Search!" id="search"/>
 	
 	</form>
-		
-	<!-- Have to dynamically display flights -->
-	<!-- <div class="list-group" style="width: 75%;" >
-		<h2>Flights Found!</h2>
-		<a href="#"
-			class="list-group-item list-group-item-action">
-			<div>
-				<h5>Departure Time - Arrival Time</h5>
-			</div>
-			<p>Airline</p> 
-		</a>
-		<a href="#"
-			class="list-group-item list-group-item-action">
-			<div>
-				<h5>Departure Time - Arrival Time</h5>
-			</div>
-			<p>Airline</p> 
-			
-		</a>
-		
-	</div> -->
 
 
 	<%
