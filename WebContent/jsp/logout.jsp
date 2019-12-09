@@ -7,11 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-session.invalidate();
-//session.getAttribute("user");   //this will throw an error
-response.sendRedirect(request.getContextPath());
- 
-%>
 </body>
 </html>

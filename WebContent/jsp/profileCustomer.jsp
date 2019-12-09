@@ -37,7 +37,7 @@ div span{
 							Customer Account 
 						</a>
 					</li>
-					<li><a href='logout.jsp'><span
+					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> 
 							Logout 
 						</a>	

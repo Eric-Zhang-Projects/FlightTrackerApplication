@@ -43,8 +43,8 @@
   <servlet-mapping>
     <servlet-name>CREditReservation</servlet-name>
     <url-pattern>/CREditReservation</url-pattern>
-  </servlet-mapping>  
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>CRUpdateReservation</display-name>
     <servlet-name>CRUpdateReservation</servlet-name>
@@ -53,9 +53,7 @@
   <servlet-mapping>
     <servlet-name>CRUpdateReservation</servlet-name>
     <url-pattern>/CRUpdateReservation</url-pattern>
-   
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ProfileCustomer</display-name>
@@ -86,5 +84,14 @@
     <servlet-name>ProfileCustomerRep</servlet-name>
     <url-pattern>/profileCustomerRep</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.flighttracker.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
 </web-app>

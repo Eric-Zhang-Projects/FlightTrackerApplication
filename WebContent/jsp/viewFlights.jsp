@@ -43,7 +43,7 @@ div span {
 					<li><a
 						href="${pageContext.servletContext.contextPath}/profileCustomer"><span
 							class="glyphicon glyphicon-user"></span> Customer Account </a></li>
-					<li><a href='logout.jsp'><span
+					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
 			</div>
