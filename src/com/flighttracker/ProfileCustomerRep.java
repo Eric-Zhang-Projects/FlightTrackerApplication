@@ -19,9 +19,38 @@ public class ProfileCustomerRep extends HttpServlet {
 	protected HttpServletResponse resp;
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("profileCustomerRep doGET Called");
+		System.out.println("profile customer rep DO GET called");
         this.req = req;
         this.resp = resp;
-        resp.sendRedirect("jsp/profileCustomer.jsp");
+        //make a query 
+        String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
+    	try {
+    		Connection con = DriverManager.getConnection(url, "cs336", "admin123");
+        	Statement st = con.createStatement();
+        	ResultSet rs;
+        	String firstName, lastName, username, password;
+        	
+        	username = req.getSession().getAttribute("user").toString();
+        	//System.out.println(id);
+        	rs = st.executeQuery("SELECT * from Customer_rep WHERE username = '" + username + "' ");
+        	if(rs.next()) {
+        		//pull information from the database
+        		firstName = rs.getString("first_name");
+        		lastName = rs.getString("last_name");
+        		password = rs.getString("password");
+        		//set the info in the req object
+        		req.setAttribute("fName", firstName);
+                req.setAttribute("lName", lastName);
+                req.setAttribute("uName", username);
+                req.setAttribute("pwd", password);
+        	}
+        	con.close();
+    	} catch (SQLException e){
+        	System.out.println("connection failed");
+        	e.printStackTrace();
+        }
+    	//send req to jsp
+        getServletContext().getRequestDispatcher("/jsp/profileCustomerRep.jsp").forward(req, resp);
+        //resp.sendRedirect("jsp/profileCustomer.jsp");
     }
 }

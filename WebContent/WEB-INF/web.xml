@@ -17,6 +17,7 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
+  
    <servlet>
     <description></description>
     <display-name>Register</display-name>
@@ -26,8 +27,8 @@
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
     <url-pattern>/register</url-pattern>
-   
   </servlet-mapping>
+  
   
   <servlet>
     <description></description>
@@ -40,6 +41,7 @@
     <url-pattern>/ViewFlights</url-pattern>
   </servlet-mapping>
   
+  
   <servlet>
     <description></description>
     <display-name>CREditReservation</display-name>
@@ -51,6 +53,7 @@
     <url-pattern>/CREditReservation</url-pattern>
   </servlet-mapping>
   
+  
   <servlet>
     <description></description>
     <display-name>ProfileCustomer</display-name>
@@ -60,6 +63,28 @@
   <servlet-mapping>
     <servlet-name>ProfileCustomer</servlet-name>
     <url-pattern>/profileCustomer</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ProfileAdmin</display-name>
+    <servlet-name>ProfileAdmin</servlet-name>
+    <servlet-class>com.flighttracker.ProfileAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileAdmin</servlet-name>
+    <url-pattern>/profileAdmin</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ProfileCustomerRep</display-name>
+    <servlet-name>ProfileCustomerRep</servlet-name>
+    <servlet-class>com.flighttracker.ProfileCustomerRep</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileCustomerRep</servlet-name>
+    <url-pattern>/profileCustomerRep</url-pattern>
   </servlet-mapping>
   
 </web-app>

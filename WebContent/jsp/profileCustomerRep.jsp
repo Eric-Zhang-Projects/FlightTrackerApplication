@@ -49,26 +49,26 @@ div span{
 	
 <div class="list-group" style="width: 75%;" >
 	<form>
-		<h2>Your Profile Page</h2>
+		<h2>Your Account Information</h2>
 		
 		<div class="form-group">
 			<label for="sel1">First Name:</label>
-			<div id = "firstName"></div>
+			<div><%= request.getAttribute("fName") %></div>
 		</div>
 		
 		<div class="form-group">
 			<label for="sel1">Last Name:</label> 
-			<div id = "lastName"></div>
+			<div><%= request.getAttribute("lName") %></div>
 		</div>
 		
 		<div class="form-group">
 		  <label for="usr">Username:</label>
-		  <div id = "username"></div>
+		  <div><%= request.getAttribute("uName") %></div>
 		</div>
 		
 		<div class="form-group">
 		  <label for="pwd">Password:</label>
-		  <div id = "password"></div>
+		  <div><%= request.getAttribute("pwd") %></div>
 		</div>
 	</form>	
 </div>

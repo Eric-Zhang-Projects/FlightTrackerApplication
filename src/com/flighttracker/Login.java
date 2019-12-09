@@ -77,7 +77,7 @@ public class Login extends HttpServlet {
 		        // RequestDispatcher rd = request.getRequestDispatcher("jsp/home.jsp");
 		        // rd.forward(request, response); 
 		        
-		        
+		        //Login for Customer Account
 		        rs = st.executeQuery("SELECT * FROM Customer WHERE username ='" + username + "' and password = '" + password + "'");
 		        //login successful
 		        if (rs.next()) {
@@ -91,12 +91,13 @@ public class Login extends HttpServlet {
 						System.out.println("Hi /" + username + " your id is: " + id);
 						request.getSession().setAttribute("customer_id", Integer.toString(id));
 						System.out.println(request.getSession().getAttribute("customer_id"));
+						request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
 					}
 		        }
 		        // response.sendRedirect(response1);
-		        request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
-		         
 		        con.close();
+		        
+		        //Login for Customer Rep Account
 		        con = DriverManager.getConnection(url, "cs336", "admin123");
 		        st = con.createStatement();
 		        rep = st.executeQuery("SELECT * FROM Customer_rep WHERE username ='" + username + "' and password = '" + password + "'");
@@ -104,14 +105,18 @@ public class Login extends HttpServlet {
 		        	request.getSession().setAttribute("user", username); // the username will be stored in the session
 		            response1 = "jsp/homeCustomerrep.jsp";  
 					//response.sendRedirect(response1);
+		            request.getRequestDispatcher("/jsp/homeCustomerrep.jsp").forward(request, response);
 		        } 
 		         con.close();
+		         
+		         //Login for Admin Account
 		         con = DriverManager.getConnection(url, "cs336", "admin123");
 		         st = con.createStatement();
 		         admin = st.executeQuery("SELECT * FROM Admin WHERE username ='" + username + "' and password = '" + password + "'");
 		         if(admin.next()){
 		        	 request.getSession().setAttribute("user", username); // the username will be stored in the session
 		             response1 = "jsp/homeAdmin.jsp"; 
+		             request.getRequestDispatcher("/jsp/homeAdmin.jsp").forward(request, response);
 					//response.sendRedirect(response1);
 		         } 
 		         System.out.println(response1);

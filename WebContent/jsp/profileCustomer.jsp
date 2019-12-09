@@ -53,25 +53,21 @@ div span{
 		
 		<div class="container">
 			<label for="sel1">First Name:</label> 
-			<input type="text" placeholder="Dynamically" name="firstName">
-			<div name = "fName"></div>
+			<input type="text" placeholder="<%= request.getAttribute("fName") %>" name="firstName">
 			
 			<br>
 			
 			<label for="sel1">Last Name:</label> 
-			<input type="text" placeholder="Change" name="lastName">
-			<div name = "lName"></div>
+			<input type="text" placeholder="<%= request.getAttribute("lName") %>" name="lastName">
 			
 			<br>
 			<label for="usr">Username:</label>
-		 	 <input type="text" placeholder="These" name ="username">
-		  	<div name = "uName"></div>
+		 	 <input type="text" placeholder="<%= request.getAttribute("uName") %>" name ="username">
 		  
 		  	<br>
 		  	
 		  	<label for="pwd">Password:</label>
-		  	<input type="password" placeholder="Fields" name ="password">
-		  	<div name = "pwd"></div>
+		  	<input type="password" placeholder="<%= request.getAttribute("pwd") %>" name ="password">
 		  	
 		  	<br>
 		  	<input type="submit" class="btn btn-success" value="Submit"/>
