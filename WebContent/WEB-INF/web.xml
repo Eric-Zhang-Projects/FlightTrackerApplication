@@ -53,6 +53,18 @@
     <url-pattern>/CREditReservation</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <description></description>
+    <display-name>CRUpdateReservation</display-name>
+    <servlet-name>CRUpdateReservation</servlet-name>
+    <servlet-class>com.flighttracker.CRUpdateReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CRUpdateReservation</servlet-name>
+    <url-pattern>/CRUpdateReservation</url-pattern>
+   
+  </servlet-mapping>
+
   
   <servlet>
     <description></description>
