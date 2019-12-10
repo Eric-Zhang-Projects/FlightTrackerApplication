@@ -58,11 +58,12 @@ div span{
 				</tr>
 			</thead>
 			<tbody>
-			<% System.out.println("try");
+				<% System.out.println("try");
 					System.out.println(request.getAttribute("ticket"));
-			TicketObject info = (TicketObject)request.getAttribute("ticket");
+					TicketObject info = (TicketObject)request.getAttribute("ticket");
 					System.out.println("2");
-					System.out.println(info.getNumber());%>
+					System.out.println(info.getNumber());
+				%>
 				<tr>
 					<th scope="row">Username</th>
 					<td><%=info.getUsername()%></td>
