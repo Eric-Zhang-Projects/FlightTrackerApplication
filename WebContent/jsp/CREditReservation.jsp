@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,15 +33,16 @@ div span{
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.servletContext.contextPath}/jsp/homeCustomerrep.jsp"><span class="glyphicon glyphicon-user"></span>
 							Customer Representative Account </a></li>
-					<li><a href='logout.jsp'><span
+					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<form class="form-inline" action="${pageContext.servletContext.contextPath}/CREditReservation" method="POST">
+	<!-- <form class="form-inline" action="${pageContext.servletContext.contextPath}/CREditReservation" method="POST">-->
 	<!-- ${pageContext.servletContext.contextPath}/CREditReservation"-->
+	<form class="form-inline" action="${pageContext.servletContext.contextPath}/crTickets" method="POST">
 		<h2>Search For User Reservations by Username</h2>
 		<hr>
 		<div class="form-group">
@@ -49,8 +51,7 @@ div span{
 		</div>
 		
 		<input type='submit' class="btn btn-success" value="Search!"/>
-		
-	
+
 	</form>
 		
 

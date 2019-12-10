@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search Flights</title>
+<title>Admin Account</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -30,9 +30,9 @@ div span{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="homeAdmin.jsp"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="${pageContext.servletContext.contextPath}/profileAdmin"><span class="glyphicon glyphicon-user"></span>
 							Administrative Account </a></li>
-					<li><a href='logout.jsp'><span
+					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
 			</div>
@@ -69,7 +69,7 @@ div span{
     if ((session.getAttribute("user") == null)) {
 %>
 You are not logged in<br/>
-<a href="index.jsp">Please Login</a>
+<a href="login.jsp">Please Login</a>
 <%}
 %>
 

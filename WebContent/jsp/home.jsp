@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%> 
+<%@page import="com.flighttracker.Airport"%> 
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 
 <style>
 form {
@@ -28,99 +32,71 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Flight Tracker</a>
+				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/home">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="${pageContext.servletContext.contextPath}/profileCustomer"><span class="glyphicon glyphicon-user"></span>
 							Account </a></li>
-					<li><a href='logout.jsp'><span
+					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<form class="form-inline">
+	<form class="form-inline" action="${pageContext.servletContext.contextPath}/home" method="POST">
 		<h2>Search All Flights</h2>
+		<%ArrayList<Airport> airports = (ArrayList<Airport>)request.getAttribute("airports"); %>
 		
 		<hr>
 		
 		<div class="form-group">
-			<label for="sel1">Departure Airport:
-			<select
-				class="form-control">
-				<!-- Have to dynamically display these options -->
-				<option>AP1</option>
-				<option>AP2</option>
-				<option>AP3</option>
-				<option>AP4</option>
+			<label for="sel1" id="someLabel">Departure Airport:
+			<select class="form-control" name="departAirport">
+				<% for(Airport a:airports) { %>
+				<option><%= a.getAirportId() %></option>
+				<% } %>
 			</select>
 			</label> 
 		</div>
 
 		<div class="form-group">
 			<label for="sel1">Arrival Airport:
-			<select
-				class="form-control">
-				<!-- Have to dynamically display these options -->
-				<option>AP1</option>
-				<option>AP2</option>
-				<option>AP3</option>
-				<option>AP4</option>
+			<select class="form-control" name="arriveAirport">
+				<% for(Airport a:airports) { %>
+				<option><%= a.getAirportId() %></option>
+				<% } %>
 			</select>
 			</label> 
 		</div>
 
 		<div class="form-group">
 			<label class="input-group-text">Departure Date 
-			<input type="text" class="form-control" placeholder="mm/dd/yyyy">
+			<input type="text" class="form-control" name="departDate" placeholder="mm/dd/yyyy">
 			</label>
 		</div>
 
 
 		<div class="form-group">
 			<label class="input-group-text">Arrival Date
-			<input type="text" class="form-control" placeholder="mm/dd/yyyy">
+			<input type="text" class="form-control" name="arriveDate" placeholder="mm/dd/yyyy">
 			</label> 
 		</div>
 		
-		<button type="button" class="btn btn-success">Search!</button>
+		<div class="form-group">
+			<div class="checkbox">
+  				<label> <input type="checkbox" value="" name="isRoundTrip">Round Trip </label>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="checkbox">
+  				<label> <input type="checkbox" value="" name="isFlexible">Flexibility </label>
+			</div>
+		</div>
+		
+		<input type='submit' class="btn btn-success" value="Search!" id="search"/>
 	
 	</form>
-		
-	<!-- Have to dynamically display flights -->
-	<div class="list-group" style="width: 75%;" >
-		<h2>Flights Found!</h2>
-		<a href="#"
-			class="list-group-item list-group-item-action">
-			<div>
-				<h5>Departure Time - Arrival Time</h5>
-			</div>
-			<p>Airline</p> 
-		</a>
-		<a href="#"
-			class="list-group-item list-group-item-action">
-			<div>
-				<h5>Departure Time - Arrival Time</h5>
-			</div>
-			<p>Airline</p> 
-			
-		</a>
-		
-	</div>
-
-
-	<%
-    if ((session.getAttribute("user") == null)) {
-%>
-You are not logged in<br/>
-<a href="index.jsp">Please Login</a>
-<%} else {
-%>
-Welcome <%=session.getAttribute("user")%>  <%--this will display the username that is stored in the session. --%>
-<a href='logout.jsp'>Log out</a>
-<%
-    }
-%>
 
 </body>
 </html>
