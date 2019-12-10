@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%> 
+<%@page import="com.flighttracker.TicketObject"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,33 +50,20 @@ div span{
 	</nav>
 	
 <div class="list-group" style="width: 75%;">
-	<form action="${pageContext.servletContext.contextPath}/profileCustomer" method ="POST">
-		<h2>Your Profile Page</h2>
+	<!-- Have to dynamically display flights -->
+	<%ArrayList<TicketObject> tickets = (ArrayList<TicketObject>)request.getAttribute("reservations"); %>
 		
-		<div class="container">
-			<label for="sel1">First Name:</label> 
-			<input type="text" placeholder="<%= request.getAttribute("fName") %>" name="firstName">
-			
-			<br>
-			
-			<label for="sel1">Last Name:</label> 
-			<input type="text" placeholder="<%= request.getAttribute("lName") %>" name="lastName">
-			
-			<br>
-			<label for="usr">Username:</label>
-		 	 <input type="text" placeholder="<%= request.getAttribute("uName") %>" name ="username">
-		  
-		  	<br>
-		  	
-		  	<label for="pwd">Password:</label>
-		  	<input type="password" placeholder="<%= request.getAttribute("pwd") %>" name ="password">
-		  	
-		  	<br>
-		  	<input type="submit" class="btn btn-success" value="Submit"/>
-			<br>
-			<a href= "${pageContext.servletContext.contextPath}/viewAllReservationsCustomer">View Your Reservations</a>
-		</div>
-	</form>	
+	<div class="list-group" style="width: 75%;">
+		<h2>Here are your reservations</h2>
+		<% for(TicketObject t: tickets) { %>
+		<a href="${pageContext.servletContext.contextPath}/viewReservationCustomer?ticket_number=<%= t.getNumber() %>" class="list-group-item list-group-item-action">
+			<div>
+				<h5><%= t.getAirline_id() %>: <%= t.getFlight_number() %> - <%= t.getTotal_fare() %> </h5>
+			</div>
+		</a> 
+		<% } %>
+
+	</div>
 </div>
   
 	<%
@@ -88,17 +77,3 @@ You are not logged in<br/>
 
 </body>
 </html>
-<!--  
-<script>
-$(document).ready(function() {
-    $('#firstName').blur(function(event) {
-            var name = $('#firstName').val();
-            $.get('GetUserServlet', {
-                    firstName : name
-            }, function(responseText) {
-                    $('#fName').text(responseText);
-            });
-    });
-});
-</script> 
--->

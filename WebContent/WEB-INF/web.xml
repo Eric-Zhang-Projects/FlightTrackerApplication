@@ -66,6 +66,26 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ViewAllReservationsCustomer</display-name>
+    <servlet-name>ViewAllReservationsCustomer</servlet-name>
+    <servlet-class>com.flighttracker.ViewAllReservationsCustomer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAllReservationsCustomer</servlet-name>
+    <url-pattern>/viewAllReservationsCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewReservationCustomer</display-name>
+    <servlet-name>ViewReservationCustomer</servlet-name>
+    <servlet-class>com.flighttracker.ViewReservationCustomer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewReservationCustomer</servlet-name>
+    <url-pattern>/viewReservationCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ProfileAdmin</display-name>
     <servlet-name>ProfileAdmin</servlet-name>
     <servlet-class>com.flighttracker.ProfileAdmin</servlet-class>
