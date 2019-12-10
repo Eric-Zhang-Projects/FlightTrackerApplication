@@ -54,6 +54,19 @@ public class Home extends HttpServlet{
 	     String departDateString = request.getParameter("departDate");
 	     String arriveDateString = request.getParameter("arriveDate");
 	     
+	     String roundTrip = request.getParameter("isRoundTrip");
+	     boolean isRoundTrip = false;
+	     
+	     String flexible = request.getParameter("isFlexible");
+	     boolean isFlexible = false;
+	     
+	     if (flexible != null) 
+	    	 isFlexible = true;
+	     
+	     if (roundTrip != null)
+	    	 isRoundTrip = true;
+	     
+
 	     boolean invalidDate = false;
 	     java.sql.Date departDateSql = null;
 	     java.sql.Date arriveDateSql = null;
@@ -92,14 +105,19 @@ public class Home extends HttpServlet{
 		 String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
 	     try{
 	    	Connection con = DriverManager.getConnection(url, "cs336", "admin123");
-		    PreparedStatement st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
-		    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
-		    
+	    	PreparedStatement st;
+	    	//if flexible, change the query to add date +/- 3
+	    	if(isFlexible) {
+	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
+			    		+ "depart_date BETWEEN date_sub('" + departDateSql + "', interval 3 day) AND date_add('" + departDateSql + "', interval 3 day) AND arrive_date BETWEEN date_sub('" + arriveDateSql + "', interval 3 day) AND date_add('" + arriveDateSql + "', interval 3 day)");
+	    	}
+	    	else {
+	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
+			    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
+	    	}
+
 		    System.out.println(st.toString());
-//		    st.setString(1, departAirport);
-//		    st.setString(2, arriveAirport);
-//		    st.setDate(3, departDateSql);
-//		    st.setDate(4, arriveDateSql);
+
 		    
 		    ResultSet rs;
 		    rs = st.executeQuery();
@@ -119,6 +137,9 @@ public class Home extends HttpServlet{
 		    
 		    System.out.println(flightList.toString());
 		    request.setAttribute("flightList", flightList);
+		    request.setAttribute("isFlexible", isFlexible);
+		    request.setAttribute("isRoundTrip", isRoundTrip);
+		    
 		    request.getRequestDispatcher("/jsp/viewFlights.jsp").forward(request, response);
 		    con.close();
 	      } catch (SQLException e){
