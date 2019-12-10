@@ -105,9 +105,17 @@ public class Home extends HttpServlet{
 		 String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
 	     try{
 	    	Connection con = DriverManager.getConnection(url, "cs336", "admin123");
-		    PreparedStatement st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
-		    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
-		    
+	    	PreparedStatement st;
+	    	//if flexible, change the query to add date +/- 3
+	    	if(isFlexible) {
+	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
+			    		+ "depart_date BETWEEN date_sub('" + departDateSql + "', interval 3 day) AND date_add('" + departDateSql + "', interval 3 day) AND arrive_date BETWEEN date_sub('" + arriveDateSql + "', interval 3 day) AND date_add('" + arriveDateSql + "', interval 3 day)");
+	    	}
+	    	else {
+	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
+			    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
+	    	}
+
 		    System.out.println(st.toString());
 
 		    
