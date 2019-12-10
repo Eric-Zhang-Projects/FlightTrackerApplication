@@ -40,8 +40,9 @@ div span{
 		</div>
 	</nav>
 
-	<form class="form-inline" action="${pageContext.servletContext.contextPath}/CREditReservation" method="POST">
+	<!-- <form class="form-inline" action="${pageContext.servletContext.contextPath}/CREditReservation" method="POST">-->
 	<!-- ${pageContext.servletContext.contextPath}/CREditReservation"-->
+	<form class="form-inline" action="${pageContext.servletContext.contextPath}/crTickets" method="POST">
 		<h2>Search For User Reservations by Username</h2>
 		<hr>
 		<div class="form-group">

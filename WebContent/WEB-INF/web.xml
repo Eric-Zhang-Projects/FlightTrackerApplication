@@ -54,6 +54,16 @@
     <servlet-name>CRUpdateReservation</servlet-name>
     <url-pattern>/CRUpdateReservation</url-pattern>
   </servlet-mapping>
+ <servlet>
+    <description></description>
+    <display-name>CRTickets</display-name>
+    <servlet-name>CRTickets</servlet-name>
+    <servlet-class>com.flighttracker.CRTickets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CRTickets</servlet-name>
+    <url-pattern>/crTickets</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>ProfileCustomer</display-name>

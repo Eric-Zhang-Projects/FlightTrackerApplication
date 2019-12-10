@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //@WebServlet("/CREditReservation")
-public class CREditReservation extends HttpServlet {
+public class CRTickets extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +24,7 @@ public class CREditReservation extends HttpServlet {
 //	}
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	System.out.println("entering edit reservation");
+    	System.out.println("entering list tickets");
     	String username = request.getParameter("username");   
         String errorMessage = "";
         
@@ -57,10 +58,13 @@ public class CREditReservation extends HttpServlet {
 		        Statement st = con.createStatement();
 		        ResultSet rs;
 		        String response1 = "";
-		        System.out.println("check customer info");
+		        System.out.println("check tickets list");
+		        System.out.println("username:" + username);
 		        rs = st.executeQuery("SELECT * FROM Ticket WHERE username ='" + username + "'");
 		        //login successful
-		        if (rs.next()) {
+		        ArrayList<TicketObject> numbers = new ArrayList<TicketObject>();
+		        while(rs.next()) {
+		        	System.out.println(rs);
 		        	TicketObject Ticket = new TicketObject();
 					request.getSession().setAttribute("user", username);
 					Ticket.setNumber(rs.getInt("ticket_number"));
@@ -75,27 +79,26 @@ public class CREditReservation extends HttpServlet {
 					Ticket.setFlight_number(rs.getInt("flight_number"));
 					Ticket.setAirline_id(rs.getString("airline_id"));
 					Ticket.setSeat_number(rs.getInt("seat_number"));
-					
-					System.out.println(Ticket.getIssue_date());
-					request.setAttribute("ticket", Ticket); 
+		        	numbers.add(Ticket);
+		        	}
+					System.out.println(numbers);
+					request.setAttribute("ticket_numbers", numbers); 
 					con.close();
 					//RequestDispatcher rd = request.getRequestDispatcher("/jsp/CREditReservation.jsp"); 
 					//rd.forward(request, response); 
-					System.out.println(request.getAttribute("ticket"));
-					getServletContext().getRequestDispatcher("/jsp/CREditReservation2.jsp").forward(request, response);
-					//response.sendRedirect("jsp/CREditReservation2.jsp");
-					//response1 = "/jsp/home.jsp";
-		            //request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
-		        } 
-		        else {
-		        	// login failed
-		        	con.close();
-		        	errorMessage = "Invalid username";
-		        	response.sendRedirect("jsp/CREditReservation.jsp");
-					//RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
-					//request.setAttribute("error", errorMessage);
-					//req.forward(request, response);
-		        }
+					System.out.println(request.getAttribute("number"));
+					//getServletContext().getRequestDispatcher("/jsp/CREditReservation2.jsp").forward(request, response);
+					getServletContext().getRequestDispatcher("/jsp/crTickets.jsp").forward(request, response);
+		        
+//		        else {
+//		        	// login failed
+//		        	con.close();
+//		        	errorMessage = "Invalid username";
+//		        	response.sendRedirect("jsp/CREditReservation.jsp");
+//					//RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
+//					//request.setAttribute("error", errorMessage);
+//					//req.forward(request, response);
+//		        }
 		        con.close();
 	        } catch (SQLException e){
 	        	System.out.println("connection failed");
