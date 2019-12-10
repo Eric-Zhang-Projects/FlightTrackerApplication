@@ -124,4 +124,14 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+ <servlet>
+    <description></description>
+    <display-name>BookFlight</display-name>
+    <servlet-name>BookFlight</servlet-name>
+    <servlet-class>com.flighttracker.BookFlight</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookFlight</servlet-name>
+    <url-pattern>/bookFlight</url-pattern>
+  </servlet-mapping>  
 </web-app>

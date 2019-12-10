@@ -1,0 +1,174 @@
+package com.flighttracker;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
+
+//@WebServlet("/CREditReservation")
+public class BookFlight extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+  
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	System.out.println("entering book flight"); 
+    	System.out.println(request.getParameter("flight_number"));
+    	int flight_number = Integer.parseInt(request.getParameter("flight_number"));
+    	//String ticket_number="1";
+    	System.out.println("GOT FROM JSP: " + flight_number);
+        
+		//also check if credentials meet
+		
+			System.out.println("username given");
+			try{
+				Class.forName("com.mysql.jdbc.Driver");
+				System.out.println("class driver found");
+			} catch (ClassNotFoundException e){
+				System.out.println("No driver found");
+				e.printStackTrace();
+	        	return;
+			}
+			        
+	        String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
+	        try{
+		        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
+		        Statement st = con.createStatement();
+		        ResultSet rs;
+		        String response1 = "";
+		        System.out.println("check ticket for populate info");
+		        rs = st.executeQuery("SELECT * FROM Flights WHERE flight_number ='" + flight_number + "'");
+		        //login successful
+		        if (rs.next()) {
+		        	Flight flight = new Flight();
+					flight.setFlightNumber(rs.getInt("flight_number"));
+					flight.setDepartDate(rs.getDate("depart_date"));
+					flight.setArriveDate(rs.getDate("arrive_date"));
+					flight.setDepartTime(rs.getTime("depart_time"));
+					flight.setArriveTime(rs.getTime("arrive_time"));
+					flight.setFareFirst(rs.getInt("fare_first"));
+					flight.setFareEconomy(rs.getInt("fare_economy"));
+					flight.setAirlineId(rs.getString("airline_id"));
+					flight.setDepartAirportId(rs.getString("depart_airport_id"));
+					flight.setArriveAirportId(rs.getString("arrive_airport_id"));
+					flight.setAircraftId(rs.getInt("aircraft_id"));
+					flight.setFareBusiness(rs.getInt("fare_business"));
+	
+					request.setAttribute("flight", flight); 
+					con.close();
+					//RequestDispatcher rd = request.getRequestDispatcher("/jsp/CREditReservation.jsp"); 
+					//rd.forward(request, response); 
+					
+					getServletContext().getRequestDispatcher("/jsp/bookFlight.jsp").forward(request, response);
+					//response.sendRedirect("jsp/CREditReservation2.jsp");
+					//response1 = "/jsp/home.jsp";
+		            //request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+		        } 
+		        else {
+		        	System.out.println("FAILLLLLL");
+		        	// login failed
+		        	con.close();
+		        	response.sendRedirect("jsp/CREditReservation.jsp");
+					//RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
+					//request.setAttribute("error", errorMessage);
+					//req.forward(request, response);
+		        }
+		        con.close();
+	        } catch (SQLException e){
+	        	System.out.println("connection failed");
+	        	e.printStackTrace();
+	        }
+	
+			
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("enter book post");
+		String username = request.getSession().getAttribute("user").toString();
+		System.out.println(username);
+
+		String flight_number= request.getParameter("flight_number");
+		String classType = request.getParameter("class").split(",")[0];
+		String airline_id = request.getParameter("airline_id");
+		String aircraft_id = request.getParameter("aircraft_id");
+		String depart_date = request.getParameter("depart_date");
+		String depart_time = request.getParameter("depart_time");
+		String depart_airport_id = request.getParameter("depart_airport_id");
+		String arrive_date = request.getParameter("arrive_date");
+		String arrive_time = request.getParameter("arrive_time");
+		String arrive_airport_id = request.getParameter("arrive_airport_id");
+		String booking_fee = request.getParameter("class").split(",")[1];
+		String meal = request.getParameter("meal");
+		
+		String cancel_fee = "0";
+		if (classType.equals("Economy")) {
+			cancel_fee = "100";
+		}
+		
+		 LocalDate localDate = LocalDate.now();
+	     String issue_date = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate).toString();
+	     
+		//not done
+		String waitlist_number="0";
+		String seat_number="0";
+		
+		//temporary while round trip not encoded
+		String total_fare = booking_fee;
+		String round_trip = "0";
+		
+		 try{
+		        Class.forName("com.mysql.jdbc.Driver"); 
+		        System.out.println("driver found");
+		        } catch (ClassNotFoundException e){
+		        	System.out.println("No driver found");
+		        	e.printStackTrace();
+		        	return;
+		        }
+		        
+		        //SingletonClass sc = SingletonClass.getSingleton();
+		        
+		        
+		        String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
+		        try{
+		        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
+		        //Connection con = sc.getConnection();
+		        //Statement findId = con.createStatement();
+		
+	    String insert = "INSERT INTO Ticket (round_trip, booking_fee, issue_date, total_fare, "
+	    		+ "cancel_fee, meal, waitlist_number, username, flight_number, airline_id, seat_number) "
+	    		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement st = con.prepareStatement(insert);
+       	st.setString(1, round_trip);
+       	st.setString(2, booking_fee);
+       	st.setString(3, issue_date);
+       	st.setString(4, total_fare);
+       	st.setString(5, cancel_fee);
+       	st.setString(6, meal);
+       	st.setString(7, waitlist_number);
+       	st.setString(8, username);
+       	st.setString(9, flight_number);
+       	st.setString(10, airline_id);
+       	st.setString(11, seat_number);
+        st.executeUpdate();
+        con.close();
+        System.out.println("success");
+        response.sendRedirect("jsp/home.jsp");
+		} catch (SQLException e){
+        	System.out.println("booking failed");
+        	e.printStackTrace();
+        }
+		
+	}
+}

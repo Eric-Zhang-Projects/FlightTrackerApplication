@@ -54,12 +54,12 @@ div span {
 		Delivered
 
 		<!-- Have to dynamically display flights -->
-		<%ArrayList<Flight> flights = (ArrayList<Flight>)request.getAttribute("flightList"); %>
  		
 		<div class="list-group" style="width: 75%;">
 			<h2>Flights Found!</h2>
-			<% for(Flight f:flights) { %>
-			<a href="#" class="list-group-item list-group-item-action">
+			<%ArrayList<Flight> flights = (ArrayList<Flight>)request.getAttribute("flightList");
+			for(Flight f:flights) { %>
+			<a href="${pageContext.servletContext.contextPath}/bookFlight?flight_number=<%=f.getFlightNumber()%>" class="list-group-item list-group-item-action">
 				<div>
 					<h5><%= f.getDepartAirportId() %> - <%= f.getArriveAirportId() %> </h5>
 				</div>
@@ -67,6 +67,7 @@ div span {
 					<h5><%= f.getDepartTime() %> - <%= f.getArriveTime() %> </h5>
 				</div>
 				<p><%=f.getAirlineId() %></p>
+				<p>Starting from $<%=f.getFareEconomy() %></p>
 			</a> 
 			<% } %>
 
