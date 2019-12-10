@@ -51,7 +51,6 @@ div span {
 	</nav>
 
 	<div class="list-group" style="width: 75%;">
-		Delivered
 
 		<!-- Have to dynamically display flights -->
  		

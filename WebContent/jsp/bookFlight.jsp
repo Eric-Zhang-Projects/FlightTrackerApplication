@@ -98,16 +98,14 @@ div span{
 		</table>
 <div style="float:left">
 Select a travel class:</br>
-<input type="radio" class="toggle" name="class" value="Economy,<%=flight.getFareEconomy()%>" required>  Economy: <%=flight.getFareEconomy()%>  
-<input type="radio" class="toggle" name ="class" value="Business,<%=flight.getFareBusiness()%>" required >  Business: <%=flight.getFareBusiness()%>  
-<input type="radio" class="toggle" name="class" value="First,<%=flight.getFareFirst()%>" required>  First: <%=flight.getFareFirst()%>  
+<input type="radio" class="toggle" name="class" value="Economy,<%=flight.getFareEconomy()%>" align="left" required>  Economy: <%=flight.getFareEconomy()%>  <br>
+<input type="radio" class="toggle" name ="class" value="Business,<%=flight.getFareBusiness()%>" required >  Business: <%=flight.getFareBusiness()%> <br> 
+<input type="radio" class="toggle" name="class" value="First,<%=flight.getFareFirst()%>" align="left" required>  First: <%=flight.getFareFirst()%>  <br>
 </div>
-<div style="float:left">
-Select Meal:</br>
-<input type="radio" class="toggle" name="meal" value="1">  Would you like a meal  
+<div style="float:left; margin-left: 30px"">
+Would you like a meal:</br>
+<input type="radio" class="toggle" name="meal" value="1">  Yes  <br>
 </div>
-
-
 <input type='submit' class="btn btn-primary" value="Book Ticket!"/>
 </form>
 
