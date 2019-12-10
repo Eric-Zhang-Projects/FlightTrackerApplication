@@ -82,44 +82,21 @@ div span{
 			</label> 
 		</div>
 		
+		<div class="form-group">
+			<div class="checkbox">
+  				<label> <input type="checkbox" value="" name="isRoundTrip">Round Trip </label>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="checkbox">
+  				<label> <input type="checkbox" value="" name="isFlexible">Flexibility </label>
+			</div>
+		</div>
+		
 		<input type='submit' class="btn btn-success" value="Search!" id="search"/>
 	
 	</form>
-		
-	<!-- Have to dynamically display flights -->
-	<!-- <div class="list-group" style="width: 75%;" >
-		<h2>Flights Found!</h2>
-		<a href="#"
-			class="list-group-item list-group-item-action">
-			<div>
-				<h5>Departure Time - Arrival Time</h5>
-			</div>
-			<p>Airline</p> 
-		</a>
-		<a href="#"
-			class="list-group-item list-group-item-action">
-			<div>
-				<h5>Departure Time - Arrival Time</h5>
-			</div>
-			<p>Airline</p> 
-			
-		</a>
-		
-	</div> -->
-
-
-	<%
-    if ((session.getAttribute("user") == null)) {
-%>
-You are not logged in<br/>
-<a href="index.jsp">Please Login</a>
-<%} else {
-%>
-Welcome <%=session.getAttribute("user")%>  <%--this will display the username that is stored in the session. --%>
-<a href='logout.jsp'>Log out</a>
-<%
-    }
-%>
 
 </body>
 </html>

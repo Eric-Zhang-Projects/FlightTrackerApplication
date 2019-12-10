@@ -54,6 +54,19 @@ public class Home extends HttpServlet{
 	     String departDateString = request.getParameter("departDate");
 	     String arriveDateString = request.getParameter("arriveDate");
 	     
+	     String roundTrip = request.getParameter("isRoundTrip");
+	     boolean isRoundTrip = false;
+	     
+	     String flexible = request.getParameter("isFlexible");
+	     boolean isFlexible = false;
+	     
+	     if (flexible != null) 
+	    	 isFlexible = true;
+	     
+	     if (roundTrip != null)
+	    	 isRoundTrip = true;
+	     
+
 	     boolean invalidDate = false;
 	     java.sql.Date departDateSql = null;
 	     java.sql.Date arriveDateSql = null;
@@ -96,10 +109,7 @@ public class Home extends HttpServlet{
 		    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
 		    
 		    System.out.println(st.toString());
-//		    st.setString(1, departAirport);
-//		    st.setString(2, arriveAirport);
-//		    st.setDate(3, departDateSql);
-//		    st.setDate(4, arriveDateSql);
+
 		    
 		    ResultSet rs;
 		    rs = st.executeQuery();
@@ -119,6 +129,9 @@ public class Home extends HttpServlet{
 		    
 		    System.out.println(flightList.toString());
 		    request.setAttribute("flightList", flightList);
+		    request.setAttribute("isFlexible", isFlexible);
+		    request.setAttribute("isRoundTrip", isRoundTrip);
+		    
 		    request.getRequestDispatcher("/jsp/viewFlights.jsp").forward(request, response);
 		    con.close();
 	      } catch (SQLException e){
