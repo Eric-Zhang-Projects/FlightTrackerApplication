@@ -50,17 +50,17 @@ div span{
 				<h5>Edit Flight Reservation For Customer</h5>
 			</div>			
 	</a>
-	<a href="CREditAircraft.jsp" class="list-group-item list-group-item-action">
+	<a href="jsp/CREditAircraft.jsp" class="list-group-item list-group-item-action">
 			<div>
 				<h5>Edit Information for Aircrafts</h5>
 			</div>
 	</a>
-	<a href="CREditAirports.jsp" class="list-group-item list-group-item-action">
+	<a href="jsp/CREditAirports.jsp" class="list-group-item list-group-item-action">
 			<div>
 				<h5>Edit Information for Airports</h5>
 			</div>
 	</a>
-	<a href="CREditFlights.jsp" class="list-group-item list-group-item-action">
+	<a href="jsp/CREditFlights.jsp" class="list-group-item list-group-item-action">
 			<div>
 				<h5>Edit Information for Flights</h5>
 			</div>
