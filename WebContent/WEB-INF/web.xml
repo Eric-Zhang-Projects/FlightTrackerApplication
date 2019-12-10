@@ -44,7 +44,6 @@
     <servlet-name>CREditReservation</servlet-name>
     <url-pattern>/CREditReservation</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>CRUpdateReservation</display-name>
@@ -55,7 +54,7 @@
     <servlet-name>CRUpdateReservation</servlet-name>
     <url-pattern>/CRUpdateReservation</url-pattern>
   </servlet-mapping>
- <servlet>
+  <servlet>
     <description></description>
     <display-name>CRTickets</display-name>
     <servlet-name>CRTickets</servlet-name>
@@ -125,8 +124,7 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>UpdateAircraft</display-name>
     <servlet-name>UpdateAircraft</servlet-name>
@@ -136,8 +134,7 @@
     <servlet-name>UpdateAircraft</servlet-name>
     <url-pattern>/updateAircraft</url-pattern>
   </servlet-mapping>
-  
-     <servlet>
+  <servlet>
     <description></description>
     <display-name>DeleteAircraft</display-name>
     <servlet-name>DeleteAircraft</servlet-name>
@@ -146,9 +143,8 @@
   <servlet-mapping>
     <servlet-name>DeleteAircraft</servlet-name>
     <url-pattern>/DeleteAircraft</url-pattern>
-  </servlet-mapping> 
-  
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>ForgotPassword</display-name>
     <servlet-name>ForgotPassword</servlet-name>
@@ -157,5 +153,17 @@
   <servlet-mapping>
     <servlet-name>ForgotPassword</servlet-name>
     <url-pattern>/forgotPassword</url-pattern>
-    </servlet-mapping>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RevenueSummary</display-name>
+    <servlet-name>RevenueSummary</servlet-name>
+    <servlet-class>com.flighttracker.RevenueSummary</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RevenueSummary</servlet-name>
+    <url-pattern>/revenueSummary</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
