@@ -38,7 +38,7 @@
 		
 			<a href='${pageContext.servletContext.contextPath}/register'>Create New Account</a>
 			<label> <b> | </b> </label> 
-			<a href=#>Forgot Password</a>
+			<a href="${pageContext.servletContext.contextPath}/forgotPassword">Forgot Password</a>
 			
 		</div>
 	</form>
