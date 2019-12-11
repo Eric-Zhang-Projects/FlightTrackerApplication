@@ -35,7 +35,7 @@ available_seats_business
 int(11)
 	 */
 	
-	private int flightNumber, fareFirst, fareEconomy, aircraftId, availableSeatsEconomy, availableSeatsFirst;
+	private int flightNumber, fareFirst, fareEconomy, aircraftId, availableSeatsEconomy, fareBusiness, availableSeatsFirst, availableSeatsBusiness;
 	private Date departDate, arriveDate;
 	private Time departTime, arriveTime;
 	private String airlineId, departAirportId, ArriveAirportId;
@@ -46,6 +46,12 @@ int(11)
 	}
 	public void setFlightNumber(int flightNumber) {
 		this.flightNumber = flightNumber;
+	}
+	public int getAvailableSeatsBusiness() {
+		return availableSeatsBusiness;
+	}
+	public void setAvailableSeatsBusiness(int availableSeatsBusiness) {
+		this.availableSeatsBusiness = availableSeatsBusiness;
 	}
 	public int getFareFirst() {
 		return fareFirst;
@@ -58,6 +64,12 @@ int(11)
 	}
 	public void setFareEconomy(int fareEconomy) {
 		this.fareEconomy = fareEconomy;
+	}
+	public int getFareBusiness() {
+		return fareBusiness;
+	}
+	public void setFareBusiness(int fareBusiness) {
+		this.fareBusiness = fareBusiness;
 	}
 	public int getAircraftId() {
 		return aircraftId;
