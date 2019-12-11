@@ -120,7 +120,7 @@ public class Home extends HttpServlet{
 	    	if(isFlexible) {
 	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
 			    		+ "depart_date BETWEEN date_sub('" + departDateSql + "', interval 3 day) AND date_add('" + departDateSql + "', interval 3 day) AND arrive_date BETWEEN date_sub('" + arriveDateSql + "', interval 3 day) AND date_add('" + arriveDateSql + "', interval 3 day)");
-	    	}
+	    	} //not flexible 
 	    	else {
 	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
 			    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
