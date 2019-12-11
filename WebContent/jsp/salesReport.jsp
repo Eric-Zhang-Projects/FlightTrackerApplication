@@ -52,19 +52,36 @@ div span{
 		<table class="table" style="width: 60%"  >
 			<thead>
 				<tr>
-					<th scope="col">Sales Report for: <% %></th>
+				<%HashMap<String, String[]> tab = (HashMap<String, String[]>)request.getAttribute("table"); %>
+				<th scope="col">Sales Report for: <%=tab.get("month")[0] %></th>
 				</tr>
 			</thead>
 			<tbody>
-			<%HashMap<Integer, String> tab = (HashMap<Integer, String>)request.getAttribute("table"); 
-			  for (int flight_number : tab.keySet()){
-			 %>
 				<tr>
-					<th scope="row">Flight Number: <%=flight_number%><p>
-					<%=tab.get(flight_number)%><p>
+					<th scope="row">Total Tickets Sold:<p>
+					 <%=tab.get("total_tickets")[0]%> Tickets
 					</th>
 				</tr>
-				<%} %>
+				<tr>
+					<th scope="row">Total Flights Operated:<p>
+					 <%=tab.get("total_flights")[0]%> Flights
+					</th>
+				</tr>
+				<tr>
+					<th scope="row">Total Revenue Generated:<p>
+					 $<%=tab.get("total_revenue")[0]%>
+					</th>
+				</tr>
+				<tr>
+					<th scope="row">Airline That Produced the Most Revenue:<p>
+					 Airline: <%=tab.get("airline_id")[0]%> with $ <%=tab.get("airline_id")[1]%> in Total Revenue
+					</th>
+				</tr>	
+				<tr>
+					<th scope="row">Most Tickets Bought for Flight Number:<p>
+					 Flight Number: <%=tab.get("flight_number")[0]%> With <%=tab.get("flight_number")[1]%> Tickets Bought
+					</th>
+				</tr>							 
 		</table>
 
 	</form>

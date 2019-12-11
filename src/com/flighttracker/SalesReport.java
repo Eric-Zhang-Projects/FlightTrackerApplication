@@ -27,16 +27,17 @@ public class SalesReport extends HttpServlet {
 	//sales report will have by month:
 	//total tickets bought
 	//total flights operating in this month
+	//total revenue
 	//most tickets bought by a particular flight, 
 	//most revenue generated  by airline, 
-	//customer who bought most tickets
 	/*
 month: [month as string] (done)
 total_tickets: [total as string]
 total_flights: [total as string]
+total_revenue: [total as string]
 most_by_flight: [flight_number, total]
 most_by_airline: [airline_id, total]
-most_by_customer: [customer_id, total]
+
 	 */
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,7 +60,7 @@ most_by_customer: [customer_id, total]
         try{
 	        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 	        Statement st = con.createStatement();
-	        ResultSet allTicketsRS, allFlightsRS, flightRS, airlineRS, custRS;
+	        ResultSet allTicketsRS, allFlightsRS, totalRevenueRS, flightRS, airlineRS;
 	        
 	        //total_tickets: [total as string]
 	        
@@ -100,6 +101,26 @@ most_by_customer: [customer_id, total]
 	        table.put("total_flights", value);
 	        con.close();
 	        
+	        //total_revenue: [total as string]
+	        con = DriverManager.getConnection(url, "cs336", "admin123");
+	        st = con.createStatement();
+	        query = "SELECT issue_date, total_fare FROM Ticket";
+	        totalRevenueRS = st.executeQuery(query);
+	        int totalRevenue = 0;
+	        while(totalRevenueRS.next()) {
+	        	String date = totalRevenueRS.getString("issue_date");
+	        	String monthRS = date.substring(5,7);
+	        	int revenue = totalRevenueRS.getInt("total_fare");
+	        	if (monthRS.equals(Integer.toString(month))){	
+	        		totalRevenue+=revenue;
+	        	}
+	        }
+	        value = new String[] {Integer.toString(totalRevenue)};
+	        table.put("total_revenue", value);
+	        con.close();	        
+	        
+	        
+	        
 	        
 	      //most_by_flight: [flight_number, total]
 	        con = DriverManager.getConnection(url, "cs336", "admin123");
@@ -130,41 +151,59 @@ most_by_customer: [customer_id, total]
 	        		flight_numb = fn;
 	        	}
 	        }
-	        value = new String[] {Integer.toString(flight_numb)};
+	        value = new String[] {Integer.toString(flight_numb), Integer.toString(greatest)};
 	        table.put("flight_number", value);
+	        con.close();
 	        
 
 	        
 	      //most_by_airline: [airline_id, total]
-	        
-	        
-	        
-	        
-	        
-	        System.out.println("table:");
-	        for (String aa : table.keySet()) {
-		        System.out.println(aa + " " + table.get(aa)[0]);
+	        con = DriverManager.getConnection(url, "cs336", "admin123");
+	        st = con.createStatement();
+	        query = "SELECT issue_date, airline_id, total_fare FROM Ticket";
+	        airlineRS = st.executeQuery(query);	
+	        HashMap<String, Integer> temp1 = new HashMap<String, Integer>();
+	      //  int total = 0;
+	        while(airlineRS.next()) {
+	        	String airline_id = airlineRS.getString("airline_id");
+	        	int fare = airlineRS.getInt("total_fare");
+	        	String date = airlineRS.getString("issue_date");
+	        	String monthRS = date.substring(5,7);
+	        	if (monthRS.equals(Integer.toString(month))){
+	        		if (!temp1.containsKey(airline_id)) {
+	        			temp1.put(airline_id, fare);
+	        		}
+	        		else {
+	        			temp1.put(airline_id, temp1.get(airline_id)+fare);
+	        		}
 	        }
+	        }
+		      greatest = 0;
+		      t =0;
+		      String airline_id = "";
+		      for (String aid : temp1.keySet()) {
+		        	t = temp1.get(aid);
+		        	if (t > greatest) {
+		        		greatest = t;
+		        		airline_id = aid;
+		        	}
+		        }	
+		      	value = new String[] {airline_id, Integer.toString(greatest)};
+		        table.put("airline_id", value);
+		        con.close(); 
 	        
+	        		    
+	        
+		        System.out.println("table:");
+		        for (String aa : table.keySet()) {
+			        System.out.println(aa + " " + table.get(aa)[0]);
+		        }
+		    request.setAttribute("table", table); 
+		    getServletContext().getRequestDispatcher("/jsp/salesReport.jsp").forward(request, response);
+		           
 	        
 	       
-	        
-	        
-	        //most_by_customer: [customer_id, total]
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-
-		
-	} catch (SQLException e){
+        } catch (SQLException e){
     	System.out.println("connection failed");
     	e.printStackTrace();
     }
