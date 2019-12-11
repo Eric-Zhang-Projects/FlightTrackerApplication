@@ -13,34 +13,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
-function validUpdate(){
-	alert ( "Booking Successful");
-	return;
-}
+	function validUpdate(){
+		alert ( "Booking Successful");
+		return;
+	}
 </script>
 
 <style>
-form {
-	text-align: center;
+	form {
+		text-align: center;
+		}
 	
-}
-
-label {
-	margin-right: 20px;
-}
-div span{
-    position:absolute;
-    right:10;
-}
+	label {
+		margin-right: 20px;
+		}
+	div span{
+	    position:absolute;
+	    right:10;
+	    }
 </style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="jsp/home.jsp">Flight Tracker</a>
+				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/home">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.servletContext.contextPath}/jsp/profileCustomer.jsp"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="${pageContext.servletContext.contextPath}/profileCustomer"><span class="glyphicon glyphicon-user"></span>
 							Account </a></li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
@@ -102,23 +101,23 @@ div span{
 
 		</table>
 <div style="float:left">
-Select a travel class:</br>
-<input type="radio" class="toggle" name="class" value="Economy,<%=flight.getFareEconomy()%>"  required>  Economy: <%=flight.getFareEconomy()%> 
-<%if (flight.getAvailableSeatsEconomy()==0){%>
-(Add to Wait List)
-<%}%> <br>
-<input type="radio" class="toggle" name ="class" value="Business,<%=flight.getFareBusiness()%>" required >  Business: <%=flight.getFareBusiness()%> 
-<%if (flight.getAvailableSeatsBusiness()==0){%>
-(Add to Wait List)
-<%}%> <br> 
-<input type="radio" class="toggle" name="class" value="First,<%=flight.getFareFirst()%>"  required>  First: <%=flight.getFareFirst()%>  
-<%if (flight.getAvailableSeatsFirst()==0){%>
-(Add to Wait List)
-<%}%> <br>
+	Select a travel class:</br>
+	<input type="radio" class="toggle" name="class" value="Economy,<%=flight.getFareEconomy()%>"  required>  Economy: <%=flight.getFareEconomy()%> 
+	<%if (flight.getAvailableSeatsEconomy()==0){%>
+	(Add to Wait List)
+	<%}%> <br>
+	<input type="radio" class="toggle" name ="class" value="Business,<%=flight.getFareBusiness()%>" required >  Business: <%=flight.getFareBusiness()%> 
+	<%if (flight.getAvailableSeatsBusiness()==0){%>
+	(Add to Wait List)
+	<%}%> <br> 
+	<input type="radio" class="toggle" name="class" value="First,<%=flight.getFareFirst()%>"  required>  First: <%=flight.getFareFirst()%>  
+	<%if (flight.getAvailableSeatsFirst()==0){%>
+	(Add to Wait List)
+	<%}%> <br>
 </div>
 <div style="float:left; margin-left: 30px"">
-Would you like a meal:</br>
-<input type="radio" class="toggle" name="meal" value="1">  Yes  <br>
+	Would you like a meal:</br>
+	<input type="radio" class="toggle" name="meal" value="1">  Yes  <br>
 </div>
 <input type='submit' class="btn btn-primary" value="Book Ticket!"/>
 </form>

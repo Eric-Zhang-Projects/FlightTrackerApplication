@@ -162,14 +162,9 @@ public class BookFlight extends HttpServlet {
 		        	return;
 		        }
 		        
-		        //SingletonClass sc = SingletonClass.getSingleton();
-		        
-		        
 		        String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
 		        try{
 		        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
-		        //Connection con = sc.getConnection();
-		        //Statement findId = con.createStatement();
 		        Statement st1 = con.createStatement();
 		        ResultSet rs, rs1, seats;
 		        String temp = "available_seats_" + classType.toLowerCase();
@@ -196,7 +191,7 @@ public class BookFlight extends HttpServlet {
 		    		Statement seatSt = con.createStatement();
 		        	seats = seatSt.executeQuery("SELECT MAX(seat_number) FROM Ticket WHERE flight_number ='" + flight_number + "' AND class='"+ classType.toLowerCase() + "'");
 		        	if (seats.next()) {
-		        	seat_number = Integer.toString(seats.getInt("MAX(seat_number)") + 1);
+		        		seat_number = Integer.toString(seats.getInt("MAX(seat_number)") + 1);
 		        	}
 		    		con.close();
 		        }

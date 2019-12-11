@@ -109,7 +109,7 @@ public class ViewReservationCustomer extends HttpServlet {
         	e.printStackTrace();
         }
         //redirect to welcome page
-		getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/jsp/welcomePage.jsp").forward(request, response);
 	}
 
 }
