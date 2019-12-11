@@ -270,4 +270,14 @@
     <servlet-name>FlightMostSold</servlet-name>
     <url-pattern>/flightMostSold</url-pattern>
     </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllFlightsAirport</display-name>
+    <servlet-name>AllFlightsAirport</servlet-name>
+    <servlet-class>com.flighttracker.AllFlightsAirport</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>AllFlightsAirport</servlet-name>
+    <url-pattern>/allFlightsAirport</url-pattern>
+    </servlet-mapping>
 </web-app>
