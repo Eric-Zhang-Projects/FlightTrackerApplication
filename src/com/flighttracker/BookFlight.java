@@ -47,7 +47,6 @@ public class BookFlight extends HttpServlet {
 		        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 		        Statement st = con.createStatement();
 		        ResultSet rs;
-		        String response1 = "";
 		        System.out.println("check ticket for populate info");
 		        rs = st.executeQuery("SELECT * FROM Flights WHERE flight_number ='" + flight_number + "'");
 		        //login successful
@@ -65,7 +64,9 @@ public class BookFlight extends HttpServlet {
 					flight.setArriveAirportId(rs.getString("arrive_airport_id"));
 					flight.setAircraftId(rs.getInt("aircraft_id"));
 					flight.setFareBusiness(rs.getInt("fare_business"));
-	
+					flight.setAvailableSeatsEconomy(rs.getInt("available_seats_economy"));
+					flight.setAvailableSeatsBusiness(rs.getInt("available_seats_business"));
+					flight.setAvailableSeatsFirst(rs.getInt("available_seats_first"));
 					request.setAttribute("flight", flight); 
 					con.close();
 					//RequestDispatcher rd = request.getRequestDispatcher("/jsp/CREditReservation.jsp"); 
@@ -111,6 +112,10 @@ public class BookFlight extends HttpServlet {
 		String arrive_airport_id = request.getParameter("arrive_airport_id");
 		String booking_fee = request.getParameter("class").split(",")[1];
 		String meal = request.getParameter("meal");
+		if (meal == null) {
+			meal = "0";
+		}
+		String waitlist_number = "";
 		
 		String cancel_fee = "0";
 		if (classType.equals("Economy")) {
@@ -121,7 +126,7 @@ public class BookFlight extends HttpServlet {
 	     String issue_date = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate).toString();
 	     
 		//not done
-		String waitlist_number="0";
+		
 		String seat_number="0";
 		
 		//temporary while round trip not encoded
@@ -145,10 +150,57 @@ public class BookFlight extends HttpServlet {
 		        Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 		        //Connection con = sc.getConnection();
 		        //Statement findId = con.createStatement();
+		        Statement st1 = con.createStatement();
+		        ResultSet rs, rs1, seats;
+		        String temp = "available_seats_" + classType.toLowerCase();
+		        System.out.println(temp);
+		        int seats_remaining =0;
+		        System.out.println("SELECT " + temp + " FROM Flights WHERE flight_number = '" + flight_number + "'");
+		        rs = st1.executeQuery("SELECT " + temp + " FROM Flights WHERE flight_number = '" + flight_number + "'");
+		        if (rs.next()) {
+		        	seats_remaining =rs.getInt(temp);
+		        }
+		        System.out.println("remaing" + seats_remaining);
+		        con.close();
+		        
+		        con = DriverManager.getConnection(url, "cs336", "admin123");
+		        Statement st2 = con.createStatement();
+		        if (seats_remaining >0) {
+		        	String newValue = Integer.toString(seats_remaining - 1);
+		        	System.out.println("UPDATE Flights SET " + temp + "='" + newValue +  "' WHERE flight_number='" + flight_number +"'");
+		    		int success = st2.executeUpdate("UPDATE Flights SET " + temp + "='" + newValue +  "' WHERE flight_number='" + flight_number +"'");
+		    		System.out.println("hi");
+		    		waitlist_number = "0";
+		    		con.close();
+		    		con = DriverManager.getConnection(url, "cs336", "admin123");
+		    		Statement seatSt = con.createStatement();
+		        	seats = seatSt.executeQuery("SELECT MAX(seat_number) FROM Ticket WHERE flight_number ='" + flight_number + "' AND class='"+ classType.toLowerCase() + "'");
+		        	if (seats.next()) {
+		        	seat_number = Integer.toString(seats.getInt("MAX(seat_number)") + 1);
+		        	}
+		    		con.close();
+		        }
+		        else {
+		        	rs1 = st2.executeQuery("SELECT MAX(waitlist_number) FROM Ticket WHERE flight_number ='" + flight_number + "' AND class='"+ classType.toLowerCase() + "'");
+		        	//System.out.println("SELECT MAX(waitlist_number) FROM Ticket WHERE flight_number ='" + flight_number + "'");
+		        	if (rs1.next()) {
+		        	System.out.println("waitlist query worked");
+		        	//System.out.println(rs1.getInt("MAX(waitlist_number)"));
+		        	waitlist_number = Integer.toString(rs1.getInt("MAX(waitlist_number)") + 1);
+		        	seat_number = "-1";
+		        	System.out.println("waitlist: " + waitlist_number);
+		        	}
+		        }
+		        con.close();
+		        
+		        con = DriverManager.getConnection(url, "cs336", "admin123");
+		       // int success = st.executeUpdate("UPDATE Flights SET " + temp + " WHERE ticket_number='" + flight_number +"'");
+
+		       
 		
 	    String insert = "INSERT INTO Ticket (round_trip, booking_fee, issue_date, total_fare, "
-	    		+ "cancel_fee, meal, waitlist_number, username, flight_number, airline_id, seat_number) "
-	    		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	    		+ "cancel_fee, meal, waitlist_number, username, flight_number, airline_id, seat_number, class) "
+	    		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement st = con.prepareStatement(insert);
        	st.setString(1, round_trip);
        	st.setString(2, booking_fee);
@@ -161,10 +213,11 @@ public class BookFlight extends HttpServlet {
        	st.setString(9, flight_number);
        	st.setString(10, airline_id);
        	st.setString(11, seat_number);
+       	st.setString(12, classType);
         st.executeUpdate();
         con.close();
         System.out.println("success");
-        response.sendRedirect("jsp/profileCustomer.jsp");
+        response.sendRedirect("jsp/home.jsp");
 		} catch (SQLException e){
         	System.out.println("booking failed");
         	e.printStackTrace();

@@ -136,6 +136,12 @@ div span{
 					<td><input class="form-control" placeholder="Enter Seat Number" name="seat_numberUpdate">
 					<input type="hidden" name="seat_number" value= <%=info.getSeat_number()%> ></td>
 				</tr>
+				<tr>
+					<th scope="row">Class</th>
+					<td><%=info.getClassType()%></td>
+					<td>Cannot Change This Field </td>
+					<input type="hidden" name="class_type" value= <%=info.getClassType()%> ></td>
+				</tr>
 		</table>
 <input type='submit' class="btn btn-primary" value="Update Ticket Information!"/>
 	</form>

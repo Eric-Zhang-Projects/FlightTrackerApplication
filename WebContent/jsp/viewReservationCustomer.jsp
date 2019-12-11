@@ -111,6 +111,10 @@ div span{
 				<th scope="row">Seat Number</th>
 				<td><%=info.getSeat_number()%></td>
 			</tr>
+			<tr>
+				<th scope="row">Class</th>
+				<td><%=info.getClassType()%></td>
+			</tr>
 	</table>
 	<a herf ="${pageContext.servletContext.contextPath}/jsp/viewAllReservationsCustomer.jsp">Back</a>
 		

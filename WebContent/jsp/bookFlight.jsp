@@ -14,7 +14,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
 function validUpdate(){
-	alert ( "Update Successful");
+	alert ( "Booking Successful");
 	return;
 }
 </script>
@@ -98,9 +98,18 @@ div span{
 		</table>
 <div style="float:left">
 Select a travel class:</br>
-<input type="radio" class="toggle" name="class" value="Economy,<%=flight.getFareEconomy()%>" align="left" required>  Economy: <%=flight.getFareEconomy()%>  <br>
-<input type="radio" class="toggle" name ="class" value="Business,<%=flight.getFareBusiness()%>" required >  Business: <%=flight.getFareBusiness()%> <br> 
-<input type="radio" class="toggle" name="class" value="First,<%=flight.getFareFirst()%>" align="left" required>  First: <%=flight.getFareFirst()%>  <br>
+<input type="radio" class="toggle" name="class" value="Economy,<%=flight.getFareEconomy()%>"  required>  Economy: <%=flight.getFareEconomy()%> 
+<%if (flight.getAvailableSeatsEconomy()==0){%>
+(Add to Wait List)
+<%}%> <br>
+<input type="radio" class="toggle" name ="class" value="Business,<%=flight.getFareBusiness()%>" required >  Business: <%=flight.getFareBusiness()%> 
+<%if (flight.getAvailableSeatsBusiness()==0){%>
+(Add to Wait List)
+<%}%> <br> 
+<input type="radio" class="toggle" name="class" value="First,<%=flight.getFareFirst()%>"  required>  First: <%=flight.getFareFirst()%>  
+<%if (flight.getAvailableSeatsFirst()==0){%>
+(Add to Wait List)
+<%}%> <br>
 </div>
 <div style="float:left; margin-left: 30px"">
 Would you like a meal:</br>

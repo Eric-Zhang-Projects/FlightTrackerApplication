@@ -68,6 +68,7 @@ public class ViewReservationCustomer extends HttpServlet {
 	        	ticket.setTotal_fare(rs.getInt("total_fare"));
 	        	ticket.setUsername(rs.getString("username"));
 	        	ticket.setWaitlist_number(rs.getInt("waitlist_number"));
+	        	ticket.setClassType(rs.getString("class"));
 	        }
 	        request.setAttribute("ticket", ticket);
 	        con.close();
