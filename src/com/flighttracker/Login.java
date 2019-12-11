@@ -58,24 +58,11 @@ public class Login extends HttpServlet {
 	        try{
 	        	Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 		        Statement st = con.createStatement();
-		        ResultSet rs, rs1, rs2;
+		        ResultSet rs, rs2;
 
 		        ResultSet rep;
 		        ResultSet admin;
-		        String response1 = "";		        
-		        
-		        rs1 = st.executeQuery("SELECT * FROM Airports");
-			    ArrayList<Airport> airports = new ArrayList<Airport>(); 
-			   
-		        while (rs1.next()) {
-		        	Airport airport = new Airport();
-		        	airport.setAirportId(rs1.getString(1));
-		        	airports.add(airport);
-		        }
-		        request.setAttribute("airports", airports);
-		        
-		        // RequestDispatcher rd = request.getRequestDispatcher("jsp/home.jsp");
-		        // rd.forward(request, response); 
+		        String response1 = "";
 		        
 		        //Login for Customer Account
 		        rs = st.executeQuery("SELECT * FROM Customer WHERE username ='" + username + "' and password = '" + password + "'");
