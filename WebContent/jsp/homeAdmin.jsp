@@ -14,7 +14,6 @@ form {
 	text-align: center;
 	
 }
-
 label {
 	margin-right: 20px;
 }
@@ -30,7 +29,7 @@ div span{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.servletContext.contextPath}/profileAdmin"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 							Administrative Account </a></li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
@@ -40,6 +39,11 @@ div span{
 	</nav>
 	
 <div class="list-group" style="width: 75%;" >
+	<a href="${pageContext.servletContext.contextPath}/profileAdmin" class="list-group-item list-group-item-action">
+			<div>
+				<h5>Add / Edit / Delete Customer Representative or Customer Info</h5>
+			</div>
+	</a>
 	<a href="${pageContext.servletContext.contextPath}/revenueSummary" class="list-group-item list-group-item-action">
 			<div>
 				<h5>View Revenue Summaries</h5>
@@ -66,16 +70,6 @@ div span{
 			</div>
 	</a>	
 </div>
-
-
-
-	<%
-    if ((session.getAttribute("user") == null)) {
-%>
-You are not logged in<br/>
-<a href="login.jsp">Please Login</a>
-<%}
-%>
 
 
 </body>
