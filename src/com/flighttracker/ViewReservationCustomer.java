@@ -3,6 +3,7 @@ package com.flighttracker;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -35,7 +36,6 @@ public class ViewReservationCustomer extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ticket_number;
 		//get and set all the ticket info here
-		//include eric's display code
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("class driver found");
@@ -83,7 +83,33 @@ public class ViewReservationCustomer extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//empty
+		//when customer clicks delete button, delete this reservation/ticket
+		String ticketNumber = request.getParameter("ticket_number");
+		System.out.print(request.getParameter("ticket_number"));
+		
+		//query to delete tuple w that ticket number
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("class driver found");
+		} catch (ClassNotFoundException e){
+			System.out.println("No driver found");
+			e.printStackTrace();
+        	return;
+		}
+		//ticket_number = request.getParameter("ticket_number");
+		String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
+        try{
+        	Connection con = DriverManager.getConnection(url, "cs336", "admin123");        
+	        PreparedStatement st =con.prepareStatement("DELETE FROM Ticket WHERE ticket_number = '" + ticketNumber +"'");
+	        st.executeUpdate();
+	        con.close();
+	        System.out.println("Ticket: " + ticketNumber + " is deleted!");
+        } catch (SQLException e){
+        	System.out.println("connection failed");
+        	e.printStackTrace();
+        }
+        //redirect to welcome page
+		getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
 	}
 
 }

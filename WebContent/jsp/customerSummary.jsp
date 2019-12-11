@@ -11,12 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script>
-function validUpdate(){
-	alert ( "Update Successful");
-	return;
-}
-</script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
 
 <style>
 form {
@@ -47,25 +42,22 @@ div span{
 			</div>
 		</div>
 	</nav>
-	<table class="table" style="width: 60%">
-		<thead>
-			<tr>
-				<th scope="col"><%= request.getAttribute("radioType") %></th>
-				<th scope="col">Revenue</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% HashMap<String, Integer> customers = (HashMap<String, Integer>)request.getAttribute("customers");%>
-			<% for(HashMap.Entry<String,Integer> c: customers.entrySet()){ %>
-			<tr>
-				<th scope="row"><%= c.getKey() %></th>
-				<td><%= c.getValue() %></td>
-			</tr>
-			<% } %>
-			<tr>
-				<th>Total:</th>
-				<td><%= request.getAttribute("totalFare")%></td>
-			</tr>
+	<table id="myTable" class="table" style="width: 60%">
+		<tr>
+			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(1)')" style="cursor:pointer"><%= request.getAttribute("radioType") %></th>
+			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(2)')" style="cursor:pointer">Revenue</th>
+		</tr>
+		<% HashMap<String, Integer> customers = (HashMap<String, Integer>)request.getAttribute("customers");%>
+		<% for(HashMap.Entry<String,Integer> c: customers.entrySet()){ %>
+		<tr class="item">
+			<td><%= c.getKey() %></td>
+			<td><%= c.getValue() %></td>
+		</tr>
+		<% } %>
+		<tr>
+			<th>Total:</th>
+			<td><%= request.getAttribute("totalFare")%></td>
+		</tr>
 	</table>
 	<a href="">Back</a>
 
