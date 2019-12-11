@@ -78,6 +78,15 @@ $(document).ready(function(){
 
 	<div class="list-group" style="width: 75%;">
 	<h2>Flights Found!</h2>
+	<label> Type of flight you are searching for: 
+	
+	<textarea cols="20" rows="1" name="isRoundTrip"><%=request.getAttribute("flightType")%></textarea>
+	<textarea cols="20" rows="1" name="isRoundTrip"><%=request.getAttribute("flexibility")%></textarea>
+	
+	</label>
+	
+	<hr>
+	
 	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">	
 	<table id="myTable" class="table" style="width: 75%">
 		<tr>
