@@ -29,7 +29,7 @@ div span{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="${pageContext.servletContext.contextPath}/jsp/profileAdmin.jsp"><span class="glyphicon glyphicon-user"></span>
 							Administrative Account </a></li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
@@ -69,6 +69,11 @@ div span{
 				<h5>Sales Report for each month</h5>
 			</div>
 	</a>	
+	<a href="${pageContext.servletContext.contextPath}/adminReservationList" class="list-group-item list-group-item-action">
+			<div>
+				<h5>List of reservations by Flight Number or Customer Name </h5>
+			</div>
+	</a>
 </div>
 
 
