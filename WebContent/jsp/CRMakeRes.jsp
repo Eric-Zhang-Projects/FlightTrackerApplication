@@ -32,7 +32,7 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Flight Tracker</a>
+				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/homeCustomerrep.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.servletContext.contextPath}/profileCustomer"><span class="glyphicon glyphicon-user"></span>
 							Customer Representative Account </a></li>
@@ -50,7 +50,11 @@ div span{
 		
 		<hr>
 		
-		<textarea cols="50" rows="1" name="usernameToReserve"> Making reservation for user: <%=request.getAttribute("resForUsername") %></textarea>
+		<div>
+			<label> Making reservation for user: </label>
+			<textarea cols="50" rows="1" name="usernameToReserve"><%=request.getAttribute("resForUsername")%></textarea>
+		</div>
+		
 		
 		<hr>
 		
