@@ -92,8 +92,9 @@ $(document).ready(function(){
 		</tr>
 		<tbody id ="miTable">
 		<%ArrayList<Flight> flights = (ArrayList<Flight>)request.getAttribute("flightList");
+		
 		for(Flight f:flights) { %>
-				<tr class="item" data-href="${pageContext.servletContext.contextPath}/bookFlight?flight_number=<%=f.getFlightNumber()%>">
+				<tr class="item" data-href="${pageContext.servletContext.contextPath}/bookFlight?flight_number=<%=f.getFlightNumber()%>&usernameToReserve=<%=request.getAttribute("usernameToReserve") %>">
 					<td><%= f.getAirlineId() %></td>
 					<td><%= f.getFlightNumber() %></td>
 					<td><%= f.getDepartTime() %></td>

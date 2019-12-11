@@ -33,7 +33,7 @@ public class enterUserMakeRes extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class enterUserMakeRes extends HttpServlet {
 		        
 		        rs = st.executeQuery("SELECT * FROM Customer WHERE username ='" + username + "'");
 		        if (rs.next()) {
-		        	request.setAttribute("resForUsername", rs.getString("username"));
+		        	request.setAttribute("usernameToReserve", rs.getString("username"));
 		            request.getRequestDispatcher("/jsp/CRMakeRes.jsp").forward(request, response);
 		        }
 		        else {
