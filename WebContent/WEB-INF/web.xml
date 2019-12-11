@@ -198,7 +198,27 @@
     <servlet-name>BookFlight</servlet-name>
     <url-pattern>/bookFlight</url-pattern>
   </servlet-mapping>  
+      <servlet>
+    <description></description>
+    <display-name>DeleteFlight</display-name>
+    <servlet-name>DeleteFlight</servlet-name>
+    <servlet-class>com.flighttracker.DeleteFlight</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteFlight</servlet-name>
+    <url-pattern>/deleteFlight</url-pattern>
+  </servlet-mapping> 
   
+    <servlet>
+    <description></description>
+    <display-name>UpdateFlight</display-name>
+    <servlet-name>UpdateFlight</servlet-name>
+    <servlet-class>com.flighttracker.UpdateFlight</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateFlight</servlet-name>
+    <url-pattern>/updateFlight</url-pattern>
+  </servlet-mapping> 
   <servlet>
     <description></description>
     <display-name>enterUserMakeRes</display-name>
