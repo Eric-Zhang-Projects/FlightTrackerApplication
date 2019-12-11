@@ -92,6 +92,7 @@ public class Login extends HttpServlet {
 						request.getSession().setAttribute("customer_id", Integer.toString(id));
 						System.out.println(request.getSession().getAttribute("customer_id"));
 						con.close();
+						response1="a";
 						request.getRequestDispatcher("/jsp/welcomePage.jsp").forward(request, response);
 					}
 		        }
@@ -122,16 +123,13 @@ public class Login extends HttpServlet {
 		             request.getRequestDispatcher("/jsp/homeAdmin.jsp").forward(request, response);
 					//response.sendRedirect(response1);
 		         } 
-		         System.out.println(response1);
-		         if (response1!=""){
-		        	   // request.getRequestDispatcher(response1).forward(request, response);
-		        	    }
-		         else {
+		         System.out.println("RESP: " +response1);
+		         if(response1.equals("")) {
 		        	// login failed
 		        	errorMessage = "Invalid username or password.";
 					//RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
 					request.setAttribute("error", errorMessage);
-					//response.sendRedirect("");
+					response.sendRedirect(request.getContextPath());
 		         }
 		         
 		        

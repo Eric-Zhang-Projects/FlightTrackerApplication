@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
+<%@ page import = "java.util.*" %>
+<%@ page import = "com.flighttracker.WaitlistObject" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+function validUpdate(){
+	alert ( "Update Successful");
+	return;
+}
+</script>
+<script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
 
 <style>
 form {
@@ -29,7 +39,7 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="homeCustomerrep.jsp">Flight Tracker</a>
+				<a class="navbar-brand" href="homeCustomer.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.servletContext.contextPath}/jsp/homeCustomerrep.jsp"><span class="glyphicon glyphicon-user"></span>
 							Customer Representative Account </a></li>
@@ -40,17 +50,31 @@ div span{
 		</div>
 	</nav>
 
-	<!-- <form class="form-inline" action="${pageContext.servletContext.contextPath}/CREditReservation" method="POST">-->
-	<!-- ${pageContext.servletContext.contextPath}/CREditReservation"-->
-	<form class="form-inline" action="${pageContext.servletContext.contextPath}/crTickets" method="POST">
-		<h2>Search For User Reservations by Username</h2>
-		<hr>
-		<div class="form-group">
-			<input type="text" placeholder="Enter Username" name="username" required> 
+		<table class="table" style="width: 60%"  >
+			<thead>
+				<tr>
+					<th scope="col">Wait List Queue:</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% System.out.println("try");
+					System.out.println(request.getAttribute("list"));
+			ArrayList<WaitlistObject> list = (ArrayList<WaitlistObject>)request.getAttribute("list");
+					System.out.println("2");
+					for(WaitlistObject w: list) {
+					//request.setAttribute("ticket_number", t.getNumber());
+					//System.out.println("TICKET NUMBER: " + request.getAttribute("ticket_number"));%>
+				<tr>
+					<th scope="row">User: <%=w.getUsername()%><p>
+					Flight Number: <%=w.getFlight_number()%><p>
+					Wait List Position: <%=w.getWaitlist_number()%> in <%=w.getClassType()%> Class
+					</th>
+				
 			
-		</div>
-		
-		<input type='submit' class="btn btn-success" value="Search!"/>
+				</tr>
+				<% } %>
+
+		</table>
 
 	</form>
 		

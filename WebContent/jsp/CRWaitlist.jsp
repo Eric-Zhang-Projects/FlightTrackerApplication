@@ -42,11 +42,11 @@ div span{
 
 	<!-- <form class="form-inline" action="${pageContext.servletContext.contextPath}/CREditReservation" method="POST">-->
 	<!-- ${pageContext.servletContext.contextPath}/CREditReservation"-->
-	<form class="form-inline" action="${pageContext.servletContext.contextPath}/crTickets" method="POST">
-		<h2>Search For User Reservations by Username</h2>
+	<form class="form-inline" action="${pageContext.servletContext.contextPath}/showWaitlist" method="POST">
+		<h2>Search Wait Lists by Flight Number</h2>
 		<hr>
 		<div class="form-group">
-			<input type="text" placeholder="Enter Username" name="username" required> 
+			<input type="text" placeholder="Enter Flight Number" name="flight_number" required> 
 			
 		</div>
 		

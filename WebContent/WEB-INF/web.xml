@@ -220,4 +220,14 @@
     <servlet-name>CRMakeRes</servlet-name>
     <url-pattern>/CRMakeRes</url-pattern>
     </servlet-mapping>
+ <servlet>
+    <description></description>
+    <display-name>ShowWaitlist</display-name>
+    <servlet-name>ShowWaitlist</servlet-name>
+    <servlet-class>com.flighttracker.ShowWaitlist</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowWaitlist</servlet-name>
+    <url-pattern>/showWaitlist</url-pattern>
+    </servlet-mapping>
 </web-app>
