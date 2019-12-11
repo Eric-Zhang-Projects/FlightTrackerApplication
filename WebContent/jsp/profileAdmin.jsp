@@ -47,9 +47,9 @@ div span{
 		</div>
 	</nav>
 	
-<div class="list-group" style="width: 75%;">
+<div class="list-group">
 	<form action="${pageContext.servletContext.contextPath}/profileAdmin" method ="POST">
-		<h2>Admin Profile Page</h2>
+		<h2>Add / Edit / Delete Customer Representative or Customer Info</h2>
 		
 		<div class="container">
 			<label for="sel1">Enter the username of the account information you'd like to change:</label>

@@ -25,9 +25,12 @@ public class ProfileAdmin extends HttpServlet {
         resp.sendRedirect(req.getContextPath() + "/jsp/profileAdmin.jsp");
     }
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	System.out.println("profile admin DO POST called");
+    	// System.out.println("profile admin DO POST called");
     	this.req = req;
     	this.resp = resp;
+    	
+    	boolean  isCustomer = false;
+    	boolean isCustomer_rep = false;
     	
     	String username = req.getParameter("username"); 
     	String firstName = req.getParameter("firstName"); 
@@ -44,17 +47,19 @@ public class ProfileAdmin extends HttpServlet {
         	return;
 		}
     	
-    	String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
+    	String url = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
     	try {
     		Connection con = DriverManager.getConnection(url, "cs336", "admin123");
         	Statement st = con.createStatement();
-        	ResultSet rs;
+        	ResultSet rs, rs1;
         	
         	//id = Integer.parseInt(req.getSession().getAttribute("customer_id").toString());
         	//System.out.println(id);
         	//to get the other fields that are empty
         	rs = st.executeQuery("SELECT * from Customer WHERE username = '" + username + "' ");
+        	
         	if(rs.next()) {
+        		isCustomer = true;
         		if(firstName.isEmpty()) {
             		firstName = rs.getString("first_name");
             	}
@@ -68,6 +73,11 @@ public class ProfileAdmin extends HttpServlet {
         		System.out.println(firstName);
         		System.out.println(lastName);
         		System.out.println(password);
+        	}
+        	
+        	rs1 = st.executeQuery("SELECT * from Customer_rep WHERE username = '" + username + "' ");
+        	if(rs1.next()) {
+        		
         	}
         	
         	//update the table
