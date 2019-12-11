@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search Flights</title>
+<title>Update Aircraft</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
 
 <style>
 form {
 	text-align: center;
 	
 }
-
 label {
 	margin-right: 20px;
 }
@@ -25,44 +24,54 @@ div span{
 }
 </style>
 </head>
+
 <body>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="homeCustomerrep.jsp">Flight Tracker</a>
+				<a class="navbar-brand" href="home.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.servletContext.contextPath}/jsp/homeCustomerrep.jsp"><span class="glyphicon glyphicon-user"></span>
-							Customer Representative Account </a></li>
+					<li>
+						<a href="homeCustomerrep.jsp"><span class="glyphicon glyphicon-user"></span>
+							Customer Rep Profile 
+						</a>
+					</li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
-							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
+							class="glyphicon glyphicon-log-in"></span> 
+							Logout 
+						</a>	
+					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
-	<!-- <form class="form-inline" action="${pageContext.servletContext.contextPath}/CREditReservation" method="POST">-->
-	<!-- ${pageContext.servletContext.contextPath}/CREditReservation"-->
-	<form class="form-inline" action="${pageContext.servletContext.contextPath}/crTickets" method="POST">
-		<h2>Search For User Reservations by Username</h2>
-		<hr>
-		<div class="form-group">
-			<input type="text" placeholder="Enter Username" name="username" required> 
+	
+<div class="list-group" style="width: 75%;">
+	<form action="${pageContext.servletContext.contextPath}/deleteFlight" method ="POST">
+		<h2>Delete Flight Information:</h2>
+		
+		<div class="container">
+			<label for="sel1">Enter the Flight Number you want to delete:</label>
+			<input type="text" placeholder="Enter Flight Number" name="flight_number">
+			
+			
+				<br>
+		  	<input type="submit" class="btn btn-success" value="Submit"/>
 			
 		</div>
-		
-		<input type='submit' class="btn btn-success" value="Search!"/>
-
-	</form>
-		
-
-
+	</form>	
+</div>
+  
 	<%
     if ((session.getAttribute("user") == null)) {
 %>
 You are not logged in<br/>
-<a href="index.jsp">Please Login</a>
+<a href="login.jsp">Please Login</a>
 <%}
 %>
 
+
+</body>
+</html>
 </body>
 </html>

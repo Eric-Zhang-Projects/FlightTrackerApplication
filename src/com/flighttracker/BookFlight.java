@@ -27,12 +27,25 @@ public class BookFlight extends HttpServlet {
     	System.out.println("entering book flight"); 
     	System.out.println(request.getParameter("flight_number"));
     	int flight_number = Integer.parseInt(request.getParameter("flight_number"));
+    	
+    	//**********************
+    	//Check if customer rep is making the reservation
+    	String usernameToRes = request.getParameter("username");
+    	
+    	request.setAttribute("usernameToRes", usernameToRes);
+    	
+//    	if(usernameToRes != null) {
+//    		username = usernameToRes;
+//    		System.out.println("in BookFlight.java, new username is: " + username);
+//    	}
+    	//**********************
+    	
     	//String ticket_number="1";
     	System.out.println("GOT FROM JSP: " + flight_number);
         
 		//also check if credentials meet
 		
-			System.out.println("username given");
+			
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
 				System.out.println("class driver found");
@@ -78,7 +91,7 @@ public class BookFlight extends HttpServlet {
 		            //request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
 		        } 
 		        else {
-		        	System.out.println("FAILLLLLL");
+		        	System.out.println("FAIL");
 		        	// login failed
 		        	con.close();
 		        	response.sendRedirect("jsp/CREditReservation.jsp");
@@ -98,8 +111,15 @@ public class BookFlight extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("enter book post");
 		String username = request.getSession().getAttribute("user").toString();
-		System.out.println(username);
-
+		
+		boolean isResForUser = false;
+		String usernameToRes = request.getParameter("usernameToRes");
+	
+		if(usernameToRes != null) {
+			isResForUser = true;
+			username = usernameToRes;
+		}
+		
 		String flight_number= request.getParameter("flight_number");
 		String classType = request.getParameter("class").split(",")[0];
 		String airline_id = request.getParameter("airline_id");
@@ -217,7 +237,13 @@ public class BookFlight extends HttpServlet {
         st.executeUpdate();
         con.close();
         System.out.println("success");
-        response.sendRedirect("jsp/profileCustomer.jsp");
+        
+        if(isResForUser) {
+        	response.sendRedirect("jsp/homeCustomerrep.jsp");
+        }
+        else {
+        	response.sendRedirect("jsp/profileCustomer.jsp");
+        }
 		} catch (SQLException e){
         	System.out.println("booking failed");
         	e.printStackTrace();

@@ -28,7 +28,7 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Flight Tracker</a>
+				<a class="navbar-brand" href="homeCustomerrep.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.servletContext.contextPath}/profileCustomerRep"><span class="glyphicon glyphicon-user"></span>
 							Customer Representative Account </a></li>
@@ -65,7 +65,7 @@ div span{
 				<h5>Edit Information for Flights</h5>
 			</div>
 	</a>
-	<a href="jsp/CRWaitlist.jsp" class="list-group-item list-group-item-action">
+	<a href="${pageContext.servletContext.contextPath}/jsp/CRWaitlist.jsp" class="list-group-item list-group-item-action">
 			<div>
 				<h5>Get Flight Waiting Lists</h5>
 			</div>			

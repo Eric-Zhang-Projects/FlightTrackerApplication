@@ -79,7 +79,6 @@ $(document).ready(function(){
 		</div>
 	</nav>
 
- 		
 	<div class="list-group" style="width: 75%;">
 	<h2>Flights Found!</h2>
 	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">	
@@ -105,13 +104,5 @@ $(document).ready(function(){
 		</tbody>
 	</table>
 	</div>
-
-<% if ((session.getAttribute("user") == null)) {%>
-	You are not logged in
-	<br/>
-	<a href="login.jsp">Please Login</a>
-<% } %>
-
-
 </body>
 </html>
