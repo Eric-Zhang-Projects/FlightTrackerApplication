@@ -28,7 +28,7 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Flight Tracker</a>
+				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.servletContext.contextPath}/profileAdmin"><span class="glyphicon glyphicon-user"></span>
 							Administrative Account </a></li>
@@ -40,27 +40,31 @@ div span{
 	</nav>
 	
 <div class="list-group" style="width: 75%;" >
-	<a href="${pageContext.servletContext.contextPath}/jsp/CRMakeReservation.jsp" class="list-group-item list-group-item-action">
+	<a href="${pageContext.servletContext.contextPath}/revenueSummary" class="list-group-item list-group-item-action">
 			<div>
-				<h5>Make Flight Reservation For Customer</h5>
+				<h5>View Revenue Summaries</h5>
 			</div>
 	</a>
-	<a href="${pageContext.servletContext.contextPath}/jsp/CREditReservation.jsp" class="list-group-item list-group-item-action">
+	<a href="${pageContext.servletContext.contextPath}/" class="list-group-item list-group-item-action">
 			<div>
-				<h5>Edit Flight Reservation For Customer</h5>
-			</div>			
-	</a>
-	<a href="jsp/CREditFlights.jsp" class="list-group-item list-group-item-action">
-			<div>
-				<h5>Edit Information for Aircrafts, Airports, and Flights</h5>
+				<h5>Customer generated most total revenue</h5>
 			</div>
 	</a>
-	<a href="jsp/CRWaitlist.jsp" class="list-group-item list-group-item-action">
+	<a href="${pageContext.servletContext.contextPath}/" class="list-group-item list-group-item-action">
 			<div>
-				<h5>Get Flight Waiting Lists</h5>
-			</div>			
+				<h5>List of most active flights (most tickets sold)</h5>
+			</div>
 	</a>
-		
+	<a href="${pageContext.servletContext.contextPath}/" class="list-group-item list-group-item-action">
+			<div>
+				<h5>List of all flights for a given airport </h5>
+			</div>
+	</a>
+	<a href="${pageContext.servletContext.contextPath}/" class="list-group-item list-group-item-action">
+			<div>
+				<h5>Sales Report for each month</h5>
+			</div>
+	</a>	
 </div>
 
 

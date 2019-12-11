@@ -82,7 +82,9 @@ public class ViewReservationCustomer extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//empty
+		//when customer clicks delete button, delete this reservation/ticket
+		//TicketObject info = (TicketObject)request.getAttribute("ticket");
+		//System.out.priinfo.getNumber()
 	}
 
 }

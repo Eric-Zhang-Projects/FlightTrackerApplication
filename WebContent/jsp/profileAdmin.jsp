@@ -30,7 +30,7 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="home.jsp">Flight Tracker</a>
+				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a href="${pageContext.servletContext.contextPath}/profileAdmin"><span class="glyphicon glyphicon-user"></span>
@@ -69,8 +69,6 @@ div span{
 		  	
 		  	<br>
 		  	<input type="submit" class="btn btn-success" value="Submit"/>
-			<br>
-			<a href= "${pageContext.servletContext.contextPath}/revenueSummary">View Revenue Summaries</a>
 		</div>
 	</form>	
 </div>

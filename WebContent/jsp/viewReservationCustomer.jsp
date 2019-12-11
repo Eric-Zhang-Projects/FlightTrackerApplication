@@ -48,6 +48,7 @@ div span{
 			</div>
 		</div>
 	</nav>
+<form class="form-inline" action="${pageContext.servletContext.contextPath}/viewReservationCustomer" method="POST">
 	<table class="table" style="width: 60%">
 		<thead>
 			<tr>
@@ -57,12 +58,7 @@ div span{
 		</thead>
 		<tbody>
 		<!-- Use Eric's Edit Customer Rep JSp to create this page -->
-			<% System.out.println("try");
-				System.out.println(request.getAttribute("ticket"));
-				TicketObject info = (TicketObject)request.getAttribute("ticket");
-				System.out.println("2");
-				System.out.println(info.getNumber());
-			%>
+			<% TicketObject info = (TicketObject)request.getAttribute("ticket");%>
 			<tr>
 				<th scope="row">Username</th>
 				<td><%=info.getUsername()%></td>
@@ -112,17 +108,17 @@ div span{
 				<td><%=info.getSeat_number()%></td>
 			</tr>
 	</table>
-	<a herf ="${pageContext.servletContext.contextPath}/jsp/viewAllReservationsCustomer.jsp">Back</a>
-		
-
-
-	<%
-    if ((session.getAttribute("user") == null)) {
-%>
-You are not logged in<br/>
-<a href="login.jsp">Please Login</a>
-<%}
-%>
+	<input type='submit' class="btn btn-primary" value="Delete this Reservation"/>
+	
+	<div class="container" style="background-color: #f1f1f1">
+		<a herf ="${pageContext.servletContext.contextPath}/jsp/viewAllReservationsCustomer.jsp">Back</a>
+	</div>
+</form>
+	
+<% if ((session.getAttribute("user") == null)) { %>
+	You are not logged in<br/>
+	<a href="login.jsp">Please Login</a>
+<% } %>
 
 </body>
 </html>

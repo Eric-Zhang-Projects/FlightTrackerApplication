@@ -164,6 +164,4 @@
     <servlet-name>RevenueSummary</servlet-name>
     <url-pattern>/revenueSummary</url-pattern>
   </servlet-mapping>
-  
-  
 </web-app>
