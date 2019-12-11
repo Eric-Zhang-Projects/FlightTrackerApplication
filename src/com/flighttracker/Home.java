@@ -131,6 +131,7 @@ public class Home extends HttpServlet{
 		        f.setDepartTime(rs.getTime(4));
 		        f.setArriveTime(rs.getTime(5));
 		        f.setAirlineId(rs.getString(8));
+		        f.setFareEconomy(rs.getInt("fare_economy"));
 		        
 		        flightList.add(f);
 		    }
