@@ -36,6 +36,12 @@ public class ProfileAdmin extends HttpServlet {
     	String firstName = req.getParameter("firstName"); 
     	String lastName = req.getParameter("lastName");  
     	String password = req.getParameter("password"); 
+    	String edit = req.getParameter("edit");
+    	String customerType = req.getParameter("customerType");
+    	if (customerType ==null) {
+    		customerType = "Customer";
+    	}
+    	System.out.println(edit);
     	//int id;
     	
     	try{
@@ -57,11 +63,43 @@ public class ProfileAdmin extends HttpServlet {
         	//System.out.println(id);
         	//to get the other fields that are empty
         	rs = st.executeQuery("SELECT * from Customer WHERE username = '" + username + "' ");
-        	
         	if(rs.next()) {
         		isCustomer = true;
+        		customerType = "Customer";
+        	}
+        	rs1 = st.executeQuery("SELECT * from Customer_rep WHERE username = '" + username + "' ");
+        	if(rs1.next() && isCustomer == false) {
+        		isCustomer = false;
+        		customerType = "Customer_rep";
+        	}
+        	if (edit.equals("add")) {
+        		System.out.println(customerType);
+            	String insert = "INSERT INTO " + customerType + " (first_name, last_name, username, password) VALUES (?, ?, ?, ?)";
+                PreparedStatement add = con.prepareStatement(insert);
+               	add.setString(1, firstName);
+               	add.setString(2, lastName);
+               	add.setString(3, username);
+               	add.setString(4, password);
+                add.executeUpdate();
+                con.close();
+        	}
+        	else if (edit.equals("delete")) {   
+        		System.out.println("deleting "+ customerType);
+        		String del = "DELETE FROM " + customerType + " WHERE username ='" + username + "'";
+        		Statement delete = con.createStatement();
+        		 delete.executeUpdate(del);
+        		 con.close();
+        		
+        	}
+        	else if (edit.equals("edit")) {
+        	
+        	System.out.println("edit");
+        	String insert = "";
+        	
+        	if(isCustomer) {
         		if(firstName.isEmpty()) {
             		firstName = rs.getString("first_name");
+            		System.out.println(firstName);
             	}
         		if(lastName.isEmpty()) {
         			lastName = rs.getString("last_name");
@@ -69,26 +107,36 @@ public class ProfileAdmin extends HttpServlet {
             	if(password.isEmpty()) {
             		password = rs.getString("password");
             	}
+            	insert = "UPDATE Customer SET first_name = '" + firstName +"', last_name = '" + lastName +"', password = '" + password + "' where username = '" + username + "' ";
+
 
         		System.out.println(firstName);
         		System.out.println(lastName);
         		System.out.println(password);
         	}
         	
-        	rs1 = st.executeQuery("SELECT * from Customer_rep WHERE username = '" + username + "' ");
-        	if(rs1.next()) {
-        		
+        	else if(!isCustomer) {
+        		if(firstName.isEmpty()) {
+            		firstName = rs1.getString("first_name");
+            	}
+        		if(lastName.isEmpty()) {
+        			lastName = rs1.getString("last_name");
+            	}
+            	if(password.isEmpty()) {
+            		password = rs1.getString("password");
+            	}
+            	insert = "UPDATE Customer_rep SET first_name = '" + firstName +"', last_name = '" + lastName +"', password = '" + password + "' where username = '" + username + "' ";
+
         	}
-        	
         	//update the table
-        	String insert = "UPDATE Customer SET first_name = '" + firstName +"', last_name = '" + lastName +"', password = '" + password + "' where username = '" + username + "' ";
         	PreparedStatement st1 = con.prepareStatement(insert);
         	st1.executeUpdate();
         	
-        	
             System.out.println("successful Update");
         	con.close();
-        	resp.sendRedirect(req.getContextPath() + "/jsp/profileAdmin.jsp");
+    	}
+        	//resp.sendRedirect(req.getContextPath() + "/jsp/profileAdmin.jsp");
+        	resp.sendRedirect("jsp/homeAdmin.jsp");
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();
