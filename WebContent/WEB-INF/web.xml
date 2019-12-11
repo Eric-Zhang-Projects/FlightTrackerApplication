@@ -280,4 +280,14 @@
     <servlet-name>AllFlightsAirport</servlet-name>
     <url-pattern>/allFlightsAirport</url-pattern>
     </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SalesReport</display-name>
+    <servlet-name>SalesReport</servlet-name>
+    <servlet-class>com.flighttracker.SalesReport</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>SalesReport</servlet-name>
+    <url-pattern>/salesReport</url-pattern>
+    </servlet-mapping>
 </web-app>
