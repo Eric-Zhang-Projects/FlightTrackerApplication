@@ -28,8 +28,7 @@ public class Home extends HttpServlet{
 	        try{
 	        	Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 		        Statement st = con.createStatement();
-		        ResultSet rs1;
-		        String response1 = "";		        
+		        ResultSet rs1;	        
 		        
 		        rs1 = st.executeQuery("SELECT * FROM Airports");
 			    ArrayList<Airport> airports = new ArrayList<Airport>(); 

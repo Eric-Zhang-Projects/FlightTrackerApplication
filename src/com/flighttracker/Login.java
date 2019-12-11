@@ -91,11 +91,12 @@ public class Login extends HttpServlet {
 						System.out.println("Hi /" + username + " your id is: " + id);
 						request.getSession().setAttribute("customer_id", Integer.toString(id));
 						System.out.println(request.getSession().getAttribute("customer_id"));
-						request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+						con.close();
+						request.getRequestDispatcher("/jsp/welcomePage.jsp").forward(request, response);
 					}
 		        }
 		        // response.sendRedirect(response1);
-		        con.close();
+		        
 		        
 		        //Login for Customer Rep Account
 		        con = DriverManager.getConnection(url, "cs336", "admin123");
@@ -105,6 +106,7 @@ public class Login extends HttpServlet {
 		        	request.getSession().setAttribute("user", username); // the username will be stored in the session
 		            response1 = "jsp/homeCustomerrep.jsp";  
 					//response.sendRedirect(response1);
+		            con.close();
 		            request.getRequestDispatcher("/jsp/homeCustomerrep.jsp").forward(request, response);
 		        } 
 		         con.close();
@@ -116,6 +118,7 @@ public class Login extends HttpServlet {
 		         if(admin.next()){
 		        	 request.getSession().setAttribute("user", username); // the username will be stored in the session
 		             response1 = "jsp/homeAdmin.jsp"; 
+		             con.close();
 		             request.getRequestDispatcher("/jsp/homeAdmin.jsp").forward(request, response);
 					//response.sendRedirect(response1);
 		         } 
@@ -131,7 +134,7 @@ public class Login extends HttpServlet {
 					//response.sendRedirect("");
 		         }
 		         
-		        con.close();
+		        
 	        } catch (SQLException e){
 	        	System.out.println("connection failed");
 	        	e.printStackTrace();
