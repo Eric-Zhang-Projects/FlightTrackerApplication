@@ -57,11 +57,10 @@ public class Home extends HttpServlet{
 	     //**************************
 	     //This only exists if customerRep is making a reservation for a user. Null otherwise
 	     String usernameToReserve = request.getParameter("usernameToReserve");
-	     //System.out.println(usernameToReserve);
+	     System.out.println("NAMEEEE: " + usernameToReserve);
 	     
-	     boolean isResForUser = false;
 	     if(usernameToReserve != null) {
-	    	 isResForUser = true;
+	    	 request.setAttribute("usernameToReserve", usernameToReserve);
 	     }
 	     //**************************
 	     

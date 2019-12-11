@@ -52,13 +52,16 @@ div span {
 
 	<div class="list-group" style="width: 75%;">
 
-		<!-- Have to dynamically display flights -->
+		
  		
 		<div class="list-group" style="width: 75%;">
 			<h2>Flights Found!</h2>
+			
+			<textarea cols="50" rows="1" name="usernameToReserve"> Making reservation for user: <%=request.getAttribute("usernameToReserve") %></textarea>
+			
 			<%ArrayList<Flight> flights = (ArrayList<Flight>)request.getAttribute("flightList");
 			for(Flight f:flights) { %>
-			<a href="${pageContext.servletContext.contextPath}/bookFlight?flight_number=<%=f.getFlightNumber()%>" class="list-group-item list-group-item-action">
+			<a href="${pageContext.servletContext.contextPath}/bookFlight?flight_number=<%=f.getFlightNumber()%>&username=<%=request.getAttribute("usernameToReserve") %>" class="list-group-item list-group-item-action">
 				<div>
 					<h5><%= f.getDepartAirportId() %> - <%= f.getArriveAirportId() %> </h5>
 				</div>
@@ -72,16 +75,6 @@ div span {
 
 		</div>
 	</div>
-
-	<%
-		if ((session.getAttribute("user") == null)) {
-	%>
-	You are not logged in
-	<br />
-	<a href="login.jsp">Please Login</a>
-	<%
-		}
-	%>
 
 
 </body>

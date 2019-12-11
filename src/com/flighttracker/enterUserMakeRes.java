@@ -42,7 +42,7 @@ public class enterUserMakeRes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("username");
-		
+		System.out.println("get parameter username in enterUserMakeRes: " + username);
 
 		// also check if credentials meet
 		if (username.isEmpty()) {
@@ -79,11 +79,11 @@ public class enterUserMakeRes extends HttpServlet {
 		        
 		        rs = st.executeQuery("SELECT * FROM Customer WHERE username ='" + username + "'");
 		        if (rs.next()) {
-		        	request.setAttribute("resForUsername", rs.getString(4));
+		        	request.setAttribute("resForUsername", rs.getString("username"));
 		            request.getRequestDispatcher("/jsp/CRMakeRes.jsp").forward(request, response);
 		        }
 		        else {
-		        	// Username not found
+		        	response.sendRedirect("jsp/enterUser.jsp");
 		        	
 		        	
 		        }

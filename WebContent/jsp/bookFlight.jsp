@@ -49,6 +49,8 @@ div span{
 		</div>
 	</nav>
 <form action="${pageContext.servletContext.contextPath}/bookFlight" method="POST" onSubmit="return validUpdate();">
+		
+		
 		<table class="table" style="width: 60%">
 			<thead>
 				<tr>
@@ -65,6 +67,9 @@ div span{
 					//	System.out.println(f);
 					//}
 				%>
+				
+				<input type="hidden" name="usernameToRes" value=<%=request.getAttribute("usernameToRes")%> >
+				
 				<tr>
 					<th scope="row">Flight Number</th>
 					<td class = "flight_number"><%=flight.getFlightNumber()%></td>
