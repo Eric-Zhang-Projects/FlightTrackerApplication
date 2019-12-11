@@ -20,7 +20,7 @@ public class Home extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {	       
 		 //get fields for searching here
-		 	System.out.println("profile customer DO GET called");
+		 	//System.out.println("profile customer DO GET called");
 	        this.req = req;
 	        this.resp = resp;
 	        //make a query to get the parameters from the database
@@ -56,11 +56,13 @@ public class Home extends HttpServlet{
 	     
 	     //**************************
 	     //This only exists if customerRep is making a reservation for a user. Null otherwise
+	     boolean isResForUser = false;
 	     String usernameToReserve = request.getParameter("usernameToReserve");
-	     System.out.println("NAMEEEE:" + usernameToReserve);
+	     //System.out.println("NAMEEEE:" + usernameToReserve);
 	     
 	     if(usernameToReserve!= null && !usernameToReserve.equals("null")) {
-		     System.out.println("Setting usernameToReserve attribute in Home.java POST:" + usernameToReserve);
+	    	 isResForUser = true;
+		     //System.out.println("Setting usernameToReserve attribute in Home.java POST:" + usernameToReserve);
 	    	 request.setAttribute("usernameToReserve", usernameToReserve);
 	    	 
 	     }
