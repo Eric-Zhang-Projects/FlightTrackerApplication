@@ -153,6 +153,29 @@
   <servlet-mapping>
     <servlet-name>ForgotPassword</servlet-name>
     <url-pattern>/forgotPassword</url-pattern>
+    </servlet-mapping>
+    
+         <servlet>
+    <description></description>
+    <display-name>DeleteAirport</display-name>
+    <servlet-name>DeleteAirport</servlet-name>
+    <servlet-class>com.flighttracker.DeleteAirport</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteAirport</servlet-name>
+    <url-pattern>/deleteAirport</url-pattern>
+  </servlet-mapping> 
+  
+    <servlet>
+    <description></description>
+    <display-name>UpdateAirport</display-name>
+    <servlet-name>UpdateAirport</servlet-name>
+    <servlet-class>com.flighttracker.UpdateAirport</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateAirport</servlet-name>
+    <url-pattern>/updateAirport</url-pattern>
+  </servlet-mapping> 
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -175,5 +198,4 @@
     <servlet-name>BookFlight</servlet-name>
     <url-pattern>/bookFlight</url-pattern>
   </servlet-mapping>  
-
 </web-app>

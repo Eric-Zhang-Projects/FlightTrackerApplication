@@ -29,21 +29,12 @@
 <title>Add Information</title>
 </head>
 <body>
-<form method="post" action="AddAircraftProcess.jsp">
-Aircraft ID:<br>
-<input type="text" name="aircraft_id">
+<form method="post" action="AddAirportProcess.jsp">
+Airport ID:<br>
+<input type="text" name="airport_id">
 <br>
-Airline ID:<br>
-<input type="text" name="airline_id">
-<br>
-Total Number of Economy Seats:<br>
-<input type="text" name="total_seats_economy">
-<br>
-Total Number of First Class Seats:<br>
-<input type="text" name="total_seats_first">
-<br>
-Total Number of Business Class Seats:<br>
-<input type="text" name="total_seats_business">
+Airport Name:<br>
+<input type="text" name="airport_name">
 <br><br>
 <input type="submit" value="submit">
 </form>

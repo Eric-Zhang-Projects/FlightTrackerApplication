@@ -33,6 +33,7 @@
       <th scope="col">Airline ID</th>
       <th scope="col">Total Economy Seats</th>
       <th scope="col">Total First Class Seats</th>
+      <th scope="col">Total Business Class Seats</th>
     </tr>
   </thead>
   <tbody>
@@ -61,6 +62,7 @@
 		<td><%=rs.getString("airline_id") %></td>
 		<td><%=rs.getString("total_seats_economy") %></td>
 		<td><%=rs.getString("total_seats_first") %></td>
+		<td><%=rs.getString("total_seats_business") %></td>
 	</tr>
 <% 
     }

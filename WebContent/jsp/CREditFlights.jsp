@@ -5,32 +5,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login Checker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <%@ page import ="java.sql.*" %>
-
+<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="homeCustomerrep.jsp">Flight Tracker</a>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="profileCustomerRep.jsp"><span class="glyphicon glyphicon-user"></span>
+							Account </a></li>
+					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
+							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 <html>
 <body>
 <h1>Update Aircraft Information:</h1>
-<table border="1">
-<tr>
-<td>Flight #</td>
-<td>Depart Date </td>
-<td>Arrive Date </td>
-<td>Depart Time </td>
-<td>Arrive Time</td>
-<td>First Class Fare</td>
-<td>Economy Fare</td>
-<td>Business Fare</td>
-<td>Airline ID</td>
-<td>Departure Airport</td>
-<td>Arrival Airport </td>
-<td>Aircraft ID </td>
-<td>Available Seats Economy</td>
-<td>Available Seats First</td>
-<td>Available Seats Business</td>
-<td>Action</td>
-</tr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Flight</th>
+      <th scope="col">Depart Date</th>
+      <th scope="col">Arrive Date</th>
+      <th scope="col">Depart Time</th>
+      <th scope="col">Arrive Time</th>
+      <th scope="col">First Class Fare</th>
+      <th scope="col">Economy Fare</th>
+      <th scope="col">Business Fare</th>
+      <th scope="col">Airline ID</th>
+      <th scope="col">Available Seats Economy</th>
+      <th scope="col">Business Fare</th>
+      <th scope="col">Available Seats First</th>
+      <th scope="col">Available Seats Business</th>
+    </tr>
+  </thead>
+  
 
 <%  
     try{
@@ -68,7 +84,6 @@
 		<td><%=rs.getString("available_seats_economy") %></td>
 		<td><%=rs.getString("available_seats_first") %></td>
 		<td><%=rs.getString("available_seats_business") %></td>
-		<td><a href="updateAirline.jsp?id=<%=rs.getString("flight_number")%>">update</a></td>
 	</tr>
 	<% 
     }
@@ -78,4 +93,17 @@
     	e.printStackTrace();
     }
 	%>
+</tbody>
+</table>
+<%@ page import ="java.sql.*" %>
+<div>
+<a href='AddFlight.jsp'>Add Flight</a>
+</div>
+<div>
+<a href='DeleteFlight.jsp'>Delete Flight</a>
+</div>
+
+<div>
+<a href='CRUpdateFlight.jsp'>Update Flight</a>
+</div>
 	

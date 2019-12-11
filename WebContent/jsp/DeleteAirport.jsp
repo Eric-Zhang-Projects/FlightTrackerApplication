@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Update Airport</title>
+<title>Update Aircraft</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -47,18 +47,15 @@ div span{
 	</nav>
 	
 <div class="list-group" style="width: 75%;">
-	<form action="${pageContext.servletContext.contextPath}/updateAirport" method ="POST">
-		<h2>Update Aircraft Information:</h2>
+	<form action="${pageContext.servletContext.contextPath}/deleteAirport" method ="POST">
+		<h2>Delete Aircraft Information:</h2>
 		
 		<div class="container">
-			<label for="sel1">Enter the Airport name you want to change:</label>
-			<input type="text" placeholder="Enter Airport name" name="airport_name">
+			<label for="sel1">Enter the Airport ID you want to delete:</label>
+			<input type="text" placeholder="Enter Airport ID" name="airport_id">
 			
-			<br>
-			<label for="usr">Enter the new Airport name:</label>
-		 	 <input type="text" placeholder="Enter new Airport name" name ="newairport_name">
 			
-		  	<br>
+				<br>
 		  	<input type="submit" class="btn btn-success" value="Submit"/>
 			
 		</div>
