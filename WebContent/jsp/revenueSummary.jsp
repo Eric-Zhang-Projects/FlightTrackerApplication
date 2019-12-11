@@ -33,8 +33,8 @@ div span{
 				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="${pageContext.servletContext.contextPath}/profileAdmin"><span class="glyphicon glyphicon-user"></span>
-							Admin Account 
+						<a href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp"><span class="glyphicon glyphicon-user"></span>
+							Administrative Account 
 						</a>
 					</li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
