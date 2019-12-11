@@ -66,6 +66,7 @@ div span{
 			<tr>
 				<th scope="row">Ticket Number</th>
 				<td class = "ticket_number"><%=info.getNumber()%></td>
+				<td><input type= "hidden" name ="ticket_number" value = <%=info.getNumber()%>></td>
 			</tr>
 			<tr>
 				<th scope="row">Round Trip</th>
