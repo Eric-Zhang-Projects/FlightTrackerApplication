@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UpdateAircraft extends HttpServlet {
+public class UpdateAirport extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected HttpServletRequest req;
 	protected HttpServletResponse resp;
@@ -22,18 +22,15 @@ public class UpdateAircraft extends HttpServlet {
 		System.out.println("profile admin DO GET called");
         this.req = req;
         this.resp = resp;
-        resp.sendRedirect(req.getContextPath() + "/jsp/CRUpdateAircraft.jsp");
+        resp.sendRedirect(req.getContextPath() + "/jsp/CRUpdateAirports.jsp");
     }
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	System.out.println("profile admin DO POST called");
     	this.req = req;
     	this.resp = resp;
     	
-    	String aircraft_id = req.getParameter("aircraft_id"); 
-    	String airline_id = req.getParameter("airline_id"); 
-    	String total_seats_economy = req.getParameter("total_seats_economy");  
-    	String total_seats_first = req.getParameter("total_seats_first"); 
-    	String total_seats_business = req.getParameter("total_seats_business"); 
+    	String airport_name = req.getParameter("airport_name"); 
+    	String newairport_name = req.getParameter("newairport_name");
     	//int id;
     	try{
 			Class.forName("com.mysql.jdbc.Driver");
@@ -54,35 +51,25 @@ public class UpdateAircraft extends HttpServlet {
         	//System.out.println(id);
         	//to get the other fields that are empty
         	System.out.println("Hello im here");
-        	rs = st.executeQuery("SELECT * from Aircraft WHERE aircraft_id = '" + aircraft_id + "' ");
+        	rs = st.executeQuery("SELECT * from Airports WHERE airport_name= '" + airport_name + "' ");
         	if(rs.next()) {
-        		if(airline_id.isEmpty()) {
-            		airline_id = rs.getString("airline_id");
+        		if(airport_name.isEmpty()) {
+        			airport_name = rs.getString("airport_name");
             	}
-        		if(total_seats_economy.isEmpty()) {
-        			total_seats_economy = rs.getString("total_seats_economy");
-            	}
-            	if(total_seats_first.isEmpty()) {
-            		total_seats_first = rs.getString("total_seats_first");
-            	}
-            	if(total_seats_business.isEmpty()) {
-            		total_seats_business = rs.getString("total_seats_business");
-            	}
-
-        		System.out.println(airline_id);
-        		System.out.println(total_seats_economy);
-        		System.out.println(total_seats_first);
+        		
+        		
+        		System.out.println(airport_name);
         	}
-        	
+ 
         	//update the table
-        	String insert = "UPDATE Aircraft SET airline_id = '" + airline_id +"', total_seats_economy = '" + total_seats_economy +"', total_seats_first = '" + total_seats_first + "', total_seats_business = '" + total_seats_business + "' where aircraft_id = '" + aircraft_id + "' ";
+        	String insert = "UPDATE Airports SET airport_name = '" + newairport_name + "' where airport_name= '" + airport_name + "'";
         	PreparedStatement st1 = con.prepareStatement(insert);
         	st1.executeUpdate();
-        	
+
         	
             System.out.println("successful Update");
         	con.close();
-        	resp.sendRedirect(req.getContextPath() + "/jsp/CREditAircraft.jsp");
+        	resp.sendRedirect(req.getContextPath() + "/jsp/CREditAirports.jsp");
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();

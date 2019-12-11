@@ -67,6 +67,10 @@ div span{
 		  	<input type="text" placeholder="Enter Number of First Class Seats" name ="total_seats_first">
 		  	
 		  	<br>
+		  	<label for="pwd">Number of Business Seats:</label>
+		  	<input type="text" placeholder="Enter Number of Business Class Seats" name ="total_seats_business">
+		  	
+		  	<br>
 		  	<input type="submit" class="btn btn-success" value="Submit"/>
 			
 		</div>

@@ -13,7 +13,7 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="homeCustomerrep.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="profileCustomerRep.jsp"><span class="glyphicon glyphicon-user"></span>
 							Account </a></li>
 					<li><a href='logout.jsp'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
@@ -29,21 +29,43 @@
 <title>Add Information</title>
 </head>
 <body>
-<form method="post" action="AddAircraftProcess.jsp">
-Aircraft ID:<br>
-<input type="text" name="aircraft_id">
+<form method="post" action="AddFlightProcess.jsp">
+Flight Number:<br>
+<input type="text" name="flight_number">
+<br>
+Departure Date:<br>
+<input type="text" name="depart_date">
+<br>
+Arrive Date:<br>
+<input type="text" name="arrive_date">
+<br>
+Depart Time:<br>
+<input type="text" name="depart_time">
+<br>
+Arrive Time:<br>
+<input type="text" name="arrive_time">
+<br>
+Fare First:<br>
+<input type="text" name="fare_first">
+<br>
+Fare Economy:<br>
+<input type="text" name="fare_economy">
+<br>
+Fare Business:<br>
+<input type="text" name="fare_business">
 <br>
 Airline ID:<br>
 <input type="text" name="airline_id">
 <br>
-Total Number of Economy Seats:<br>
-<input type="text" name="total_seats_economy">
+Depart Airport ID:<br>
+<input type="text" name="depart_airport_id">
 <br>
-Total Number of First Class Seats:<br>
-<input type="text" name="total_seats_first">
+Arrive Airport ID:<br>
+<input type="text" name="arrive_airport_id">
 <br>
-Total Number of Business Class Seats:<br>
-<input type="text" name="total_seats_business">
+Aircraft ID:<br>
+<input type="text" name="aircraft_id">
+<br>
 <br><br>
 <input type="submit" value="submit">
 </form>
