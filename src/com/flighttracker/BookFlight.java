@@ -30,9 +30,9 @@ public class BookFlight extends HttpServlet {
     	
     	//**********************
     	//Check if customer rep is making the reservation
-    	String usernameToRes = request.getParameter("username");
+    	String usernameToRes = request.getParameter("usernameToReserve");
     	
-    	request.setAttribute("usernameToRes", usernameToRes);
+    	request.setAttribute("usernameToReserve", usernameToRes);
     	
 //    	if(usernameToRes != null) {
 //    		username = usernameToRes;
@@ -111,14 +111,22 @@ public class BookFlight extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("enter book post");
 		String username = request.getSession().getAttribute("user").toString();
+		System.out.println("username to book for:" + username);
+		
 		
 		boolean isResForUser = false;
-		String usernameToRes = request.getParameter("usernameToRes");
-	
-		if(usernameToRes != null) {
+		String usernameToRes = null;
+		usernameToRes = request.getParameter("usernameToReserve");
+		
+		System.out.println("usernameToReserve:" + usernameToRes);
+		
+		if(!usernameToRes.equals("null")) {
+			System.out.println("IFFFFFFF:");
 			isResForUser = true;
 			username = usernameToRes;
 		}
+		
+		System.out.println("username to book for:" + username);
 		
 		String flight_number= request.getParameter("flight_number");
 		String classType = request.getParameter("class").split(",")[0];

@@ -67,7 +67,7 @@
 					//}
 				%>
 				
-				<input type="hidden" name="usernameToRes" value=<%=request.getAttribute("usernameToRes")%> >
+				<input type="hidden" name="usernameToReserve" value=<%=request.getAttribute("usernameToReserve")%> >
 				
 				<tr>
 					<th scope="row">Flight Number</th>

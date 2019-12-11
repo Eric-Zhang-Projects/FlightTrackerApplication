@@ -52,9 +52,8 @@ div span{
 		
 		<div>
 			<label> Making reservation for user: </label>
-			<textarea cols="50" rows="1" name="usernameToReserve"><%=request.getAttribute("resForUsername")%></textarea>
+			<textarea cols="50" rows="1" name="usernameToReserve"><%=request.getAttribute("usernameToReserve")%></textarea>
 		</div>
-		
 		
 		<hr>
 		
