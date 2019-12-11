@@ -92,8 +92,6 @@ public class Login extends HttpServlet {
 		        rep = st.executeQuery("SELECT * FROM Customer_rep WHERE username ='" + username + "' and password = '" + password + "'");
 		        if(rep.next()){
 		        	request.getSession().setAttribute("user", username); // the username will be stored in the session
-		            response1 = "jsp/homeCustomerrep.jsp";  
-					//response.sendRedirect(response1);
 		            con.close();
 		            request.getRequestDispatcher("/jsp/homeCustomerrep.jsp").forward(request, response);
 		        } 

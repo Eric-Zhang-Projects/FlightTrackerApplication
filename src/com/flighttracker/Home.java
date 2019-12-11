@@ -20,7 +20,7 @@ public class Home extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {	       
 		 //get fields for searching here
-		 	System.out.println("profile customer DO GET called");
+		 	//System.out.println("profile customer DO GET called");
 	        this.req = req;
 	        this.resp = resp;
 	        //make a query to get the parameters from the database
@@ -56,11 +56,13 @@ public class Home extends HttpServlet{
 	     
 	     //**************************
 	     //This only exists if customerRep is making a reservation for a user. Null otherwise
+	     boolean isResForUser = false;
 	     String usernameToReserve = request.getParameter("usernameToReserve");
-	     System.out.println("NAMEEEE:" + usernameToReserve);
+	     //System.out.println("NAMEEEE:" + usernameToReserve);
 	     
 	     if(usernameToReserve!= null && !usernameToReserve.equals("null")) {
-		     System.out.println("Setting usernameToReserve attribute in Home.java POST:" + usernameToReserve);
+	    	 isResForUser = true;
+		     //System.out.println("Setting usernameToReserve attribute in Home.java POST:" + usernameToReserve);
 	    	 request.setAttribute("usernameToReserve", usernameToReserve);
 	    	 
 	     }
@@ -77,7 +79,6 @@ public class Home extends HttpServlet{
 	     
 	     if (roundTrip != null)
 	    	 isRoundTrip = true;
-	     
 
 	     boolean invalidDate = false;
 	     java.sql.Date departDateSql = null;
@@ -85,16 +86,22 @@ public class Home extends HttpServlet{
 	     // Parse string date to Date datatype then SQL Date datatype
 	     try {
 	    	 // First convert depart date to java.util.Date
-			java.util.Date departDate = new SimpleDateFormat("dd/MM/yyyy").parse(departDateString);
+			java.util.Date departDate = new SimpleDateFormat("MM/dd/yyyy").parse(departDateString);
 			
 			// Then convert to java.sql.Date
 			departDateSql = new java.sql.Date(departDate.getTime());
 			
-			// Convert arrive date
-			java.util.Date arriveDate = new SimpleDateFormat("dd/MM/yyyy").parse(arriveDateString);
-			
-			// Then convert to java.sql.Date
-			arriveDateSql = new java.sql.Date(arriveDate.getTime());
+			if(isRoundTrip) {
+				// Convert arrive date
+				java.util.Date arriveDate = new SimpleDateFormat("MM/dd/yyyy").parse(arriveDateString);
+				
+				// Then convert to java.sql.Date
+				arriveDateSql = new java.sql.Date(arriveDate.getTime());
+			}
+			else {
+				arriveDateSql = null;
+			}
+
 			
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
@@ -118,14 +125,33 @@ public class Home extends HttpServlet{
 	     try{
 	    	Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 	    	PreparedStatement st;
-	    	//if flexible, change the query to add date +/- 3
-	    	if(isFlexible) {
+	    	
+	    	//if flexible and it is round trip
+	    	//Show +/- 3 days and search with arrivalDate
+	    	if(isFlexible && isRoundTrip) {
 	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
-			    		+ "depart_date BETWEEN date_sub('" + departDateSql + "', interval 3 day) AND date_add('" + departDateSql + "', interval 3 day) AND arrive_date BETWEEN date_sub('" + arriveDateSql + "', interval 3 day) AND date_add('" + arriveDateSql + "', interval 3 day)");
-	    	} //not flexible 
+			    	+ "depart_date BETWEEN date_sub('" + departDateSql + "', interval 3 day) AND date_add('" + departDateSql + "', interval 3 day) AND arrive_date BETWEEN date_sub('" + arriveDateSql + "', interval 3 day) AND date_add('" + arriveDateSql + "', interval 3 day)");
+	    	} 
+	    	//not flexible but it is round trip 
+	    	//search with arrivalDate
+	    	else if(!isFlexible && isRoundTrip){
+	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
+			    	+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
+	    	}
+	    	//if flexible but it is NOT round trip
+	    	//Show +/- 3 days and don't check arrivalDate
+	    	else if(isFlexible && !isRoundTrip) {
+	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
+			    	+ "depart_date BETWEEN date_sub('" + departDateSql + "', interval 3 day) AND date_add('" + departDateSql + "', interval 3 day)");
+	    	}
+	    	//not flexible and it is NOT round trip
+	    	//don't search arrivalDate
+	    	else if(!isFlexible && !isRoundTrip) {
+	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
+				    + "depart_date = '" + departDateSql + "'");
+	    	}
 	    	else {
-	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
-			    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
+	    		st = null;
 	    	}
     
 		    ResultSet rs;
@@ -147,8 +173,22 @@ public class Home extends HttpServlet{
 		    
 		    System.out.println(flightList.toString());
 		    request.setAttribute("flightList", flightList);
-		    request.setAttribute("isFlexible", isFlexible);
-		    request.setAttribute("isRoundTrip", isRoundTrip);
+		    
+		    if(isFlexible) {
+		    	request.setAttribute("flexibility", "Dates flexible");
+		    }
+		    else {
+		    	request.setAttribute("flexibility", "Not flexible");
+		    }
+		    
+		    
+		    if(isRoundTrip) {
+		    	request.setAttribute("flightType", "Round Trip");
+		    }
+		    else {
+		    	request.setAttribute("flightType", "One Way");
+		    }
+		    
 		    
 		    request.getRequestDispatcher("/jsp/viewFlights.jsp").forward(request, response);
 		    con.close();
