@@ -64,7 +64,7 @@ div span{
 				<h5>List of all flights for a given airport </h5>
 			</div>
 	</a>
-	<a href="${pageContext.servletContext.contextPath}/" class="list-group-item list-group-item-action">
+	<a href="${pageContext.servletContext.contextPath}/jsp/searchMonth.jsp" class="list-group-item list-group-item-action">
 			<div>
 				<h5>Sales Report for each month</h5>
 			</div>

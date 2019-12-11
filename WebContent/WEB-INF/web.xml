@@ -294,4 +294,15 @@
     <servlet-name>AdminEachReservationDetails</servlet-name>
     <url-pattern>/adminEachReservationDetails</url-pattern>
   </servlet-mapping>
+    </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SalesReport</display-name>
+    <servlet-name>SalesReport</servlet-name>
+    <servlet-class>com.flighttracker.SalesReport</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>SalesReport</servlet-name>
+    <url-pattern>/salesReport</url-pattern>
+    </servlet-mapping>
 </web-app>
