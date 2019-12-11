@@ -217,7 +217,7 @@ public class BookFlight extends HttpServlet {
         st.executeUpdate();
         con.close();
         System.out.println("success");
-        response.sendRedirect("jsp/home.jsp");
+        response.sendRedirect("jsp/profileCustomer.jsp");
 		} catch (SQLException e){
         	System.out.println("booking failed");
         	e.printStackTrace();
