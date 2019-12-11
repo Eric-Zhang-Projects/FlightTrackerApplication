@@ -39,7 +39,7 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="homeCustomer.jsp">Flight Tracker</a>
+				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp"><span class="glyphicon glyphicon-user"></span>
 							Admin Account </a></li>

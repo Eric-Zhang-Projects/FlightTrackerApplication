@@ -57,7 +57,7 @@ public class ProfileAdmin extends HttpServlet {
     	try {
     		Connection con = DriverManager.getConnection(url, "cs336", "admin123");
         	Statement st = con.createStatement();
-        	ResultSet rs, rs1;
+        	ResultSet rs, rs1, rs2;
         	
         	//id = Integer.parseInt(req.getSession().getAttribute("customer_id").toString());
         	//System.out.println(id);
@@ -92,20 +92,20 @@ public class ProfileAdmin extends HttpServlet {
         		
         	}
         	else if (edit.equals("edit")) {
-        	
+        	rs2 = st.executeQuery("SELECT * from Customer WHERE username = '" + username + "' ");
         	System.out.println("edit");
         	String insert = "";
-        	
+        	if(rs2.next()) {
         	if(isCustomer) {
         		if(firstName.isEmpty()) {
-            		firstName = rs.getString("first_name");
+            		firstName = rs2.getString("first_name");
             		System.out.println(firstName);
             	}
         		if(lastName.isEmpty()) {
-        			lastName = rs.getString("last_name");
+        			lastName = rs2.getString("last_name");
             	}
             	if(password.isEmpty()) {
-            		password = rs.getString("password");
+            		password = rs2.getString("password");
             	}
             	insert = "UPDATE Customer SET first_name = '" + firstName +"', last_name = '" + lastName +"', password = '" + password + "' where username = '" + username + "' ";
 
@@ -113,6 +113,7 @@ public class ProfileAdmin extends HttpServlet {
         		System.out.println(firstName);
         		System.out.println(lastName);
         		System.out.println(password);
+        	}
         	}
         	
         	else if(!isCustomer) {
