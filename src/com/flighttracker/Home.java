@@ -53,6 +53,18 @@ public class Home extends HttpServlet{
 	     String departDateString = request.getParameter("departDate");
 	     String arriveDateString = request.getParameter("arriveDate");
 	     
+	     
+	     //**************************
+	     //This only exists if customerRep is making a reservation for a user. Null otherwise
+	     String usernameToReserve = request.getParameter("usernameToReserve");
+	     //System.out.println(usernameToReserve);
+	     
+	     boolean isResForUser = false;
+	     if(usernameToReserve != null) {
+	    	 isResForUser = true;
+	     }
+	     //**************************
+	     
 	     String roundTrip = request.getParameter("isRoundTrip");
 	     boolean isRoundTrip = false;
 	     
@@ -114,10 +126,7 @@ public class Home extends HttpServlet{
 	    		st = con.prepareStatement("SELECT * FROM Flights WHERE depart_airport_id = '" + departAirport + "' AND arrive_airport_id = '" + arriveAirport + "' AND "
 			    		+ "depart_date = '" + departDateSql + "' AND arrive_date = '" + arriveDateSql + "'");
 	    	}
-
-		    System.out.println(st.toString());
-
-		    
+    
 		    ResultSet rs;
 		    rs = st.executeQuery();
 		    while (rs.next()) {
