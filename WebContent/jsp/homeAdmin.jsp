@@ -49,12 +49,12 @@ div span{
 				<h5>View Revenue Summaries</h5>
 			</div>
 	</a>
-	<a href="${pageContext.servletContext.contextPath}/" class="list-group-item list-group-item-action">
+	<a href="${pageContext.servletContext.contextPath}/customerMostRevenue" class="list-group-item list-group-item-action">
 			<div>
 				<h5>Customer generated most total revenue</h5>
 			</div>
 	</a>
-	<a href="${pageContext.servletContext.contextPath}/" class="list-group-item list-group-item-action">
+	<a href="${pageContext.servletContext.contextPath}/flightMostSold" class="list-group-item list-group-item-action">
 			<div>
 				<h5>List of most active flights (most tickets sold)</h5>
 			</div>

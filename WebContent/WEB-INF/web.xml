@@ -250,4 +250,24 @@
     <servlet-name>ShowWaitlist</servlet-name>
     <url-pattern>/showWaitlist</url-pattern>
     </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerMostRevenue</display-name>
+    <servlet-name>CustomerMostRevenue</servlet-name>
+    <servlet-class>com.flighttracker.CustomerMostRevenue</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerMostRevenue</servlet-name>
+    <url-pattern>/customerMostRevenue</url-pattern>
+    </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FlightMostSold</display-name>
+    <servlet-name>FlightMostSold</servlet-name>
+    <servlet-class>com.flighttracker.FlightMostSold</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>FlightMostSold</servlet-name>
+    <url-pattern>/flightMostSold</url-pattern>
+    </servlet-mapping>
 </web-app>
