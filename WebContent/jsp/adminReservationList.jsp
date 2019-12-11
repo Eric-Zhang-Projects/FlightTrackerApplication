@@ -41,53 +41,22 @@ div span{
 		</div>
 	</nav>
 	
-<div class="list-group">
-	<form action="${pageContext.servletContext.contextPath}/profileAdmin" method ="POST">
-		<h2>Add / Edit / Delete Customer Representative or Customer Info</h2>
+<div class="list-group" style="width: 75%;">
+	<form action="${pageContext.servletContext.contextPath}/adminReservationList" method ="POST">
+		<h2>Find Reservations</h2>
 		
 		<div class="container">
-			<label for="sel1">Enter the username of the account information you'd like to change:</label>
-			<br>
-			<label for="username">Username:</label>
-			<input type="text" placeholder="Enter Username" name="username">
-			
-			<div>
-			<label><input type="radio" name="edit" value="edit" required>Edit</label>
-			<label><input type="radio" name="edit" value = "add" required>Add</label>
-			<label><input type="radio" name="edit" value = "delete" required>Delete</label>
-			</div>
-			<br>
-			
-			<label for="usr">Only Enter for Edit or Add</label>
-			<br>
-			<label for="usr">First Name:</label>
-		 	 <input type="text" placeholder="Enter First Name " name ="firstName">
-			<br>
-			<label for="sel1">Last Name:</label> 
-			<input type="text" placeholder="Enter Last Name" name="lastName">
-		
+			<label for="sel1">Produce a list of reservation by:</label><br>
+			<input type="text" placeholder="Enter Information" name="type" required><br>
+			<input type="radio" name="radioType" id="typeF" value="Flight" required/>Flight Number
+			<input type="radio" name="radioType" id="typeC" value="Customer" required/>Username
 		  	<br>
-		  	<label for="pwd">Password:</label>
-		  	<input type="password" placeholder="Enter Password" name ="password">
-		  	<br>
-		  	<br><br>
-		  	<label>Mark if Adding New Customer Representative Account</label>
-			<label><input type="radio" name="customerType" value = "Customer_rep">Customer Representative</label>
-		  	<br><br>
 		  	<input type="submit" class="btn btn-success" value="Submit"/>
+			
 		</div>
 	</form>	
 </div>
   
-	<%
-    if ((session.getAttribute("user") == null)) {
-%>
-You are not logged in<br/>
-<a href="login.jsp">Please Login</a>
-<%}
-%>
-
-
 </body>
 </html>
 </body>

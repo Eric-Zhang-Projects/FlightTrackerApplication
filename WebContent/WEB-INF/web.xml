@@ -153,9 +153,8 @@
   <servlet-mapping>
     <servlet-name>ForgotPassword</servlet-name>
     <url-pattern>/forgotPassword</url-pattern>
-    </servlet-mapping>
-    
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>DeleteAirport</display-name>
     <servlet-name>DeleteAirport</servlet-name>
@@ -164,9 +163,8 @@
   <servlet-mapping>
     <servlet-name>DeleteAirport</servlet-name>
     <url-pattern>/deleteAirport</url-pattern>
-  </servlet-mapping> 
-  
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>UpdateAirport</display-name>
     <servlet-name>UpdateAirport</servlet-name>
@@ -175,8 +173,7 @@
   <servlet-mapping>
     <servlet-name>UpdateAirport</servlet-name>
     <url-pattern>/updateAirport</url-pattern>
-  </servlet-mapping> 
- 
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>RevenueSummary</display-name>
@@ -187,8 +184,7 @@
     <servlet-name>RevenueSummary</servlet-name>
     <url-pattern>/revenueSummary</url-pattern>
   </servlet-mapping>
-  
- <servlet>
+  <servlet>
     <description></description>
     <display-name>BookFlight</display-name>
     <servlet-name>BookFlight</servlet-name>
@@ -197,8 +193,8 @@
   <servlet-mapping>
     <servlet-name>BookFlight</servlet-name>
     <url-pattern>/bookFlight</url-pattern>
-  </servlet-mapping>  
-      <servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>DeleteFlight</display-name>
     <servlet-name>DeleteFlight</servlet-name>
@@ -207,9 +203,8 @@
   <servlet-mapping>
     <servlet-name>DeleteFlight</servlet-name>
     <url-pattern>/deleteFlight</url-pattern>
-  </servlet-mapping> 
-  
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>UpdateFlight</display-name>
     <servlet-name>UpdateFlight</servlet-name>
@@ -218,7 +213,7 @@
   <servlet-mapping>
     <servlet-name>UpdateFlight</servlet-name>
     <url-pattern>/updateFlight</url-pattern>
-  </servlet-mapping> 
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>enterUserMakeRes</display-name>
@@ -229,8 +224,7 @@
     <servlet-name>enterUserMakeRes</servlet-name>
     <url-pattern>/enterUserMakeRes</url-pattern>
   </servlet-mapping>
-    
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>CRMakeRes</display-name>
     <servlet-name>CRMakeRes</servlet-name>
@@ -239,45 +233,76 @@
   <servlet-mapping>
     <servlet-name>CRMakeRes</servlet-name>
     <url-pattern>/CRMakeRes</url-pattern>
-    </servlet-mapping>
- <servlet>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>ShowWaitlist</display-name>
     <servlet-name>ShowWaitlist</servlet-name>
     <servlet-class>com.flighttracker.ShowWaitlist</servlet-class>
- </servlet>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ShowWaitlist</servlet-name>
     <url-pattern>/showWaitlist</url-pattern>
-    </servlet-mapping>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>CustomerMostRevenue</display-name>
     <servlet-name>CustomerMostRevenue</servlet-name>
     <servlet-class>com.flighttracker.CustomerMostRevenue</servlet-class>
- </servlet>
+  </servlet>
   <servlet-mapping>
     <servlet-name>CustomerMostRevenue</servlet-name>
     <url-pattern>/customerMostRevenue</url-pattern>
-    </servlet-mapping>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>FlightMostSold</display-name>
     <servlet-name>FlightMostSold</servlet-name>
     <servlet-class>com.flighttracker.FlightMostSold</servlet-class>
- </servlet>
+  </servlet>
   <servlet-mapping>
     <servlet-name>FlightMostSold</servlet-name>
     <url-pattern>/flightMostSold</url-pattern>
-    </servlet-mapping>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>AllFlightsAirport</display-name>
     <servlet-name>AllFlightsAirport</servlet-name>
     <servlet-class>com.flighttracker.AllFlightsAirport</servlet-class>
- </servlet>
+  </servlet>
   <servlet-mapping>
     <servlet-name>AllFlightsAirport</servlet-name>
     <url-pattern>/allFlightsAirport</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminReservationList</display-name>
+    <servlet-name>AdminReservationList</servlet-name>
+    <servlet-class>com.flighttracker.AdminReservationList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminReservationList</servlet-name>
+    <url-pattern>/adminReservationList</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>AdminEachReservationDetails</display-name>
+    <servlet-name>AdminEachReservationDetails</servlet-name>
+    <servlet-class>com.flighttracker.AdminEachReservationDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminEachReservationDetails</servlet-name>
+    <url-pattern>/adminEachReservationDetails</url-pattern>
+  </servlet-mapping>
+    </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SalesReport</display-name>
+    <servlet-name>SalesReport</servlet-name>
+    <servlet-class>com.flighttracker.SalesReport</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>SalesReport</servlet-name>
+    <url-pattern>/salesReport</url-pattern>
     </servlet-mapping>
 </web-app>
