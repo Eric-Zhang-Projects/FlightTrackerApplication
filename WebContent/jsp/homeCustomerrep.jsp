@@ -40,7 +40,7 @@ div span{
 	</nav>
 	
 <div class="list-group" style="width: 75%;" >
-	<a href="${pageContext.servletContext.contextPath}/jsp/CRMakeReservation.jsp" class="list-group-item list-group-item-action">
+	<a href="${pageContext.servletContext.contextPath}/jsp/enterUser.jsp" class="list-group-item list-group-item-action">
 			<div>
 				<h5>Make Flight Reservation For Customer</h5>
 			</div>

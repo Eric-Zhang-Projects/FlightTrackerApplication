@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ViewFlights
+ * Servlet implementation class CustomerHighestRevenue
  */
-@WebServlet("/ViewFlights")
-public class ViewFlights extends HttpServlet {
+@WebServlet("/CustomerHighestRevenue")
+public class CustomerHighestRevenue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewFlights() {
+    public CustomerHighestRevenue() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +26,13 @@ public class ViewFlights extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+		//show the username, revenue
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//do nothing for now
 	}
-
 }

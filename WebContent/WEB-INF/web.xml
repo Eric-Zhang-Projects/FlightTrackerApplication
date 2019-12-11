@@ -153,7 +153,30 @@
   <servlet-mapping>
     <servlet-name>ForgotPassword</servlet-name>
     <url-pattern>/forgotPassword</url-pattern>
-  </servlet-mapping>
+    </servlet-mapping>
+    
+   <servlet>
+    <description></description>
+    <display-name>DeleteAirport</display-name>
+    <servlet-name>DeleteAirport</servlet-name>
+    <servlet-class>com.flighttracker.DeleteAirport</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteAirport</servlet-name>
+    <url-pattern>/deleteAirport</url-pattern>
+  </servlet-mapping> 
+  
+    <servlet>
+    <description></description>
+    <display-name>UpdateAirport</display-name>
+    <servlet-name>UpdateAirport</servlet-name>
+    <servlet-class>com.flighttracker.UpdateAirport</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateAirport</servlet-name>
+    <url-pattern>/updateAirport</url-pattern>
+  </servlet-mapping> 
+ 
   <servlet>
     <description></description>
     <display-name>RevenueSummary</display-name>
@@ -165,5 +188,36 @@
     <url-pattern>/revenueSummary</url-pattern>
   </servlet-mapping>
   
+ <servlet>
+    <description></description>
+    <display-name>BookFlight</display-name>
+    <servlet-name>BookFlight</servlet-name>
+    <servlet-class>com.flighttracker.BookFlight</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookFlight</servlet-name>
+    <url-pattern>/bookFlight</url-pattern>
+  </servlet-mapping>  
   
+  <servlet>
+    <description></description>
+    <display-name>enterUserMakeRes</display-name>
+    <servlet-name>enterUserMakeRes</servlet-name>
+    <servlet-class>com.flighttracker.enterUserMakeRes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>enterUserMakeRes</servlet-name>
+    <url-pattern>/enterUserMakeRes</url-pattern>
+  </servlet-mapping>
+    
+   <servlet>
+    <description></description>
+    <display-name>CRMakeRes</display-name>
+    <servlet-name>CRMakeRes</servlet-name>
+    <servlet-class>com.flighttracker.CRMakeRes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CRMakeRes</servlet-name>
+    <url-pattern>/CRMakeRes</url-pattern>
+    </servlet-mapping>
 </web-app>

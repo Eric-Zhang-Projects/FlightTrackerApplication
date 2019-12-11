@@ -8,15 +8,34 @@
 </head>
 <body>
 <%@ page import ="java.sql.*" %>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <html>
 <body>
+<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="homeCustomerrep.jsp">Flight Tracker</a>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="profileCustomerRep.jsp"><span class="glyphicon glyphicon-user"></span>
+							Account </a></li>
+					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
+							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
 <h1>Update Airports Information:</h1>
-<table border="1">
-<tr>
-<td>Airport ID</td>
-<td>Action</td>
-</tr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Airport Name</th>
+    </tr>
+  </thead>
+  <tbody>
 
 <%  
     try{
@@ -39,8 +58,7 @@
     while (rs.next()) {
     %>
     <tr>
-		<td><%=rs.getString("airport_id") %></td>
-		<td><a href="CRUpdateAirport.jsp?id=<%=rs.getString("airport_id")%>">update</a></td>
+		<td><%=rs.getString("airport_name") %></td>
 	</tr>
 	<% 
     }
@@ -50,4 +68,19 @@
     	e.printStackTrace();
     }
 	%>
+	
+	  </tbody>
+</table>
+<%@ page import ="java.sql.*" %>
+<div>
+<a href='AddAirport.jsp'>Add Airport</a>
+</div>
+<div>
+<a href='DeleteAirport.jsp'>Delete Airport</a>
+</div>
+
+<div>
+<a href='CRUpdateAirport.jsp'>Update Airport</a>
+</div>
+	
 	

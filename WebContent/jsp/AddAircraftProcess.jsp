@@ -7,6 +7,7 @@ String aircraft_id=request.getParameter("aircraft_id");
 String airline_id=request.getParameter("airline_id");
 String total_seats_economy=request.getParameter("total_seats_economy");
 String total_seats_first=request.getParameter("total_seats_first");
+String total_seats_business=request.getParameter("total_seats_business");
 
 try
 {
@@ -14,7 +15,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel", "cs336", "admin123");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into Aircraft (aircraft_id,airline_id,total_seats_economy,total_seats_first)values('"+aircraft_id+"','"+airline_id+"','"+total_seats_economy+"','"+total_seats_first+"')");
+int i=st.executeUpdate("insert into Aircraft (aircraft_id,airline_id,total_seats_economy,total_seats_first,total_seats_business)values('"+aircraft_id+"','"+airline_id+"','"+total_seats_economy+"','"+total_seats_first+"','"+total_seats_business+"')");
 out.println("Data is successfully inserted!");
 }
 catch(Exception e)

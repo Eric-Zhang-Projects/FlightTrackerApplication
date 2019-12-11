@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Profile Page</title>
+<title>Update Aircraft</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,7 +15,6 @@ form {
 	text-align: center;
 	
 }
-
 label {
 	margin-right: 20px;
 }
@@ -30,11 +29,11 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/homeAdmin.jsp">Flight Tracker</a>
+				<a class="navbar-brand" href="home.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="${pageContext.servletContext.contextPath}/profileAdmin"><span class="glyphicon glyphicon-user"></span>
-							Admin Account 
+						<a href="homeCustomerrep.jsp"><span class="glyphicon glyphicon-user"></span>
+							Customer Rep Profile 
 						</a>
 					</li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
@@ -48,25 +47,28 @@ div span{
 	</nav>
 	
 <div class="list-group" style="width: 75%;">
-	<form action="${pageContext.servletContext.contextPath}/revenueSummary" method ="POST">
-		<h2>Revenue Summary</h2>
+	<form action="${pageContext.servletContext.contextPath}/deleteAirport" method ="POST">
+		<h2>Delete Aircraft Information:</h2>
 		
 		<div class="container">
-			<label for="sel1">Produce a revenue summary by:</label><br>
-			<input type="radio" name="radioType" id="typeF" value="Flight"/>Flight
-			<input type="radio" name="radioType" id="typeA" value="Airline"/>Airline
-			<input type="radio" name="radioType" id="typeC" value="Customer"/>Customer
-		  	<br>
+			<label for="sel1">Enter the Airport ID you want to delete:</label>
+			<input type="text" placeholder="Enter Airport ID" name="airport_id">
+			
+			
+				<br>
 		  	<input type="submit" class="btn btn-success" value="Submit"/>
 			
 		</div>
 	</form>	
 </div>
   
-<% if ((session.getAttribute("user") == null)) { %>
-	You are not logged in<br/>
-	<a href="login.jsp">Please Login</a>
-	<%}%>
+	<%
+    if ((session.getAttribute("user") == null)) {
+%>
+You are not logged in<br/>
+<a href="login.jsp">Please Login</a>
+<%}
+%>
 
 
 </body>

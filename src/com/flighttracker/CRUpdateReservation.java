@@ -62,7 +62,8 @@ public class CRUpdateReservation extends HttpServlet {
 					Ticket.setFlight_number(rs.getInt("flight_number"));
 					Ticket.setAirline_id(rs.getString("airline_id"));
 					Ticket.setSeat_number(rs.getInt("seat_number"));
-					
+					Ticket.setClassType(rs.getString("class"));
+
 					System.out.println(Ticket.getIssue_date());
 					request.setAttribute("ticket", Ticket); 
 					con.close();

@@ -16,12 +16,13 @@ public class TicketObject {
 	private int flight_number;
 	private String airline_id;
 	private int seat_number;
+	private String classType;
 	
 	public TicketObject() {
 	}
 	
 	public TicketObject(int number, int round_trip, int booking_fee, Date issue_date, int total_fare, int cancel_fee, int meal, 
-			int waitlist_number, String username, int flight_number, String airline_id, int seat_number) {
+			int waitlist_number, String username, int flight_number, String airline_id, int seat_number, String classType) {
 		this.number = number;
 		this.round_trip = round_trip;
 		this.booking_fee = booking_fee;
@@ -34,10 +35,19 @@ public class TicketObject {
 		this.flight_number = flight_number;
 		this.airline_id = airline_id;
 		this.seat_number = seat_number;
+		this.classType = classType;
 	}
 
 	public int getNumber() {
 		return number;
+	}
+
+	public String getClassType() {
+		return classType;
+	}
+
+	public void setClassType(String classType) {
+		this.classType = classType;
 	}
 
 	public void setNumber(int number) {
