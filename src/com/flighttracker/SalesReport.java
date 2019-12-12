@@ -88,9 +88,16 @@ most_by_airline: [airline_id, total]
 	        int total_flights =0;
 	        while(allFlightsRS.next()) {
 	        	String Adate = allFlightsRS.getString("arrive_date");
+	        	System.out.println(Adate);
 	        	String Ddate = allFlightsRS.getString("depart_date");
-	        	String AmonthRS = Adate.substring(5,7);
-	        	String DmonthRS = Ddate.substring(5,7);
+	        	String AmonthRS="";
+	        	String DmonthRS ="";
+	        	if (Adate != null) {
+	        		AmonthRS = Adate.substring(5,7);
+	        	}
+	        	if (Ddate!= null) {
+	        		DmonthRS = Ddate.substring(5,7);
+	        	}
 	        	//System.out.println("month: " +AmonthRS + " " + Integer.toString(month));
 	        	if (AmonthRS.equals(Integer.toString(month)) || DmonthRS.equals(Integer.toString(month))) {
 	        		total_flights++;

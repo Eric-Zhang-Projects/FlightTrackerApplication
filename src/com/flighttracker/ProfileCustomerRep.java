@@ -31,7 +31,7 @@ public class ProfileCustomerRep extends HttpServlet {
         	String firstName, lastName, username, password;
         	
         	username = req.getSession().getAttribute("user").toString();
-        	//System.out.println(id);
+        	System.out.println(username);
         	rs = st.executeQuery("SELECT * from Customer_rep WHERE username = '" + username + "' ");
         	if(rs.next()) {
         		//pull information from the database

@@ -92,9 +92,10 @@ $(document).ready(function(){
 		<tr>
 			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(1)')" style="cursor:pointer">Airline</th>
 			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(2)')" style="cursor:pointer">Flight Number</th>
-			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(3)')" style="cursor:pointer">Departure Time</th>
-			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Arrival Time</th>
-			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(5)')" style="cursor:pointer">Price starting from:</th>
+			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(3)')" style="cursor:pointer">Number of stops</th>
+			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(4)')" style="cursor:pointer">Departure Time</th>
+			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(5)')" style="cursor:pointer">Arrival Time</th>
+			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(6)')" style="cursor:pointer">Price starting from:</th>
 		</tr>
 		<tbody id ="miTable">
 		<%ArrayList<Flight> flights = (ArrayList<Flight>)request.getAttribute("flightList");
@@ -103,6 +104,7 @@ $(document).ready(function(){
 				<tr class="item" data-href="${pageContext.servletContext.contextPath}/bookFlight?flight_number=<%=f.getFlightNumber()%>&usernameToReserve=<%=request.getAttribute("usernameToReserve") %>">
 					<td><%= f.getAirlineId() %></td>
 					<td><%= f.getFlightNumber() %></td>
+					<td><%= f.getStops() %></td>
 					<td><%= f.getDepartTime() %></td>
 					<td><%= f.getArriveTime() %></td>
 					<td><%= f.getFareEconomy() %></td>

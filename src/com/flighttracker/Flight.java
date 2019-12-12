@@ -33,9 +33,11 @@ available_seats_first
 int(11)
 available_seats_business
 int(11)
+stops
+int(11)
 	 */
 	
-	private int flightNumber, fareFirst, fareEconomy, aircraftId, availableSeatsEconomy, fareBusiness, availableSeatsFirst, availableSeatsBusiness;
+	private int flightNumber, fareFirst, fareEconomy, aircraftId, availableSeatsEconomy, fareBusiness, availableSeatsFirst, availableSeatsBusiness, stops;
 	private Date departDate, arriveDate;
 	private Time departTime, arriveTime;
 	private String airlineId, departAirportId, ArriveAirportId;
@@ -129,7 +131,12 @@ int(11)
 		return ArriveAirportId;
 	}
 	public void setArriveAirportId(String arriveAirportId) {
-		ArriveAirportId = arriveAirportId;
+		this.ArriveAirportId = arriveAirportId;
 	}
-
+	public int getStops() {
+		return stops;
+	}
+	public void setStops(int stops) {
+		this.stops = stops;
+	}
 }
