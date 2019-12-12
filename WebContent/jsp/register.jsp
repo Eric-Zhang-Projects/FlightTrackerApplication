@@ -41,7 +41,7 @@
 		<input type='submit' class="btn btn-primary" value="Create Account!"/>
 		
 		<div class="container" style="background-color: #f1f1f1">
-			<a href='${pageContext.servletContext.contextPath}/login'>Back To Login</a>
+			<a href='${pageContext.servletContext.contextPath}/'>Back To Login</a>
 		</div>
 	</form>
 

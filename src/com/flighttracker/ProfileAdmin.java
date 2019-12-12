@@ -57,7 +57,7 @@ public class ProfileAdmin extends HttpServlet {
     	try {
     		Connection con = DriverManager.getConnection(url, "cs336", "admin123");
         	Statement st = con.createStatement();
-        	ResultSet rs, rs1, rs2;
+        	ResultSet rs, rs1, rs2, rs3;
         	
         	//id = Integer.parseInt(req.getSession().getAttribute("customer_id").toString());
         	//System.out.println(id);
@@ -96,36 +96,39 @@ public class ProfileAdmin extends HttpServlet {
         	System.out.println("edit");
         	String insert = "";
         	if(rs2.next()) {
-        	if(isCustomer) {
-        		if(firstName.isEmpty()) {
-            		firstName = rs2.getString("first_name");
-            		System.out.println(firstName);
-            	}
-        		if(lastName.isEmpty()) {
-        			lastName = rs2.getString("last_name");
-            	}
-            	if(password.isEmpty()) {
-            		password = rs2.getString("password");
-            	}
-            	insert = "UPDATE Customer SET first_name = '" + firstName +"', last_name = '" + lastName +"', password = '" + password + "' where username = '" + username + "' ";
-
-
-        		System.out.println(firstName);
-        		System.out.println(lastName);
-        		System.out.println(password);
-        	}
+	        	if(isCustomer) {
+	        		if(firstName.isEmpty()) {
+	            		firstName = rs2.getString("first_name");
+	            		System.out.println(firstName);
+	            	}
+	        		if(lastName.isEmpty()) {
+	        			lastName = rs2.getString("last_name");
+	            	}
+	            	if(password.isEmpty()) {
+	            		password = rs2.getString("password");
+	            	}
+	            	insert = "UPDATE Customer SET first_name = '" + firstName +"', last_name = '" + lastName +"', password = '" + password + "' where username = '" + username + "' ";
+	
+	
+	        		System.out.println(firstName);
+	        		System.out.println(lastName);
+	        		System.out.println(password);
+	        	}
         	}
         	
         	else if(!isCustomer) {
-        		if(firstName.isEmpty()) {
-            		firstName = rs1.getString("first_name");
-            	}
-        		if(lastName.isEmpty()) {
-        			lastName = rs1.getString("last_name");
-            	}
-            	if(password.isEmpty()) {
-            		password = rs1.getString("password");
-            	}
+        		rs3 = st.executeQuery("SELECT * from Customer_rep WHERE username = '" + username + "' ");
+        		if(rs3.next()) {
+	        		if(firstName.isEmpty()) {
+	            		firstName = rs3.getString("first_name");
+	            	}
+	        		if(lastName.isEmpty()) {
+	        			lastName = rs3.getString("last_name");
+	            	}
+	            	if(password.isEmpty()) {
+	            		password = rs3.getString("password");
+	            	}
+        		}
             	insert = "UPDATE Customer_rep SET first_name = '" + firstName +"', last_name = '" + lastName +"', password = '" + password + "' where username = '" + username + "' ";
 
         	}

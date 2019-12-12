@@ -245,7 +245,7 @@ public class BookFlight extends HttpServlet {
         	response.sendRedirect("jsp/homeCustomerrep.jsp");
         }
         else {
-        	response.sendRedirect("jsp/profileCustomer.jsp");
+        	response.sendRedirect("jsp/welcomePage.jsp");
         }
 		} catch (SQLException e){
         	System.out.println("booking failed");
