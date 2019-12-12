@@ -73,14 +73,22 @@ public class RevenueSummary extends HttpServlet {
 	        		totalFare+=rs.getInt("total_fare");
 	        	}
 	        	//update the hashmap with total fare for each entry
-	        	for (HashMap.Entry<Integer, Integer> entry : flights.entrySet()) {
-	        		rs.absolute(0);
-	        		while(rs.next()){
-	        			if(rs.getInt("flight_number") == entry.getKey()) {
-	        				flights.put(entry.getKey(), entry.getValue() + rs.getInt("total_fare") );
-	        			}
-	        		}
-	    		}
+//	        	for (HashMap.Entry<Integer, Integer> entry : flights.entrySet()) {
+//	        		rs.absolute(0);
+//	        		while(rs.next()){
+//	        			if(rs.getInt("flight_number") == entry.getKey()) {
+//	        				flights.put(entry.getKey(), entry.getValue() + rs.getInt("total_fare") );
+//	        			}
+//	        		}
+//	    		}
+	        	for (int key : flights.keySet()) {
+        		rs.absolute(0);
+        		while(rs.next()){
+        			if(rs.getInt("flight_number") == key) {
+        				flights.put(key, flights.get(key) + rs.getInt("total_fare") );
+        			}
+        		}
+    		}
 		        request.setAttribute("flights", flights);
 		        request.setAttribute("radioType", radioType);
 		        request.setAttribute("totalFare", totalFare);
@@ -100,14 +108,22 @@ public class RevenueSummary extends HttpServlet {
 	        		totalFare+=rs.getInt("total_fare");
 	        	}
 	        	//update the hashmap with total fare for each entry
-	        	for (HashMap.Entry<String, Integer> entry : airlines.entrySet()) {
-	        		rs.absolute(0);
-	        		while(rs.next()){
-	        			if(rs.getString("airline_id").equals(entry.getKey())){
-	        				airlines.put(entry.getKey(), entry.getValue() + rs.getInt("total_fare") );
-	        			}
-	        		}
-	    		}
+//	        	for (HashMap.Entry<String, Integer> entry : airlines.entrySet()) {
+//	        		rs.absolute(0);
+//	        		while(rs.next()){
+//	        			if(rs.getString("airline_id").equals(entry.getKey())){
+//	        				airlines.put(entry.getKey(), entry.getValue() + rs.getInt("total_fare") );
+//	        			}
+//	        		}
+//	    		}
+	        	for (String key : airlines.keySet()) {
+        		rs.absolute(0);
+        		while(rs.next()){
+        			if(rs.getString("airline_id").equals(key)) {
+        				airlines.put(key, airlines.get(key) + rs.getInt("total_fare") );
+        			}
+        		}
+    		}
 		        request.setAttribute("airlines", airlines);
 		        request.setAttribute("radioType", radioType);
 		        request.setAttribute("totalFare", totalFare);
@@ -127,14 +143,22 @@ public class RevenueSummary extends HttpServlet {
 	        		totalFare+=rs.getInt("total_fare");
 	        	}
 	        	//update the hashmap with total fare for each entry
-	        	for (HashMap.Entry<String, Integer> entry : customers.entrySet()) {
-	        		rs.absolute(0);
-	        		while(rs.next()) {
-	        			if(rs.getString("username").equals(entry.getKey())) {
-	        				customers.put(entry.getKey(), entry.getValue() + rs.getInt("total_fare") );
-	        			}
-	        		}
-	    		}
+//	        	for (HashMap.Entry<String, Integer> entry : customers.entrySet()) {
+//	        		rs.absolute(0);
+//	        		while(rs.next()) {
+//	        			if(rs.getString("username").equals(entry.getKey())) {
+//	        				customers.put(entry.getKey(), entry.getValue() + rs.getInt("total_fare") );
+//	        			}
+//	        		}
+//	    		}
+	        	for (String key : customers.keySet()) {
+        		rs.absolute(0);
+        		while(rs.next()){
+        			if(rs.getString("username").equals(key)) {
+        				customers.put(key, customers.get(key) + rs.getInt("total_fare") );
+        			}
+        		}
+    		}
 		        request.setAttribute("customers", customers);
 		        request.setAttribute("radioType", radioType);
 		        request.setAttribute("totalFare", totalFare);

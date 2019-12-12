@@ -7,8 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -150,10 +150,11 @@ public class BookFlight extends HttpServlet {
 			cancel_fee = "100";
 		}
 		
-		 LocalDate localDate = LocalDate.now();
-	     String issue_date = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate).toString();
-	     
-		//not done
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		Date date = new Date(System.currentTimeMillis());
+		String issue_date = formatter.format(date).substring(0,10);
+		System.out.println(issue_date);
+		
 		
 		String seat_number="0";
 		

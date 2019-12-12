@@ -48,10 +48,10 @@ div span{
 			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(2)')" style="cursor:pointer">Revenue</th>
 		</tr>
 		<% HashMap<String, Integer> customers = (HashMap<String, Integer>)request.getAttribute("customers");%>
-		<% for(HashMap.Entry<String,Integer> c: customers.entrySet()){ %>
+		<% for(String key : customers.keySet()){ %>
 		<tr class="item">
-			<td><%= c.getKey() %></td>
-			<td><%= c.getValue() %></td>
+			<td><%= key %></td>
+			<td><%= customers.get(key) %></td>
 		</tr>
 		<% } %>
 		<tr>
@@ -59,13 +59,6 @@ div span{
 			<td><%= request.getAttribute("totalFare")%></td>
 		</tr>
 	</table>
-	<a href="">Back</a>
-
-
-<%if ((session.getAttribute("user") == null)) {%>
-	You are not logged in<br/>
-	<a href="index.jsp">Please Login</a>
-<%}%>
 
 </body>
 </html>
