@@ -47,8 +47,8 @@ div span{
 			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(1)')" style="cursor:pointer"><%= request.getAttribute("radioType") %></th>
 			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(2)')" style="cursor:pointer">Revenue</th>
 		</tr>
-		<% HashMap<Integer, Integer> airlines = (HashMap<Integer, Integer>)request.getAttribute("airlines");%>
-		<% for(int key : airlines.keySet()){ %>
+		<% HashMap<String, Integer> airlines = (HashMap<String, Integer>)request.getAttribute("airlines");%>
+		<% for(String key : airlines.keySet()){ %>
 		<tr class="item">
 			<td><%= key %></td>
 			<td><%= airlines.get(key) %></td>

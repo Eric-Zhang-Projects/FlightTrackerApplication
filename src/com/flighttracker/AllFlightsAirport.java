@@ -49,7 +49,7 @@ public class AllFlightsAirport extends HttpServlet {
 		        ResultSet flights;
 		        System.out.println("check tickets list");
 		        //query for all flight_ids in tickets
-		        flights = st.executeQuery("SELECT flight_number FROM Ticket");
+		        flights = st.executeQuery("SELECT flight_number FROM Flights");
 		        HashMap<Integer, String> table = new HashMap<Integer, String>();
 		        while (flights.next()) {
 		        	int flight_number = flights.getInt("flight_number");

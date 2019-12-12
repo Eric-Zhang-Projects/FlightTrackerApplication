@@ -58,13 +58,14 @@ div span{
 			<tbody>
 			<%HashMap<Integer, String> tab = (HashMap<Integer, String>)request.getAttribute("table"); 
 			  for (int flight_number : tab.keySet()){
+				  if (!tab.get(flight_number).equals("")){
 			 %>
 				<tr>
 					<th scope="row">Flight Number: <%=flight_number%><p>
 					<%=tab.get(flight_number)%><p>
 					</th>
 				</tr>
-				<%} %>
+				<%}} %>
 		</table>
 
 	</form>
