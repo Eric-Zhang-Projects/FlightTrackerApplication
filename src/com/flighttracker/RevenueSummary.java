@@ -42,7 +42,6 @@ public class RevenueSummary extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String type = request.getParameter("type");
 		String radioType = request.getParameter("radioType");
 		System.out.println("Revenue Summary do Post called");
 		try{

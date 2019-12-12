@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 //import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -64,6 +65,14 @@ public class Register extends HttpServlet {
         Connection con = DriverManager.getConnection(url, "cs336", "admin123");
         //Connection con = sc.getConnection();
         //Statement findId = con.createStatement();
+        Statement checkS = con.createStatement();
+        ResultSet checkR;
+        checkR = checkS.executeQuery("SELECT username FROM Customer WHERE username ='" + username + "'");
+        if (checkR.next()) {
+        	con.close();
+        	resp.sendRedirect("jsp/register.jsp");
+        }
+        else {
         String insert = "INSERT INTO Customer (first_name, last_name, username, password) VALUES (?, ?, ?, ?)";
         PreparedStatement st = con.prepareStatement(insert);
        	st.setString(1, firstName);
@@ -75,6 +84,7 @@ public class Register extends HttpServlet {
         System.out.println("successful update");
         con.close();
         resp.sendRedirect(req.getContextPath() + "/");
+        }
         
         } catch (SQLException e){
         	System.out.println("connection failed");

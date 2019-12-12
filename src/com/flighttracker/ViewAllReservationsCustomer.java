@@ -33,8 +33,8 @@ public class ViewAllReservationsCustomer extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String username = request.getSession().getAttribute("user").toString();
-		String username = "h1";
+		String username = request.getSession().getAttribute("user").toString();
+		System.out.println(username);
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("class driver found");

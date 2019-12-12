@@ -32,10 +32,10 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/homeAdmin">Flight Tracker</a>
+				<a class="navbar-brand" href=jsp/homeAdmin.jsp>Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.servletContext.contextPath}/profileAdmin"><span class="glyphicon glyphicon-user"></span>
-							Customer Representative Account </a></li>
+					<li><a href=jsp/homeAdmin.jsp><span class="glyphicon glyphicon-user"></span>
+							Administrative Account </a></li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>

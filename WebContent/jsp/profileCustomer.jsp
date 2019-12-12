@@ -32,16 +32,10 @@ div span{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/home">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="${pageContext.servletContext.contextPath}/profileCustomer"><span class="glyphicon glyphicon-user"></span>
-							Customer Account 
-						</a>
-					</li>
+					<li><a href="${pageContext.servletContext.contextPath}/profileCustomer"><span class="glyphicon glyphicon-user"></span>
+							Account </a></li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
-							class="glyphicon glyphicon-log-in"></span> 
-							Logout 
-						</a>	
-					</li>
+							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
 			</div>
 		</div>

@@ -29,9 +29,9 @@ div span{
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Flight Tracker</a>
+				<a class="navbar-brand" href="homeCustomerrep.jsp">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.servletContext.contextPath}/jsp/homeCustomerrep.jsp"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="${pageContext.servletContext.contextPath}/profileCustomerRep"><span class="glyphicon glyphicon-user"></span>
 							Customer Representative Account </a></li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>

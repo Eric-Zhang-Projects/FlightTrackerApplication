@@ -58,24 +58,11 @@ public class Login extends HttpServlet {
 	        try{
 	        	Connection con = DriverManager.getConnection(url, "cs336", "admin123");
 		        Statement st = con.createStatement();
-		        ResultSet rs, rs1, rs2;
+		        ResultSet rs, rs2;
 
 		        ResultSet rep;
 		        ResultSet admin;
-		        String response1 = "";		        
-		        
-		        rs1 = st.executeQuery("SELECT * FROM Airports");
-			    ArrayList<Airport> airports = new ArrayList<Airport>(); 
-			   
-		        while (rs1.next()) {
-		        	Airport airport = new Airport();
-		        	airport.setAirportId(rs1.getString(1));
-		        	airports.add(airport);
-		        }
-		        request.setAttribute("airports", airports);
-		        
-		        // RequestDispatcher rd = request.getRequestDispatcher("jsp/home.jsp");
-		        // rd.forward(request, response); 
+		        String response1 = "";
 		        
 		        //Login for Customer Account
 		        rs = st.executeQuery("SELECT * FROM Customer WHERE username ='" + username + "' and password = '" + password + "'");
@@ -92,6 +79,7 @@ public class Login extends HttpServlet {
 						request.getSession().setAttribute("customer_id", Integer.toString(id));
 						System.out.println(request.getSession().getAttribute("customer_id"));
 						con.close();
+						response1="a";
 						request.getRequestDispatcher("/jsp/welcomePage.jsp").forward(request, response);
 					}
 		        }
@@ -104,8 +92,6 @@ public class Login extends HttpServlet {
 		        rep = st.executeQuery("SELECT * FROM Customer_rep WHERE username ='" + username + "' and password = '" + password + "'");
 		        if(rep.next()){
 		        	request.getSession().setAttribute("user", username); // the username will be stored in the session
-		            response1 = "jsp/homeCustomerrep.jsp";  
-					//response.sendRedirect(response1);
 		            con.close();
 		            request.getRequestDispatcher("/jsp/homeCustomerrep.jsp").forward(request, response);
 		        } 
@@ -122,16 +108,13 @@ public class Login extends HttpServlet {
 		             request.getRequestDispatcher("/jsp/homeAdmin.jsp").forward(request, response);
 					//response.sendRedirect(response1);
 		         } 
-		         System.out.println(response1);
-		         if (response1!=""){
-		        	   // request.getRequestDispatcher(response1).forward(request, response);
-		        	    }
-		         else {
+		         System.out.println("RESP: " +response1);
+		         if(response1.equals("")) {
 		        	// login failed
 		        	errorMessage = "Invalid username or password.";
 					//RequestDispatcher req = request.getRequestDispatcher("/jsp/login.jsp");
 					request.setAttribute("error", errorMessage);
-					//response.sendRedirect("");
+					response.sendRedirect(request.getContextPath());
 		         }
 		         
 		        

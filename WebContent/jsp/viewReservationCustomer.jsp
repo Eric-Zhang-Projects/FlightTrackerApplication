@@ -35,20 +35,25 @@ div span{
 </style>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/jsp/home.jsp">Flight Tracker</a>
+				<a class="navbar-brand" href="${pageContext.servletContext.contextPath}/home">Flight Tracker</a>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.servletContext.contextPath}/jsp/profileCustomer.jsp"><span class="glyphicon glyphicon-user"></span>
-							Customer Representative Account </a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/profileCustomer"><span class="glyphicon glyphicon-user"></span>
+							Account </a></li>
 					<li><a href='${pageContext.servletContext.contextPath}/logout'><span
 							class="glyphicon glyphicon-log-in"></span> Logout </a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<div class="container" style="background-color: #f1f1f1 width: 30%" align="center">
+			<a href ="${pageContext.servletContext.contextPath}/viewAllReservationsCustomer">Back</a>
+	</div>
 <form class="form-inline" action="${pageContext.servletContext.contextPath}/viewReservationCustomer" method="POST">
+	
 	<table class="table" style="width: 60%">
 		<thead>
 			<tr>
@@ -114,16 +119,6 @@ div span{
 			</tr>
 	</table>
 	<input type='submit' class="btn btn-primary" value="Delete this Reservation"/>
-	
-	<div class="container" style="background-color: #f1f1f1">
-		<a herf ="${pageContext.servletContext.contextPath}/jsp/viewAllReservationsCustomer.jsp">Back</a>
-	</div>
 </form>
-	
-<% if ((session.getAttribute("user") == null)) { %>
-	You are not logged in<br/>
-	<a href="login.jsp">Please Login</a>
-<% } %>
-
 </body>
 </html>
