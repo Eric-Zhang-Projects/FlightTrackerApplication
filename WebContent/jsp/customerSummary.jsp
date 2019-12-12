@@ -47,25 +47,18 @@ div span{
 			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(1)')" style="cursor:pointer"><%= request.getAttribute("radioType") %></th>
 			<th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(2)')" style="cursor:pointer">Revenue</th>
 		</tr>
-		<% HashMap<String, Integer> customers = (HashMap<String, Integer>)request.getAttribute("customers");%>
-		<% for(HashMap.Entry<String,Integer> c: customers.entrySet()){ %>
+
 		<tr class="item">
-			<td><%= c.getKey() %></td>
-			<td><%= c.getValue() %></td>
+
 		</tr>
-		<% } %>
 		<tr>
 			<th>Total:</th>
-			<td><%= request.getAttribute("totalFare")%></td>
 		</tr>
 	</table>
 	<a href="">Back</a>
 
 
-<%if ((session.getAttribute("user") == null)) {%>
-	You are not logged in<br/>
-	<a href="index.jsp">Please Login</a>
-<%}%>
+
 
 </body>
 </html>
