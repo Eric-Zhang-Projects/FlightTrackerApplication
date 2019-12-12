@@ -97,16 +97,36 @@ public class UpdateFlight extends HttpServlet {
             	}
         	}
         	
+        	String a = ("select * from Flights where flight_number='"+flight_number+"'");
+        	PreparedStatement ps = con.prepareStatement(a);
+        	ResultSet rs2 = ps.executeQuery();
+        	int count2 =0;
+        	while(rs2.next())
+        	{
+        	count2++;
+        	}
+        	
+        	
         	//update the table
+        	
+        	int j=0;
+        	
+        	if (count2 > 0) {
         	String insert = "UPDATE Flights SET depart_date = '" + depart_date +"', arrive_date = '" + arrive_date +"', depart_time = '" + depart_time + "', arrive_time = '" + arrive_time + "', fare_first = '" + fare_first + "', fare_economy = '" + fare_economy + "', fare_business = '" + fare_business + "', available_seats_first = '" + available_seats_first + "', available_seats_economy = '" + available_seats_economy + "', available_seats_business = '" + available_seats_business + "' where flight_number = '" + flight_number + "' ";
 
         	PreparedStatement st1 = con.prepareStatement(insert);
         	st1.executeUpdate();
-        	
-        	
             System.out.println("successful Update");
+        	}
+        	else {
+        		System.out.println("unsuccessful Update");
+           		resp.sendRedirect(req.getContextPath() + "/jsp/CRUpdateFlight.jsp");
+           		 j=1;
+        	}
         	con.close();
+        	if(j==0) {
         	resp.sendRedirect(req.getContextPath() + "/jsp/CREditFlights.jsp");
+        	}
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();

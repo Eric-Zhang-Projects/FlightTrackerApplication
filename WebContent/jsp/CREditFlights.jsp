@@ -27,7 +27,7 @@
 	</nav>
 <html>
 <body>
-<h1>Update Aircraft Information:</h1>
+<h1>Update Flight Information:</h1>
 <table class="table">
   <thead>
     <tr>
@@ -40,8 +40,10 @@
       <th scope="col">Economy Fare</th>
       <th scope="col">Business Fare</th>
       <th scope="col">Airline ID</th>
+      <th scope="col">Depart Airport ID</th>
+      <th scope="col">Arrive Airport ID</th>
+      <th scope="col">Aircraft ID</th>
       <th scope="col">Available Seats Economy</th>
-      <th scope="col">Business Fare</th>
       <th scope="col">Available Seats First</th>
       <th scope="col">Available Seats Business</th>
     </tr>

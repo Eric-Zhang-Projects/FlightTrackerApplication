@@ -42,14 +42,18 @@ public class DeleteAircraft extends HttpServlet {
     	String url  = "jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel";
     	try {
     		Connection con = DriverManager.getConnection(url, "cs336", "admin123");
-       
+
         	
-        	
-    		System.out.println("Connected");
-        	System.out.println(aircraft_id);
-        	
-        	
-      	
+        	String a = ("select * from Aircraft where aircraft_id='"+aircraft_id+"'");
+        	PreparedStatement ps = con.prepareStatement(a);
+        	ResultSet rs = ps.executeQuery();
+        	int count = 0;
+        	while(rs.next())
+        	{
+        	count++;
+        	}
+        	int i = 0;
+        	if (count > 0) {
         	String insert = "DELETE FROM Aircraft WHERE aircraft_id = '" + aircraft_id + "' ";
         	PreparedStatement st1 = con.prepareStatement(insert);
         	st1.executeUpdate();
@@ -57,8 +61,19 @@ public class DeleteAircraft extends HttpServlet {
         	System.out.println("Hello Im here");
         	
             System.out.println("successful Update");
+        	}
+        	
+        	else {
+        		 System.out.println("unsuccessful Update");
+        		 resp.sendRedirect(req.getContextPath() + "/jsp/DeleteAircraft.jsp");
+        		 i=1;
+        	}
+            
         	con.close();
+        	
+        	if(i==0) {
         	resp.sendRedirect(req.getContextPath() + "/jsp/CREditAircraft.jsp");
+        	}
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();

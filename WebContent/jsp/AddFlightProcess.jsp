@@ -30,10 +30,50 @@ if(rs.next()) {
 		available_seats_business = rs.getString("total_seats_business");
 	}
 
-System.out.println(available_seats_first);
+ResultSet rs2=st.executeQuery("select * from Flights where flight_number='"+flight_number+"'");
+int count2 =0;
+while(rs2.next())
+{
+count2++;
+}
 
+ResultSet rs3=st.executeQuery("select * from Airlines where airline_id='"+airline_id+"'");
+int count3 =0;
+while(rs3.next())
+{
+count3++;
+}
+
+ResultSet rs4=st.executeQuery("select * from Aircraft where aircraft_id='"+aircraft_id+"'");
+int count4 =0;
+while(rs4.next())
+{
+count4++;
+}
+
+ResultSet rs5=st.executeQuery("select * from Airports where airport_id='"+depart_airport_id+"'");
+int count5 =0;
+while(rs5.next())
+{
+count5++;
+}
+
+ResultSet rs6=st.executeQuery("select * from Airports where airport_id='"+arrive_airport_id+"'");
+int count6 =0;
+while(rs6.next())
+{
+count6++;
+}
+
+
+if(count2==0 && count3>0 && count4>0 && count6>0 && count5>0){
 int i=st.executeUpdate("insert into Flights (flight_number,depart_date,arrive_date,depart_time,arrive_time,fare_first,fare_economy,airline_id,depart_airport_id,arrive_airport_id,aircraft_id,fare_business,available_seats_economy,available_seats_first,available_seats_business)values('"+flight_number+"','"+depart_date+"','"+arrive_date+"','"+depart_time+"','"+arrive_time+"','" + fare_first +"','" + fare_economy +"','" + airline_id +"','" + depart_airport_id +"','" + arrive_airport_id +"','" + aircraft_id +"','" + fare_business +"','" + available_seats_economy +"','" + available_seats_first +"','" + available_seats_business +"')");
 out.println("Data is successfully inserted!");
+}
+
+else{
+	out.println("Please enter valid info");
+}
 }
 catch(Exception e)
 {

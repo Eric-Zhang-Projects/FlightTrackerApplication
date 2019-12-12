@@ -43,13 +43,16 @@ public class DeleteFlight extends HttpServlet {
     	try {
     		Connection con = DriverManager.getConnection(url, "cs336", "admin123");
        
-        	
-        	
-    		System.out.println("Connected");
-        	System.out.println(flight_number);
-        	
-        	
-      	
+    		String a = ("select * from Flights where flight_number='"+flight_number+"'");
+        	PreparedStatement ps = con.prepareStatement(a);
+        	ResultSet rs = ps.executeQuery();
+        	int count =0;
+        	while(rs.next())
+        	{
+        	count++;
+        	}
+        	int j=0;
+        	if (count > 0) {
         	String insert = "DELETE FROM Flights WHERE flight_number = '" + flight_number + "' ";
         	PreparedStatement st1 = con.prepareStatement(insert);
         	st1.executeUpdate();
@@ -57,8 +60,16 @@ public class DeleteFlight extends HttpServlet {
         	System.out.println("Hello Im here");
         	
             System.out.println("successful Update");
+        	}
+        	else {
+       		 System.out.println("unsuccessful Update");
+       		resp.sendRedirect(req.getContextPath() + "/jsp/DeleteFlight.jsp");
+       		 j=1;
+       	}
         	con.close();
+        	if(j==0) {
         	resp.sendRedirect(req.getContextPath() + "/jsp/CREditFlights.jsp");
+        	}
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();

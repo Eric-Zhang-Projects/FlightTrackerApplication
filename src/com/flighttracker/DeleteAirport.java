@@ -29,7 +29,7 @@ public class DeleteAirport extends HttpServlet {
     	this.req = req;
     	this.resp = resp;
     	
-    	String airport_id = req.getParameter("airport_id"); 
+    	String airport_name= req.getParameter("airport_name"); 
     	try{
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("class driver found");
@@ -43,22 +43,35 @@ public class DeleteAirport extends HttpServlet {
     	try {
     		Connection con = DriverManager.getConnection(url, "cs336", "admin123");
        
+    		String a = ("select * from Airports where airport_name='"+airport_name+"'");
+        	PreparedStatement ps = con.prepareStatement(a);
+        	ResultSet rs = ps.executeQuery();
+        	int count =0;
+        	while(rs.next())
+        	{
+        	count++;
+        	}
         	
-        	
-    		System.out.println("Connected");
-        	System.out.println(airport_id);
-        	
-        	
-      	
-        	String insert = "DELETE FROM Airports WHERE airport_id = '" + airport_id + "' ";
+        	int j=0;
+        	if (count > 0) {
+        	String insert = "DELETE FROM Airports WHERE airport_name = '" + airport_name + "' ";
         	PreparedStatement st1 = con.prepareStatement(insert);
         	st1.executeUpdate();
         	
         	System.out.println("Hello Im here");
         	
             System.out.println("successful Update");
+        	}
+        	else {
+        		 System.out.println("unsuccessful Update");
+        		 j=1;
+        		 resp.sendRedirect(req.getContextPath() + "/jsp/DeleteAirport.jsp");
+        	}
+            
         	con.close();
+        	if(j==0){
         	resp.sendRedirect(req.getContextPath() + "/jsp/CREditAirports.jsp");
+        	}
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();

@@ -74,15 +74,43 @@ public class UpdateAircraft extends HttpServlet {
         		System.out.println(total_seats_first);
         	}
         	
+        	String a = ("select * from Aircraft where aircraft_id='"+aircraft_id+"'");
+        	PreparedStatement ps = con.prepareStatement(a);
+        	ResultSet rs2 = ps.executeQuery();
+        	int count2 =0;
+        	while(rs2.next())
+        	{
+        	count2++;
+        	}
+        	
+        	String b = ("select * from Airlines where airline_id='"+airline_id+"'");
+        	PreparedStatement ps3 = con.prepareStatement(b);
+        	ResultSet rs3 = ps3.executeQuery();
+        	int count3 =0;
+        	while(rs3.next())
+        	{
+        	count3++;
+        	}
+        	
+        	
         	//update the table
+        	int j=0;
+        	if(count2>0 && count3>0) {
         	String insert = "UPDATE Aircraft SET airline_id = '" + airline_id +"', total_seats_economy = '" + total_seats_economy +"', total_seats_first = '" + total_seats_first + "', total_seats_business = '" + total_seats_business + "' where aircraft_id = '" + aircraft_id + "' ";
         	PreparedStatement st1 = con.prepareStatement(insert);
         	st1.executeUpdate();
         	
-        	
             System.out.println("successful Update");
+        	}
+        	else {
+       		System.out.println("unsuccessful Update");
+       		resp.sendRedirect(req.getContextPath() + "/jsp/CRUpdateAircraft.jsp");
+       		j=1;
+       	}
         	con.close();
+        	if(j==0) {
         	resp.sendRedirect(req.getContextPath() + "/jsp/CREditAircraft.jsp");
+        	}
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();

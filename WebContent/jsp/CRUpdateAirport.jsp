@@ -48,7 +48,7 @@ div span{
 	
 <div class="list-group" style="width: 75%;">
 	<form action="${pageContext.servletContext.contextPath}/updateAirport" method ="POST">
-		<h2>Update Aircraft Information:</h2>
+		<h2>Update Airport Information:</h2>
 		
 		<div class="container">
 			<label for="sel1">Enter the Airport name you want to change:</label>
