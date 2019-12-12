@@ -60,16 +60,45 @@ public class UpdateAirport extends HttpServlet {
         		
         		System.out.println(airport_name);
         	}
- 
+        	
+        	String a = ("select * from Airports where airport_name='"+airport_name+"'");
+        	PreparedStatement ps = con.prepareStatement(a);
+        	ResultSet rs2 = ps.executeQuery();
+        	int count2 =0;
+        	while(rs2.next())
+        	{
+        	count2++;
+        	}
+        	
+        	String b = ("select * from Airports where airport_name='"+newairport_name+"'");
+        	PreparedStatement ps3 = con.prepareStatement(b);
+        	ResultSet rs3 = ps3.executeQuery();
+        	int count3 =0;
+        	while(rs3.next())
+        	{
+        	count3++;
+        	}
+        	
+        	int j=0;
         	//update the table
+        	if(count2 >0 && count3 ==0) {
         	String insert = "UPDATE Airports SET airport_name = '" + newairport_name + "' where airport_name= '" + airport_name + "'";
         	PreparedStatement st1 = con.prepareStatement(insert);
         	st1.executeUpdate();
-
+        
         	
             System.out.println("successful Update");
+        	}
+        	else {
+           		System.out.println("unsuccessful Update");
+           		resp.sendRedirect(req.getContextPath() + "/jsp/CRUpdateAirport.jsp");
+           		j=1;
+           	}
+        	
         	con.close();
+        	if(j==0) {
         	resp.sendRedirect(req.getContextPath() + "/jsp/CREditAirports.jsp");
+        	}
     	} catch (SQLException e){
         	System.out.println("connection failed");
         	e.printStackTrace();

@@ -48,11 +48,11 @@ div span{
 	
 <div class="list-group" style="width: 75%;">
 	<form action="${pageContext.servletContext.contextPath}/deleteAirport" method ="POST">
-		<h2>Delete Aircraft Information:</h2>
+		<h2>Delete Airport Information:</h2>
 		
 		<div class="container">
-			<label for="sel1">Enter the Airport ID you want to delete:</label>
-			<input type="text" placeholder="Enter Airport ID" name="airport_id">
+			<label for="sel1">Enter the Airport Name you want to delete:</label>
+			<input type="text" placeholder="Enter Airport Name" name="airport_name">
 			
 			
 				<br>

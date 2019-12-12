@@ -12,10 +12,31 @@ try
 Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://cs336db.c0d2khgtglaj.us-east-2.rds.amazonaws.com:3306/travel", "cs336", "admin123");
 Statement st=conn.createStatement();
+ResultSet rs=st.executeQuery("select * from Airports where airport_id='"+airport_id+"'");
 
+int count=0;
+int count2=0;
+while(rs.next())
+{
+count++;
+}
+
+ResultSet rs2=st.executeQuery("select * from Airports where airport_name='"+airport_name+"'");
+while(rs2.next())
+{
+count2++;
+}
+
+if(count==0 && count2==0)
+{
 int i=st.executeUpdate("insert into Airports (airport_id,airport_name)values('"+airport_id+"','"+airport_name+"')");
 out.println("Data is successfully inserted!");
 }
+else{
+	out.println("Please enter new valid info");
+}
+}
+	
 catch(Exception e)
 {
 System.out.print(e);

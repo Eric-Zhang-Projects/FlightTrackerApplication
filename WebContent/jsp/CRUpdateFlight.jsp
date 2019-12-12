@@ -48,7 +48,7 @@ div span{
 	
 <div class="list-group" style="width: 75%;">
 	<form action="${pageContext.servletContext.contextPath}/updateFlight" method ="POST">
-		<h2>Update Aircraft Information:</h2>
+		<h2>Update Flight Information:</h2>
 		
 		<div class="container">
 			<label for="sel1">Enter the Flight Number:</label>
@@ -56,19 +56,19 @@ div span{
 			
 			<br>
 			<label for="usr">Enter the new depart date:</label>
-		 	 <input type="text" placeholder="Enter new Airport name" name ="depart_date">
+		 	 <input type="text" placeholder="yyyy-mm-dd" name ="depart_date">
 		 	 
 		 	 <br>
 			<label for="usr">Enter the new arrive date:</label>
-		 	 <input type="text" placeholder="Enter new arrive date" name ="arrive_date">
+		 	 <input type="text" placeholder="yyyy-mm-dd" name ="arrive_date">
 		 	 
 		 	 <br>
 			<label for="usr">Enter the new depart time:</label>
-		 	 <input type="text" placeholder="Enter new depart time" name ="depart_time">
+		 	 <input type="text" placeholder="hh:mm:ss" name ="depart_time">
 		 	 
 		 	 <br>
 			<label for="usr">Enter the new arrive time:</label>
-		 	 <input type="text" placeholder="Enter new arrive time" name ="arrive_time">
+		 	 <input type="text" placeholder="hh:mm:ss" name ="arrive_time">
 			
 			<br>
 			<label for="usr">Enter the new first class fare:</label>
