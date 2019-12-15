@@ -63,6 +63,17 @@ II. User functionality
 
 |||. Admin/Customer Representative 
 
+
+Admin username: admin1
+
+Admin Password: admin1
+
+
+Customer Rep Username: rep1
+
+Customer Rep Password: rep1
+
+
 [x] Admin (create an admin account ahead of time) 
 
 [x] Add, Edit and Delete information for a customer representative or customer 
